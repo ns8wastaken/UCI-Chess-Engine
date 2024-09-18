@@ -53,12 +53,12 @@ Bitboard Engine::generatePieceMoves(int square)
             Bitboard moves = 0ULL;
 
             moves |= (position << 8) & ~occupiedSquaresAll;
-            // moves |= (position >> 7) & board.b_occupiedSquares & Utils::BitMaskA;
-            // moves |= (position >> 9) & board.b_occupiedSquares & Utils::BitMaskB;
+            moves |= (position << 7) & board.b_occupiedSquares & Utils::BitMaskB;
+            moves |= (position << 9) & board.b_occupiedSquares & Utils::BitMaskA;
 
-            // // Double push if needed
-            // if ((position & Utils::W_PawnStart) && ((position >> 8) & ~occupiedSquaresAll))
-            //     moves |= (position >> 16) & ~occupiedSquaresAll;
+            // Double push if needed
+            if ((position & Utils::W_PawnStart) && ((position << 8) & ~occupiedSquaresAll))
+                moves |= (position << 16) & ~occupiedSquaresAll;
 
             return moves;
         }
@@ -66,12 +66,12 @@ Bitboard Engine::generatePieceMoves(int square)
             Bitboard moves = 0ULL;
 
             moves |= (position >> 8) & ~occupiedSquaresAll;
-            // moves |= (position << 7) & board.w_occupiedSquares & Utils::BitMaskB;
-            // moves |= (position << 9) & board.w_occupiedSquares & Utils::BitMaskA;
+            moves |= (position >> 7) & board.w_occupiedSquares & Utils::BitMaskB;
+            moves |= (position >> 9) & board.w_occupiedSquares & Utils::BitMaskA;
 
-            // // Double push if needed
-            // if ((position & Utils::B_PawnStart) && ((position << 8) & ~occupiedSquaresAll))
-            //     moves |= (position << 16) & ~occupiedSquaresAll;
+            // Double push if needed
+            if ((position & Utils::B_PawnStart) && ((position >> 8) & ~occupiedSquaresAll))
+                moves |= (position >> 16) & ~occupiedSquaresAll;
 
             return moves;
         }
@@ -200,10 +200,12 @@ std::array<Pieces::Move, 218ULL> Engine::generateAllMoves()
 {
     std::array<Pieces::Move, 218ULL> botMoves;
     size_t botMovesUsed = 0ULL;
-    botMoves.fill(Pieces::Move{64, 64});
+    botMoves.fill(Pieces::Move{64, 64, 0});
 
     for (int i = 0; i < 64; ++i) {
-        if (board.mailbox[i] == Pieces::Piece::NONE)
+        int piece = board.mailbox[i];
+
+        if (piece == Pieces::Piece::NONE)
             continue;
         else if (isWhiteTurn && !Utils::isPieceWhite(board.mailbox[i])) {
             continue;
@@ -217,8 +219,24 @@ std::array<Pieces::Move, 218ULL> Engine::generateAllMoves()
         // Loop over piece moves (loop over the bits)
         for (int offset = 0; movesBitboard; movesBitboard >>= 1, ++offset) {
             if (movesBitboard & 1) {
-                botMoves[botMovesUsed] = Pieces::Move{static_cast<uint8_t>(i), static_cast<uint8_t>(offset)};
-                ++botMovesUsed;
+                if ((piece == Pieces::Piece::W_PAWN) && ((1ULL << i) & Utils::B_PawnStart)) {
+                    botMoves[botMovesUsed] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_W_KNIGHT};
+                    botMoves[botMovesUsed + 1] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_W_BISHOP};
+                    botMoves[botMovesUsed + 2] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_W_ROOK};
+                    botMoves[botMovesUsed + 3] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_W_QUEEN};
+                    botMovesUsed += 4;
+                }
+                else if ((piece == Pieces::Piece::B_PAWN) && ((1ULL << i) & Utils::W_PawnStart)) {
+                    botMoves[botMovesUsed] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_B_KNIGHT};
+                    botMoves[botMovesUsed + 1] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_B_BISHOP};
+                    botMoves[botMovesUsed + 2] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_B_ROOK};
+                    botMoves[botMovesUsed + 3] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_B_QUEEN};
+                    botMovesUsed += 4;
+                }
+                else {
+                    botMoves[botMovesUsed] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), 0};
+                    ++botMovesUsed;
+                }
             }
         }
     }
@@ -267,17 +285,6 @@ std::string Engine::getEngineMove()
 {
     std::array<Pieces::Move, 218ULL> botMoves = generateAllMoves();
     Pieces::Move move = botMoves[0];
-
-    // for (int i = 1; i < 218; ++i) {
-    //     if (botMoves[i].fromSquare == 64 || botMoves[i].toSquare == 64)
-    //         continue;
-
-    //     if (board.mailbox[botMoves[i].fromSquare] == Pieces::Piece::W_KNIGHT)
-    //         printf("[%d] %s\n", i, Utils::toUCI(botMoves[i]).c_str());
-    // }
-
-    // int square = 8;
-    // printf("%i  %i\n", (bool)(board.bitboards[0] & (1ULL << 8)), board.mailbox[square] == Pieces::Piece::W_PAWN);
 
     return Utils::toUCI(move);
 }
