@@ -79,12 +79,12 @@ namespace Pieces
     constexpr int getPieceValue(int pieceType)
     {
         switch (pieceType) {
-            case PAWN:   return 100;
-            case KNIGHT: return 300;
-            case BISHOP: return 300;
-            case ROOK:   return 500;
-            case QUEEN:  return 900;
-            case KING:   return 31415926;
+            case PieceType::PAWN:   return 100;
+            case PieceType::KNIGHT: return 300;
+            case PieceType::BISHOP: return 300;
+            case PieceType::ROOK:   return 500;
+            case PieceType::QUEEN:  return 900;
+            case PieceType::KING:   return 31415926;
         }
 
         return 0;
@@ -95,20 +95,20 @@ namespace Pieces
     {
         switch (piece) {
             // White
-            case W_PAWN:   return 'P';
-            case W_KNIGHT: return 'N';
-            case W_BISHOP: return 'B';
-            case W_ROOK:   return 'R';
-            case W_QUEEN:  return 'Q';
-            case W_KING:   return 'K';
+            case Piece::W_PAWN:   return 'P';
+            case Piece::W_KNIGHT: return 'N';
+            case Piece::W_BISHOP: return 'B';
+            case Piece::W_ROOK:   return 'R';
+            case Piece::W_QUEEN:  return 'Q';
+            case Piece::W_KING:   return 'K';
 
             // Black
-            case B_PAWN:   return 'p';
-            case B_KNIGHT: return 'n';
-            case B_BISHOP: return 'b';
-            case B_ROOK:   return 'r';
-            case B_QUEEN:  return 'q';
-            case B_KING:   return 'k';
+            case Piece::B_PAWN:   return 'p';
+            case Piece::B_KNIGHT: return 'n';
+            case Piece::B_BISHOP: return 'b';
+            case Piece::B_ROOK:   return 'r';
+            case Piece::B_QUEEN:  return 'q';
+            case Piece::B_KING:   return 'k';
         }
 
         return '\0';
@@ -118,13 +118,17 @@ namespace Pieces
     constexpr char getPromotionChar(uint8_t promotion)
     {
         switch (promotion) {
-            case Promotion::P_NONE:   return '\0';
+            case Promotion::P_NONE:     return '\0';
+
             case Promotion::P_W_KNIGHT: return 'N';
             case Promotion::P_B_KNIGHT: return 'n';
+
             case Promotion::P_W_BISHOP: return 'B';
             case Promotion::P_B_BISHOP: return 'b';
+
             case Promotion::P_W_ROOK:   return 'R';
             case Promotion::P_B_ROOK:   return 'r';
+
             case Promotion::P_W_QUEEN:  return 'Q';
             case Promotion::P_B_QUEEN:  return 'q';
         }
@@ -137,23 +141,41 @@ namespace Pieces
     {
         switch (c) {
             // White
-            case 'P': return W_PAWN;
-            case 'N': return W_KNIGHT;
-            case 'B': return W_BISHOP;
-            case 'R': return W_ROOK;
-            case 'Q': return W_QUEEN;
-            case 'K': return W_KING;
+            case 'P': return Piece::W_PAWN;
+            case 'N': return Piece::W_KNIGHT;
+            case 'B': return Piece::W_BISHOP;
+            case 'R': return Piece::W_ROOK;
+            case 'Q': return Piece::W_QUEEN;
+            case 'K': return Piece::W_KING;
 
             // Black
-            case 'p': return B_PAWN;
-            case 'n': return B_KNIGHT;
-            case 'b': return B_BISHOP;
-            case 'r': return B_ROOK;
-            case 'q': return B_QUEEN;
-            case 'k': return B_KING;
+            case 'p': return Piece::B_PAWN;
+            case 'n': return Piece::B_KNIGHT;
+            case 'b': return Piece::B_BISHOP;
+            case 'r': return Piece::B_ROOK;
+            case 'q': return Piece::B_QUEEN;
+            case 'k': return Piece::B_KING;
         }
 
         return Piece::NONE;
     };
+
+
+    constexpr int getPromotionFromChar(char c)
+    {
+        switch (c) {
+            case 'N': return Promotion::P_W_KNIGHT;
+            case 'B': return Promotion::P_W_BISHOP;
+            case 'R': return Promotion::P_W_ROOK;
+            case 'Q': return Promotion::P_W_QUEEN;
+
+            case 'n': return Promotion::P_B_KNIGHT;
+            case 'b': return Promotion::P_B_BISHOP;
+            case 'r': return Promotion::P_B_ROOK;
+            case 'q': return Promotion::P_B_QUEEN;
+        }
+
+        return Promotion::P_NONE;
+    }
 
 }

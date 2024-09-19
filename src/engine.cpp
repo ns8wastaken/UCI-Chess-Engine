@@ -6,17 +6,32 @@ Engine::Engine()
 {
     board.bitboards.fill(0ULL);
     board.mailbox.fill(Pieces::Piece::NONE);
+
+    board.precomputeMoves();
 }
 
 
-void Engine::loadFEN(const std::string& FEN)
+void Engine::loadFEN(const std::vector<std::string>& FEN)
 {
+    // 0: Board
+    // 1: Active color
+    // 2: Castling rights
+    // 3: En passant square
+    // 4: Halfmove clock
+    // 5: Fullmove number
+
     int square = 56; // Start from the top-left corner (a8)
 
     board.bitboards.fill(0ULL);
     board.mailbox.fill(Pieces::Piece::NONE);
 
-    for (const char& c : FEN) {
+    board.castlingRights.whiteKingside = true;
+    board.castlingRights.whiteQueenside = true;
+    board.castlingRights.blackKingside = true;
+    board.castlingRights.blackQueenside = true;
+
+
+    for (const char& c : FEN[0]) {
         if (c == '/') {
             square -= 16; // Move to the start of the next rank
         }
@@ -37,6 +52,24 @@ void Engine::loadFEN(const std::string& FEN)
             ++square;
         }
     }
+
+
+    if (FEN[1] == "w")
+        isWhiteTurn = true;
+    else
+        isWhiteTurn = false;
+
+
+    for (const char& c : FEN[2]) {
+        switch (c) {
+            case 'K': board.castlingRights.whiteKingside = true; break;
+            case 'Q': board.castlingRights.whiteQueenside = true; break;
+            case 'k': board.castlingRights.blackKingside = true; break;
+            case 'q': board.castlingRights.blackQueenside = true; break;
+        }
+    }
+
+    enPassantSquare = Utils::squareFromUCI(FEN[3]);
 }
 
 
@@ -47,6 +80,18 @@ Bitboard Engine::generatePieceMoves(int square)
     int piece = board.mailbox[square];
 
     Bitboard position = (1ULL << square);
+
+
+    /*
+        Bitshift offsets
+
+        << 7 | << 8 | << 9
+        -----|------|-----
+        << 1 |   0  | >> 1
+        -----|------|-----
+        >> 7 | >> 8 | >> 9
+    */
+
 
     switch (piece) {
         case Pieces::Piece::W_PAWN: {
@@ -292,5 +337,5 @@ std::string Engine::getEngineMove()
 
 void Engine::makeUCIMove(const std::string& UCI_Move)
 {
-    makeMove(Utils::fromUCI(UCI_Move));
+    makeMove(Utils::moveFromUCI(UCI_Move));
 }

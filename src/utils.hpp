@@ -5,11 +5,9 @@
 #include "pieces.hpp"
 
 
-#ifndef UTIL_TYPES
-#define UTIL_TYPES
 typedef uint64_t Bitboard;
 typedef uint8_t Square;
-#endif
+
 
 #define s_cast(T, x) static_cast<T>(x)
 
@@ -17,22 +15,19 @@ typedef uint8_t Square;
 namespace Utils
 {
 
-    [[nodiscard]]
-    inline uint64_t BitShift(uint64_t x, int shift)
+    [[nodiscard]] inline uint64_t BitShift(uint64_t x, int shift)
     {
         return ((shift > 0) ? (x << shift) : (x >> -shift));
     }
 
 
-    [[nodiscard]]
-    inline constexpr bool isPieceWhite(int piece)
+    [[nodiscard]] inline constexpr bool isPieceWhite(int piece)
     {
         return !(piece & 1); // !(piece % 2)
     }
 
 
-    [[nodiscard]]
-    inline int BitCounter(uint64_t x)
+    [[nodiscard]] inline int BitCounter(uint64_t x)
     {
         int bitCount = 0;
         while (x) {
@@ -54,8 +49,17 @@ namespace Utils
         bitboard &= ~(1ULL << square);
     }
 
-    [[nodiscard]]
-    std::string toUCI(const Pieces::Move& move)
+
+    [[nodiscard]] std::string toUCI(const Square& square)
+    {
+        return std::string{
+            static_cast<char>('a' + (square % 8)),
+            static_cast<char>('1' + (square / 8))
+        };
+    }
+
+
+    [[nodiscard]] std::string toUCI(const Pieces::Move& move)
     {
         std::string uci{
             static_cast<char>('a' + (move.fromSquare % 8)),
@@ -72,38 +76,17 @@ namespace Utils
     }
 
 
-    [[nodiscard]]
-    Pieces::Move fromUCI(const std::string& UCI_Move)
+    [[nodiscard]] Square squareFromUCI(const std::string& UCI_Square)
+    {
+        return static_cast<uint8_t>((UCI_Square[1] - '1') * 8 + UCI_Square[0] - 'a');
+    }
+
+
+    [[nodiscard]] Pieces::Move moveFromUCI(const std::string& UCI_Move)
     {
         uint8_t promotion = 0;
         if (UCI_Move.length() == 5) {
-            switch (tolower(UCI_Move[4])) {
-                case 'n': {
-                    promotion = Pieces::Promotion::P_B_KNIGHT;
-                } break;
-                case 'b': {
-                    promotion = Pieces::Promotion::P_B_BISHOP;
-                } break;
-                case 'r': {
-                    promotion = Pieces::Promotion::P_B_ROOK;
-                } break;
-                case 'q': {
-                    promotion = Pieces::Promotion::P_B_QUEEN;
-                } break;
-
-                case 'N': {
-                    promotion = Pieces::Promotion::P_W_KNIGHT;
-                } break;
-                case 'B': {
-                    promotion = Pieces::Promotion::P_W_BISHOP;
-                } break;
-                case 'R': {
-                    promotion = Pieces::Promotion::P_W_ROOK;
-                } break;
-                case 'Q': {
-                    promotion = Pieces::Promotion::P_W_QUEEN;
-                } break;
-            }
+            promotion = Pieces::getPromotionFromChar(UCI_Move[4]);
         }
 
         return Pieces::Move{
@@ -148,7 +131,7 @@ namespace Utils
     constexpr uint64_t B_PawnStart = 0xff000000000000;
     constexpr uint64_t W_PawnStart = 0xff00;
 
-    constexpr uint64_t B_PawnPromote = 0xff00000000000000;
-    constexpr uint64_t W_PawnPromote = 0xff;
+    constexpr uint64_t B_PawnPromote = 0xff;
+    constexpr uint64_t W_PawnPromote = 0xff00000000000000;
 
 }

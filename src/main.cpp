@@ -13,20 +13,23 @@
 #define elifsplitcommand(i, x) else if (splitCommand[i] == x)
 
 
+constexpr const char* STARTING_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+
+
 void printBitboard(uint64_t bitboard)
 {
     for (int rank = 7; rank >= 0; --rank) {
         for (int file = 0; file < 8; ++file) {
             int square = rank * 8 + file;
-            // Check if the square is occupied by a piece (bit is set)
+
             if ((bitboard >> square) & 1ULL) {
-                std::cout << "1 "; // Occupied square
+                std::cout << "1 ";
             }
             else {
-                std::cout << ". "; // Empty square
+                std::cout << ". ";
             }
         }
-        std::cout << "\n"; // Newline after each rank
+        std::cout << "\n";
     }
     std::cout << "\n";
 }
@@ -83,7 +86,7 @@ int main()
             ifsplitcommand(1, "startpos")
             {
                 if (splitCommand.size() == 2) {
-                    engine.loadFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+                    engine.loadFEN(splitStr(STARTING_FEN));
                 }
                 else if (splitCommand.size() > 2) {
                     engine.makeUCIMove(splitCommand[splitCommand.size() - 1]);

@@ -12,8 +12,9 @@ struct Engine
     Engine();
 
     bool isWhiteTurn = true;
+    Square enPassantSquare = 0;
 
-    void loadFEN(const std::string& FEN);
+    void loadFEN(const std::vector<std::string>& FEN);
 
     Bitboard generatePieceMoves(int square);
     std::array<Pieces::Move, 218ULL> generateAllMoves();
