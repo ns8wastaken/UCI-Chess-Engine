@@ -322,7 +322,7 @@ std::array<Pieces::Move, 218ULL> Engine::generateAllMoves()
 
 bool Engine::isAttacked(const Square square)
 {
-    std::cout << Utils::toUCI(square) << "\n";
+    // TODO : ADD ALL PIECE MOVES FOR THIS TO WORK
 
     int bishop = (this->isWhiteTurn ? Pieces::Piece::W_BISHOP : Pieces::Piece::B_BISHOP);
     int rook = (this->isWhiteTurn ? Pieces::Piece::W_ROOK : Pieces::Piece::B_ROOK);
@@ -330,26 +330,13 @@ bool Engine::isAttacked(const Square square)
     int knight = (this->isWhiteTurn ? Pieces::Piece::W_KNIGHT : Pieces::Piece::B_KNIGHT);
     int pawn = (this->isWhiteTurn ? Pieces::Piece::W_PAWN : Pieces::Piece::B_PAWN);
 
-    // uint64_t threats = this->generatePieceMoves(square, bishop) |
-    //                    this->generatePieceMoves(square, rook) |
-    //                    this->generatePieceMoves(square, queen) |
-    //                    this->generatePieceMoves(square, knight) |
-    //                    this->generatePieceMoves(square, pawn);
-
-
     if (this->generatePieceMoves(square, bishop) & board.bitboards[bishop]) return true;
-    if (this->generatePieceMoves(square, rook) & board.bitboards[rook]) return true;
-    if (this->generatePieceMoves(square, queen) & board.bitboards[queen]) return true;
-    if (this->generatePieceMoves(square, knight) & board.bitboards[knight]) return true;
-    if (this->generatePieceMoves(square, pawn) & board.bitboards[pawn]) return true;
+    else if (this->generatePieceMoves(square, rook) & board.bitboards[rook]) return true;
+    else if (this->generatePieceMoves(square, queen) & board.bitboards[queen]) return true;
+    else if (this->generatePieceMoves(square, knight) & board.bitboards[knight]) return true;
+    else if (this->generatePieceMoves(square, pawn) & board.bitboards[pawn]) return true;
 
     return false;
-
-    // return threats & (board.bitboards[bishop] |
-    //                   board.bitboards[rook] |
-    //                   board.bitboards[queen] |
-    //                   board.bitboards[knight] |
-    //                   board.bitboards[pawn]);
 }
 
 
