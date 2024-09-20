@@ -90,7 +90,7 @@ int main()
                 }
                 else if (splitCommand.size() > 2) {
                     engine.makeUCIMove(splitCommand[splitCommand.size() - 1]);
-                    engine.isWhiteTurn = splitCommand.size() % 2;
+                    engine.setColor(splitCommand.size() % 2);
                 }
             }
         }

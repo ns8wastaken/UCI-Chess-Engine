@@ -11,15 +11,45 @@ Engine::Engine()
 }
 
 
+void Engine::setColor(bool isWhite)
+{
+    this->isWhiteTurn = isWhite;
+
+    if (isWhite) {
+        this->ownPiece.PAWN = Pieces::Piece::W_PAWN;
+        this->ownPiece.KNIGHT = Pieces::Piece::W_KNIGHT;
+        this->ownPiece.BISHOP = Pieces::Piece::W_BISHOP;
+        this->ownPiece.ROOK = Pieces::Piece::W_ROOK;
+        this->ownPiece.QUEEN = Pieces::Piece::W_QUEEN;
+        this->ownPiece.KING = Pieces::Piece::W_KING;
+
+        this->enemyPiece.PAWN = Pieces::Piece::B_PAWN;
+        this->enemyPiece.KNIGHT = Pieces::Piece::B_KNIGHT;
+        this->enemyPiece.BISHOP = Pieces::Piece::B_BISHOP;
+        this->enemyPiece.ROOK = Pieces::Piece::B_ROOK;
+        this->enemyPiece.QUEEN = Pieces::Piece::B_QUEEN;
+        this->enemyPiece.KING = Pieces::Piece::B_KING;
+    }
+    else {
+        this->ownPiece.PAWN = Pieces::Piece::B_PAWN;
+        this->ownPiece.KNIGHT = Pieces::Piece::B_KNIGHT;
+        this->ownPiece.BISHOP = Pieces::Piece::B_BISHOP;
+        this->ownPiece.ROOK = Pieces::Piece::B_ROOK;
+        this->ownPiece.QUEEN = Pieces::Piece::B_QUEEN;
+        this->ownPiece.KING = Pieces::Piece::B_KING;
+
+        this->enemyPiece.PAWN = Pieces::Piece::W_PAWN;
+        this->enemyPiece.KNIGHT = Pieces::Piece::W_KNIGHT;
+        this->enemyPiece.BISHOP = Pieces::Piece::W_BISHOP;
+        this->enemyPiece.ROOK = Pieces::Piece::W_ROOK;
+        this->enemyPiece.QUEEN = Pieces::Piece::W_QUEEN;
+        this->enemyPiece.KING = Pieces::Piece::W_KING;
+    }
+}
+
+
 void Engine::loadFEN(const std::vector<std::string>& FEN)
 {
-    // 0: Board
-    // 1: Active color
-    // 2: Castling rights
-    // 3: En passant square
-    // 4: Halfmove clock
-    // 5: Fullmove number
-
     int square = 56; // Start from the top-left corner (a8)
 
     board.bitboards.fill(0ULL);
@@ -55,9 +85,9 @@ void Engine::loadFEN(const std::vector<std::string>& FEN)
 
 
     if (FEN[1] == "w")
-        isWhiteTurn = true;
+        this->isWhiteTurn = true;
     else
-        isWhiteTurn = false;
+        this->isWhiteTurn = false;
 
 
     for (const char& c : FEN[2]) {
@@ -73,17 +103,15 @@ void Engine::loadFEN(const std::vector<std::string>& FEN)
 }
 
 
-Bitboard Engine::generatePieceMoves(int square)
+Bitboard Engine::generatePieceMoves(int square, int piece)
 {
     const Bitboard occupiedSquaresAll = (board.w_occupiedSquares | board.b_occupiedSquares);
-
-    int piece = board.mailbox[square];
 
     Bitboard position = (1ULL << square);
 
 
     /*
-        Bitshift offsets
+         Bitshift offsets
 
         << 7 | << 8 | << 9
         -----|------|-----
@@ -252,41 +280,61 @@ std::array<Pieces::Move, 218ULL> Engine::generateAllMoves()
 
         if (piece == Pieces::Piece::NONE)
             continue;
-        else if (isWhiteTurn && !Utils::isPieceWhite(board.mailbox[i])) {
+        else if (this->isWhiteTurn && !Utils::isPieceWhite(board.mailbox[i])) {
             continue;
         }
-        else if (!isWhiteTurn && Utils::isPieceWhite(board.mailbox[i])) {
+        else if (!this->isWhiteTurn && Utils::isPieceWhite(board.mailbox[i])) {
             continue;
         }
 
-        Bitboard movesBitboard = generatePieceMoves(i);
+        Bitboard movesBitboard = generatePieceMoves(i, board.mailbox[i]);
 
         // Loop over piece moves (loop over the bits)
-        for (int offset = 0; movesBitboard; movesBitboard >>= 1, ++offset) {
-            if (movesBitboard & 1) {
-                if ((piece == Pieces::Piece::W_PAWN) && ((1ULL << i) & Utils::B_PawnStart)) {
-                    botMoves[botMovesUsed] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_W_KNIGHT};
-                    botMoves[botMovesUsed + 1] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_W_BISHOP};
-                    botMoves[botMovesUsed + 2] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_W_ROOK};
-                    botMoves[botMovesUsed + 3] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_W_QUEEN};
-                    botMovesUsed += 4;
-                }
-                else if ((piece == Pieces::Piece::B_PAWN) && ((1ULL << i) & Utils::W_PawnStart)) {
-                    botMoves[botMovesUsed] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_B_KNIGHT};
-                    botMoves[botMovesUsed + 1] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_B_BISHOP};
-                    botMoves[botMovesUsed + 2] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_B_ROOK};
-                    botMoves[botMovesUsed + 3] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_B_QUEEN};
-                    botMovesUsed += 4;
-                }
-                else {
-                    botMoves[botMovesUsed] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), 0};
-                    ++botMovesUsed;
-                }
+        while (movesBitboard) {
+            int offset = __builtin_ctzll(movesBitboard);
+            movesBitboard &= ~(1ULL << offset);
+
+            if ((piece == Pieces::Piece::W_PAWN) && ((1ULL << i) & Utils::B_PawnStart)) {
+                botMoves[botMovesUsed + 0] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_W_KNIGHT};
+                botMoves[botMovesUsed + 1] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_W_BISHOP};
+                botMoves[botMovesUsed + 2] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_W_ROOK};
+                botMoves[botMovesUsed + 3] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_W_QUEEN};
+                botMovesUsed += 4;
+            }
+            else if ((piece == Pieces::Piece::B_PAWN) && ((1ULL << i) & Utils::W_PawnStart)) {
+                botMoves[botMovesUsed + 0] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_B_KNIGHT};
+                botMoves[botMovesUsed + 1] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_B_BISHOP};
+                botMoves[botMovesUsed + 2] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_B_ROOK};
+                botMoves[botMovesUsed + 3] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Promotion::P_B_QUEEN};
+                botMovesUsed += 4;
+            }
+            else {
+                botMoves[botMovesUsed] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), 0};
+                ++botMovesUsed;
             }
         }
     }
 
     return botMoves;
+}
+
+
+bool Engine::isAttacked(Square square)
+{
+    int bishop = (this->isWhiteTurn ? Pieces::Piece::W_BISHOP : Pieces::Piece::B_BISHOP);
+    int rook = (this->isWhiteTurn ? Pieces::Piece::W_ROOK : Pieces::Piece::B_ROOK);
+    int queen = (this->isWhiteTurn ? Pieces::Piece::W_QUEEN : Pieces::Piece::B_QUEEN);
+    int knight = (this->isWhiteTurn ? Pieces::Piece::W_KNIGHT : Pieces::Piece::B_KNIGHT);
+
+    uint64_t threats = generatePieceMoves(square, bishop) |
+                       generatePieceMoves(square, rook) |
+                       generatePieceMoves(square, queen) |
+                       generatePieceMoves(square, knight);
+
+    return threats & (board.bitboards[bishop] |
+                      board.bitboards[rook] |
+                      board.bitboards[queen] |
+                      board.bitboards[knight]);
 }
 
 

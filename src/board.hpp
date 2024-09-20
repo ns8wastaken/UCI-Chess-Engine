@@ -9,8 +9,8 @@ struct Board
 {
     struct PrecomputedMoves
     {
-        std::array<Bitboard, 64> knightMoves;
-        std::array<Bitboard, 64> kingMoves;
+        std::array<Bitboard, 64> knightMoves{};
+        std::array<Bitboard, 64> kingMoves{};
     };
 
     struct CastlingRights
@@ -26,6 +26,8 @@ struct Board
 
     std::array<uint64_t, Pieces::Piece::PIECE_COUNT> bitboards{};
     std::array<int, 64ULL> mailbox{};
+
+    Bitboard attackedSquares = 0ULL;
 
     // Occupied white squares
     Bitboard w_occupiedSquares = 0ULL;
