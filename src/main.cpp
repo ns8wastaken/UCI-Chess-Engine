@@ -110,18 +110,11 @@ int main()
                 int piece = engine.board.mailbox[i];
 
                 if (i % 8 == 0 && i > 0)
-                    std::cout << "|" << 9 - (i / 8) << "\n";
+                    std::cout << "|" << (i / 8) << "\n";
 
                 std::cout << ((piece == Pieces::Piece::NONE) ? ' ' : Pieces::getPieceChar(piece)) << " ";
             }
-            printf("|1\n----------------\nA B C D E F G H\n\n\n");
-
-            for (int i = 0; i < 12; ++i) {
-                printBitboard(engine.board.bitboards[i]);
-            }
-
-            // printBitboard(engine.board.w_pieces);
-            // printBitboard(engine.board.b_pieces);
+            printf("|8\n----------------\nA B C D E F G H\n\n\n");
         }
 
         elifsplitcommand(0, "move")
@@ -133,11 +126,11 @@ int main()
                 int piece = engine.board.mailbox[i];
 
                 if (i % 8 == 0 && i > 0)
-                    std::cout << "|" << 9 - (i / 8) << "\n";
+                    std::cout << "|" << (i / 8) << "\n";
 
                 std::cout << ((piece == Pieces::Piece::NONE) ? ' ' : Pieces::getPieceChar(piece)) << " ";
             }
-            printf("|1\n----------------\nA B C D E F G H\n\n\n");
+            printf("|8\n----------------\nA B C D E F G H\n\n\n");
         }
 
         elifsplitcommand(0, "moves")
@@ -151,11 +144,11 @@ int main()
                     int piece = engine.board.mailbox[i];
 
                     if (i % 8 == 0 && i > 0)
-                        std::cout << "|" << 9 - (i / 8) << "\n";
+                        std::cout << "|" << (i / 8) << "\n";
 
                     std::cout << ((piece == Pieces::Piece::NONE) ? ' ' : Pieces::getPieceChar(piece)) << " ";
                 }
-                printf("|1\n----------------\nA B C D E F G H\n\n\n");
+                printf("|8\n----------------\nA B C D E F G H\n\n\n");
             }
         }
 

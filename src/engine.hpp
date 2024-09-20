@@ -7,14 +7,6 @@
 #include "pieces.hpp"
 
 
-struct HistoryState
-{
-    Board board;
-    Square enPassantSquare;
-    Board::CastlingRights castlingRights;
-};
-
-
 struct Piece
 {
     int PAWN;
@@ -51,16 +43,16 @@ struct Engine
     };
 
     bool isWhiteTurn = true;
-    Square enPassantSquare = 0;
 
     void loadFEN(const std::vector<std::string>& FEN);
 
     Bitboard generatePieceMoves(int square, int piece);
     std::array<Pieces::Move, 218ULL> generateAllMoves();
 
-    bool isAttacked(Square square);
+    bool isAttacked(const Square square);
+    bool isLegalMove(const Pieces::Move& move);
 
-    void makeMove(Pieces::Move move);
+    void makeMove(const Pieces::Move& move);
     void makeUCIMove(const std::string& UCI_Move);
 
     void undoMove();

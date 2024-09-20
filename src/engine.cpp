@@ -99,7 +99,8 @@ void Engine::loadFEN(const std::vector<std::string>& FEN)
         }
     }
 
-    enPassantSquare = Utils::squareFromUCI(FEN[3]);
+    if (FEN[3] != "-")
+        board.enPassantSquare = Utils::squareFromUCI(FEN[3]);
 }
 
 
@@ -129,7 +130,7 @@ Bitboard Engine::generatePieceMoves(int square, int piece)
             moves |= (position << 7) & board.b_occupiedSquares & Utils::BitMaskB;
             moves |= (position << 9) & board.b_occupiedSquares & Utils::BitMaskA;
 
-            // Double push if needed
+            // Double push if possible
             if ((position & Utils::W_PawnStart) && ((position << 8) & ~occupiedSquaresAll))
                 moves |= (position << 16) & ~occupiedSquaresAll;
 
@@ -142,7 +143,7 @@ Bitboard Engine::generatePieceMoves(int square, int piece)
             moves |= (position >> 7) & board.w_occupiedSquares & Utils::BitMaskB;
             moves |= (position >> 9) & board.w_occupiedSquares & Utils::BitMaskA;
 
-            // Double push if needed
+            // Double push if possible
             if ((position & Utils::B_PawnStart) && ((position >> 8) & ~occupiedSquaresAll))
                 moves |= (position >> 16) & ~occupiedSquaresAll;
 
@@ -287,7 +288,7 @@ std::array<Pieces::Move, 218ULL> Engine::generateAllMoves()
             continue;
         }
 
-        Bitboard movesBitboard = generatePieceMoves(i, board.mailbox[i]);
+        Bitboard movesBitboard = this->generatePieceMoves(i, board.mailbox[i]);
 
         // Loop over piece moves (loop over the bits)
         while (movesBitboard) {
@@ -319,27 +320,48 @@ std::array<Pieces::Move, 218ULL> Engine::generateAllMoves()
 }
 
 
-bool Engine::isAttacked(Square square)
+bool Engine::isAttacked(const Square square)
 {
+    std::cout << Utils::toUCI(square) << "\n";
+
     int bishop = (this->isWhiteTurn ? Pieces::Piece::W_BISHOP : Pieces::Piece::B_BISHOP);
     int rook = (this->isWhiteTurn ? Pieces::Piece::W_ROOK : Pieces::Piece::B_ROOK);
     int queen = (this->isWhiteTurn ? Pieces::Piece::W_QUEEN : Pieces::Piece::B_QUEEN);
     int knight = (this->isWhiteTurn ? Pieces::Piece::W_KNIGHT : Pieces::Piece::B_KNIGHT);
+    int pawn = (this->isWhiteTurn ? Pieces::Piece::W_PAWN : Pieces::Piece::B_PAWN);
 
-    uint64_t threats = generatePieceMoves(square, bishop) |
-                       generatePieceMoves(square, rook) |
-                       generatePieceMoves(square, queen) |
-                       generatePieceMoves(square, knight);
+    // uint64_t threats = this->generatePieceMoves(square, bishop) |
+    //                    this->generatePieceMoves(square, rook) |
+    //                    this->generatePieceMoves(square, queen) |
+    //                    this->generatePieceMoves(square, knight) |
+    //                    this->generatePieceMoves(square, pawn);
 
-    return threats & (board.bitboards[bishop] |
-                      board.bitboards[rook] |
-                      board.bitboards[queen] |
-                      board.bitboards[knight]);
+
+    if (this->generatePieceMoves(square, bishop) & board.bitboards[bishop]) return true;
+    if (this->generatePieceMoves(square, rook) & board.bitboards[rook]) return true;
+    if (this->generatePieceMoves(square, queen) & board.bitboards[queen]) return true;
+    if (this->generatePieceMoves(square, knight) & board.bitboards[knight]) return true;
+    if (this->generatePieceMoves(square, pawn) & board.bitboards[pawn]) return true;
+
+    return false;
+
+    // return threats & (board.bitboards[bishop] |
+    //                   board.bitboards[rook] |
+    //                   board.bitboards[queen] |
+    //                   board.bitboards[knight] |
+    //                   board.bitboards[pawn]);
 }
 
 
-void Engine::makeMove(Pieces::Move move)
+void Engine::makeMove(const Pieces::Move& move)
 {
+    board.history.push(Board::HistoryState{
+        .bitboards = board.bitboards,
+        .enPassantSquare = board.enPassantSquare,
+        .castlingRights = board.castlingRights,
+        .mailbox = board.mailbox
+    });
+
     int piece = board.mailbox[move.fromSquare];
 
     // Handle captures (if any)
@@ -374,16 +396,63 @@ void Engine::makeMove(Pieces::Move move)
 }
 
 
-std::string Engine::getEngineMove()
+void Engine::makeUCIMove(const std::string& UCI_Move)
 {
-    std::array<Pieces::Move, 218ULL> botMoves = generateAllMoves();
-    Pieces::Move move = botMoves[0];
-
-    return Utils::toUCI(move);
+    this->makeMove(Utils::moveFromUCI(UCI_Move));
 }
 
 
-void Engine::makeUCIMove(const std::string& UCI_Move)
+void Engine::undoMove()
 {
-    makeMove(Utils::moveFromUCI(UCI_Move));
+    if (!board.history.empty()) {
+        const Board::HistoryState state = board.history.top();
+        board.history.pop();
+
+        board.bitboards = state.bitboards;
+        board.enPassantSquare = state.enPassantSquare;
+        board.castlingRights = state.castlingRights;
+        board.mailbox = state.mailbox;
+    }
+}
+
+
+bool Engine::isLegalMove(const Pieces::Move& move)
+{
+    bool isLegal = true;
+
+    int king = (this->isWhiteTurn ? Pieces::Piece::W_KING : Pieces::Piece::B_KING);
+
+    {
+        this->makeMove(move);
+
+        if (this->isAttacked(__builtin_ctzll(board.bitboards[king]))) {
+            printf("info string nuhuh\n");
+            isLegal = false;
+        }
+
+        this->undoMove();
+    }
+
+    return isLegal;
+}
+
+
+std::string Engine::getEngineMove()
+{
+    std::array<Pieces::Move, 218ULL> botMoves = this->generateAllMoves();
+
+    Pieces::Move botMove = botMoves[0];
+    // for (Pieces::Move& move : botMoves) {
+    //     if (isLegalMove(move)) {
+    //         botMove = move;
+    //         break;
+    //     }
+    // }
+
+    if (this->isAttacked(__builtin_ctzll(board.bitboards[this->isWhiteTurn ? Pieces::Piece::W_KING : Pieces::Piece::B_KING]))) {
+        printf("info string nuhuh !!!\n");
+    }
+
+
+    return Utils::toUCI(botMove);
 }

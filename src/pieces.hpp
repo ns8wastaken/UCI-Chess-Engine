@@ -67,15 +67,6 @@ namespace Pieces
     };
 
 
-    struct HistoryMove
-    {
-        int capturedPiece = Piece::NONE;
-        uint8_t fromSquare = 64;
-        uint8_t toSquare = 64;
-        uint8_t enPassantSquare = 64;
-    };
-
-
     constexpr int getPieceValue(int pieceType)
     {
         switch (pieceType) {
