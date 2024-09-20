@@ -13,7 +13,7 @@
 #define elifsplitcommand(i, x) else if (splitCommand[i] == x)
 
 
-constexpr const char* STARTING_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+const std::string STARTING_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 
 void printBitboard(uint64_t bitboard)

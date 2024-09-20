@@ -46,7 +46,7 @@ struct Engine
 
     void loadFEN(const std::vector<std::string>& FEN);
 
-    Bitboard generatePieceMoves(int square, int piece);
+    Bitboard generatePieceMoves(const int square, const int piece);
     std::array<Pieces::Move, 218ULL> generateAllMoves();
 
     bool isAttacked(const Square square);

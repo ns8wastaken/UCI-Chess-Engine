@@ -13,37 +13,37 @@ Engine::Engine()
 
 void Engine::setColor(bool isWhite)
 {
-    this->isWhiteTurn = isWhite;
+    isWhiteTurn = isWhite;
 
     if (isWhite) {
-        this->ownPiece.PAWN = Pieces::Piece::W_PAWN;
-        this->ownPiece.KNIGHT = Pieces::Piece::W_KNIGHT;
-        this->ownPiece.BISHOP = Pieces::Piece::W_BISHOP;
-        this->ownPiece.ROOK = Pieces::Piece::W_ROOK;
-        this->ownPiece.QUEEN = Pieces::Piece::W_QUEEN;
-        this->ownPiece.KING = Pieces::Piece::W_KING;
+        ownPiece.PAWN = Pieces::Piece::W_PAWN;
+        ownPiece.KNIGHT = Pieces::Piece::W_KNIGHT;
+        ownPiece.BISHOP = Pieces::Piece::W_BISHOP;
+        ownPiece.ROOK = Pieces::Piece::W_ROOK;
+        ownPiece.QUEEN = Pieces::Piece::W_QUEEN;
+        ownPiece.KING = Pieces::Piece::W_KING;
 
-        this->enemyPiece.PAWN = Pieces::Piece::B_PAWN;
-        this->enemyPiece.KNIGHT = Pieces::Piece::B_KNIGHT;
-        this->enemyPiece.BISHOP = Pieces::Piece::B_BISHOP;
-        this->enemyPiece.ROOK = Pieces::Piece::B_ROOK;
-        this->enemyPiece.QUEEN = Pieces::Piece::B_QUEEN;
-        this->enemyPiece.KING = Pieces::Piece::B_KING;
+        enemyPiece.PAWN = Pieces::Piece::B_PAWN;
+        enemyPiece.KNIGHT = Pieces::Piece::B_KNIGHT;
+        enemyPiece.BISHOP = Pieces::Piece::B_BISHOP;
+        enemyPiece.ROOK = Pieces::Piece::B_ROOK;
+        enemyPiece.QUEEN = Pieces::Piece::B_QUEEN;
+        enemyPiece.KING = Pieces::Piece::B_KING;
     }
     else {
-        this->ownPiece.PAWN = Pieces::Piece::B_PAWN;
-        this->ownPiece.KNIGHT = Pieces::Piece::B_KNIGHT;
-        this->ownPiece.BISHOP = Pieces::Piece::B_BISHOP;
-        this->ownPiece.ROOK = Pieces::Piece::B_ROOK;
-        this->ownPiece.QUEEN = Pieces::Piece::B_QUEEN;
-        this->ownPiece.KING = Pieces::Piece::B_KING;
+        ownPiece.PAWN = Pieces::Piece::B_PAWN;
+        ownPiece.KNIGHT = Pieces::Piece::B_KNIGHT;
+        ownPiece.BISHOP = Pieces::Piece::B_BISHOP;
+        ownPiece.ROOK = Pieces::Piece::B_ROOK;
+        ownPiece.QUEEN = Pieces::Piece::B_QUEEN;
+        ownPiece.KING = Pieces::Piece::B_KING;
 
-        this->enemyPiece.PAWN = Pieces::Piece::W_PAWN;
-        this->enemyPiece.KNIGHT = Pieces::Piece::W_KNIGHT;
-        this->enemyPiece.BISHOP = Pieces::Piece::W_BISHOP;
-        this->enemyPiece.ROOK = Pieces::Piece::W_ROOK;
-        this->enemyPiece.QUEEN = Pieces::Piece::W_QUEEN;
-        this->enemyPiece.KING = Pieces::Piece::W_KING;
+        enemyPiece.PAWN = Pieces::Piece::W_PAWN;
+        enemyPiece.KNIGHT = Pieces::Piece::W_KNIGHT;
+        enemyPiece.BISHOP = Pieces::Piece::W_BISHOP;
+        enemyPiece.ROOK = Pieces::Piece::W_ROOK;
+        enemyPiece.QUEEN = Pieces::Piece::W_QUEEN;
+        enemyPiece.KING = Pieces::Piece::W_KING;
     }
 }
 
@@ -85,9 +85,9 @@ void Engine::loadFEN(const std::vector<std::string>& FEN)
 
 
     if (FEN[1] == "w")
-        this->isWhiteTurn = true;
+        isWhiteTurn = true;
     else
-        this->isWhiteTurn = false;
+        isWhiteTurn = false;
 
 
     for (const char& c : FEN[2]) {
@@ -104,7 +104,7 @@ void Engine::loadFEN(const std::vector<std::string>& FEN)
 }
 
 
-Bitboard Engine::generatePieceMoves(int square, int piece)
+Bitboard Engine::generatePieceMoves(const int square, const int piece)
 {
     const Bitboard occupiedSquaresAll = (board.w_occupiedSquares | board.b_occupiedSquares);
 
@@ -151,119 +151,113 @@ Bitboard Engine::generatePieceMoves(int square, int piece)
         }
 
 
-        // case Pieces::Piece::W_KNIGHT:
-        // case Pieces::Piece::B_KNIGHT: {
-        //     Bitboard moves = board.precomputedMoves.knightMoves[square];
-        //     return moves & ~(Utils::isPieceWhite(piece) ? board.w_pieces : board.b_pieces);
-        // }
+        case Pieces::Piece::W_KNIGHT:
+        case Pieces::Piece::B_KNIGHT: {
+            Bitboard moves = board.precomputedMoves.knightMoves[square];
+            return moves & ~(Utils::isPieceWhite(piece) ? board.w_occupiedSquares : board.b_occupiedSquares);
+        }
 
 
-        // case Pieces::Piece::W_BISHOP:
-        // case Pieces::Piece::B_BISHOP: {
-        //     int zeros = __builtin_ctzll(position);
+        case Pieces::Piece::W_BISHOP:
+        case Pieces::Piece::B_BISHOP: {
+            int distLeft = 7 - (square % 8);
+            int distRight = square % 8;
+            int distUp = 7 - (square / 8);
+            int distDown = square / 8;
 
-        //     int distLeft = 7 - (zeros % 8);
-        //     int distRight = zeros % 8;
-        //     int distUp = 7 - (zeros / 8);
-        //     int distDown = zeros / 8;
+            int shifts[] = {9, -9, 7, -7};
 
-        //     int shifts[] = {9, -9, 7, -7};
+            int maxLengths[] = {
+                std::min(distLeft, distUp),    // Top left
+                std::min(distRight, distDown), // Bottom right
+                std::min(distRight, distUp),   // Top right
+                std::min(distLeft, distDown)   // Bottom left
+            };
 
-        //     int maxLengths[] = {
-        //         std::min(distLeft, distUp),    // Top left
-        //         std::min(distRight, distDown), // Bottom right
-        //         std::min(distRight, distUp),   // Top right
-        //         std::min(distLeft, distDown)   // Bottom left
-        //     };
+            Bitboard moves = 0ULL;
 
-        //     Bitboard moves = 0ULL;
+            for (int i = 0; i < 4; ++i) {
+                for (int j = 1; j <= maxLengths[i]; ++j) {
+                    Bitboard result = Utils::BitShift(position, shifts[i] * j);
+                    moves |= result;
 
-        //     for (int i = 0; i < 4; ++i) {
-        //         for (int j = 1; j <= maxLengths[i]; ++j) {
-        //             Bitboard result = Utils::BitShift(position, shifts[i] * j);
-        //             moves |= result;
+                    if (result & occupiedSquaresAll)
+                        break;
+                }
+            }
 
-        //             if (result & occupiedSquaresAll)
-        //                 break;
-        //         }
-        //     }
-
-        //     return moves & ~(Utils::isPieceWhite(piece) ? board.w_pieces : board.b_pieces);
-        // }
+            return moves & ~(Utils::isPieceWhite(piece) ? board.w_occupiedSquares : board.b_occupiedSquares);
+        }
 
 
-        // case Pieces::Piece::W_ROOK:
-        // case Pieces::Piece::B_ROOK: {
-        //     int zeros = __builtin_ctzll(position);
+        case Pieces::Piece::W_ROOK:
+        case Pieces::Piece::B_ROOK: {
+            int shifts[] = {1, -1, 8, -8};
 
-        //     int shifts[] = {1, -1, 8, -8};
+            int maxLengths[] = {
+                7 - (square % 8),
+                square % 8,
+                7 - (square / 8),
+                square / 8
+            };
 
-        //     int maxLengths[] = {
-        //         7 - (zeros % 8),
-        //         zeros % 8,
-        //         7 - (zeros / 8),
-        //         zeros / 8
-        //     };
+            Bitboard moves = 0ULL;
 
-        //     Bitboard moves = 0ULL;
+            for (int i = 0; i < 4; ++i) {
+                for (int j = 1; j <= maxLengths[i]; ++j) {
+                    Bitboard result = Utils::BitShift(position, shifts[i] * j);
+                    moves |= result;
 
-        //     for (int i = 0; i < 4; ++i) {
-        //         for (int j = 1; j <= maxLengths[i]; ++j) {
-        //             Bitboard result = Utils::BitShift(position, shifts[i] * j);
-        //             moves |= result;
+                    if (result & occupiedSquaresAll)
+                        break;
+                }
+            }
 
-        //             if (result & occupiedSquaresAll)
-        //                 break;
-        //         }
-        //     }
-
-        //     return moves & ~(Utils::isPieceWhite(piece) ? board.w_pieces : board.b_pieces);
-        // }
+            return moves & ~(Utils::isPieceWhite(piece) ? board.w_occupiedSquares : board.b_occupiedSquares);
+        }
 
 
-        // case Pieces::Piece::W_QUEEN:
-        // case Pieces::Piece::B_QUEEN: {
-        //     int zeros = __builtin_ctzll(position);
+        case Pieces::Piece::W_QUEEN:
+        case Pieces::Piece::B_QUEEN: {
+            int distLeft = 7 - (square % 8);
+            int distRight = square % 8;
+            int distUp = 7 - (square / 8);
+            int distDown = square / 8;
 
-        //     int distLeft = 7 - (zeros % 8);
-        //     int distRight = zeros % 8;
-        //     int distUp = 7 - (zeros / 8);
-        //     int distDown = zeros / 8;
+            int shifts[] = {1, -1, 8, -8, 9, -9, 7, -7};
 
-        //     int shifts[] = {1, -1, 8, -8, 9, -9, 7, -7};
+            int maxLengths[] = {
+                distLeft,
+                distRight,
+                distUp,
+                distDown,
+                std::min(distLeft, distUp),    // Top left
+                std::min(distRight, distDown), // Bottom right
+                std::min(distRight, distUp),   // Top right
+                std::min(distLeft, distDown)   // Bottom left
+            };
 
-        //     int maxLengths[] = {
-        //         distLeft,
-        //         distRight,
-        //         distUp,
-        //         distDown,
-        //         std::min(distLeft, distUp),    // Top left
-        //         std::min(distRight, distDown), // Bottom right
-        //         std::min(distRight, distUp),   // Top right
-        //         std::min(distLeft, distDown)   // Bottom left
-        //     };
+            Bitboard moves = 0ULL;
 
-        //     Bitboard moves = 0ULL;
+            for (int i = 0; i < 8; ++i) {
+                for (int j = 1; j <= maxLengths[i]; ++j) {
+                    Bitboard result = Utils::BitShift(position, shifts[i] * j);
+                    moves |= result;
 
-        //     for (int i = 0; i < 8; ++i) {
-        //         for (int j = 1; j <= maxLengths[i]; ++j) {
-        //             Bitboard result = Utils::BitShift(position, shifts[i] * j);
-        //             moves |= result;
+                    if (result & occupiedSquaresAll)
+                        break;
+                }
+            }
 
-        //             if (result & occupiedSquaresAll)
-        //                 break;
-        //         }
-        //     }
-
-        //     return moves & ~(Utils::isPieceWhite(piece) ? board.w_pieces : board.b_pieces);
-        // }
+            return moves & ~(Utils::isPieceWhite(piece) ? board.w_occupiedSquares : board.b_occupiedSquares);
+        }
 
 
-        // case Pieces::Piece::W_KING:
-        // case Pieces::Piece::B_KING: {
-        //     Bitboard moves = board.precomputedMoves.kingMoves[square];
-        //     return moves & ~(Utils::isPieceWhite(piece) ? board.w_pieces : board.b_pieces);
-        // }
+        case Pieces::Piece::W_KING:
+        case Pieces::Piece::B_KING: {
+            Bitboard moves = board.precomputedMoves.kingMoves[square];
+            return moves & ~(Utils::isPieceWhite(piece) ? board.w_occupiedSquares : board.b_occupiedSquares);
+        }
     }
 
     return 0ULL;
@@ -281,14 +275,14 @@ std::array<Pieces::Move, 218ULL> Engine::generateAllMoves()
 
         if (piece == Pieces::Piece::NONE)
             continue;
-        else if (this->isWhiteTurn && !Utils::isPieceWhite(board.mailbox[i])) {
+        else if (isWhiteTurn && !Utils::isPieceWhite(board.mailbox[i])) {
             continue;
         }
-        else if (!this->isWhiteTurn && Utils::isPieceWhite(board.mailbox[i])) {
+        else if (!isWhiteTurn && Utils::isPieceWhite(board.mailbox[i])) {
             continue;
         }
 
-        Bitboard movesBitboard = this->generatePieceMoves(i, board.mailbox[i]);
+        Bitboard movesBitboard = generatePieceMoves(i, board.mailbox[i]);
 
         // Loop over piece moves (loop over the bits)
         while (movesBitboard) {
@@ -322,19 +316,26 @@ std::array<Pieces::Move, 218ULL> Engine::generateAllMoves()
 
 bool Engine::isAttacked(const Square square)
 {
-    // TODO : ADD ALL PIECE MOVES FOR THIS TO WORK
+    // Print threats ===============
+    // std::string set = std::bitset<64>(generatePieceMoves(square, bishop) | generatePieceMoves(square, rook) | generatePieceMoves(square, queen) | generatePieceMoves(square, knight) | generatePieceMoves(square, pawn)).to_string();
 
-    int bishop = (this->isWhiteTurn ? Pieces::Piece::W_BISHOP : Pieces::Piece::B_BISHOP);
-    int rook = (this->isWhiteTurn ? Pieces::Piece::W_ROOK : Pieces::Piece::B_ROOK);
-    int queen = (this->isWhiteTurn ? Pieces::Piece::W_QUEEN : Pieces::Piece::B_QUEEN);
-    int knight = (this->isWhiteTurn ? Pieces::Piece::W_KNIGHT : Pieces::Piece::B_KNIGHT);
-    int pawn = (this->isWhiteTurn ? Pieces::Piece::W_PAWN : Pieces::Piece::B_PAWN);
+    // for (int i = 0; i < 64; ++i) {
+    //     if (i % 8 == 0) printf("\n");
+    //     if (set[i] == '1')
+    //         printf("# ");
+    //     else
+    //         printf(". ");
+    // }
+    // printf("\n");
+    // ==============================
 
-    if (this->generatePieceMoves(square, bishop) & board.bitboards[bishop]) return true;
-    else if (this->generatePieceMoves(square, rook) & board.bitboards[rook]) return true;
-    else if (this->generatePieceMoves(square, queen) & board.bitboards[queen]) return true;
-    else if (this->generatePieceMoves(square, knight) & board.bitboards[knight]) return true;
-    else if (this->generatePieceMoves(square, pawn) & board.bitboards[pawn]) return true;
+    if (generatePieceMoves(square, ownPiece.BISHOP) & board.bitboards[enemyPiece.BISHOP]) return true;
+    else if (generatePieceMoves(square, ownPiece.ROOK) & board.bitboards[enemyPiece.ROOK]) return true;
+    else if (generatePieceMoves(square, ownPiece.QUEEN) & board.bitboards[enemyPiece.QUEEN]) return true;
+    else if (generatePieceMoves(square, ownPiece.KNIGHT) & board.bitboards[enemyPiece.KNIGHT]) return true;
+    else if (generatePieceMoves(square, ownPiece.PAWN) & board.bitboards[enemyPiece.PAWN]) return true;
+
+    // printf("pasdjfoiajsdfojaposdfjoasdf\n");
 
     return false;
 }
@@ -385,21 +386,20 @@ void Engine::makeMove(const Pieces::Move& move)
 
 void Engine::makeUCIMove(const std::string& UCI_Move)
 {
-    this->makeMove(Utils::moveFromUCI(UCI_Move));
+    makeMove(Utils::moveFromUCI(UCI_Move));
 }
 
 
 void Engine::undoMove()
 {
-    if (!board.history.empty()) {
-        const Board::HistoryState state = board.history.top();
-        board.history.pop();
+    const Board::HistoryState& state = board.history.top();
 
-        board.bitboards = state.bitboards;
-        board.enPassantSquare = state.enPassantSquare;
-        board.castlingRights = state.castlingRights;
-        board.mailbox = state.mailbox;
-    }
+    board.bitboards = state.bitboards;
+    board.enPassantSquare = state.enPassantSquare;
+    board.castlingRights = state.castlingRights;
+    board.mailbox = state.mailbox;
+
+    board.history.pop();
 }
 
 
@@ -407,18 +407,14 @@ bool Engine::isLegalMove(const Pieces::Move& move)
 {
     bool isLegal = true;
 
-    int king = (this->isWhiteTurn ? Pieces::Piece::W_KING : Pieces::Piece::B_KING);
+    int king = (isWhiteTurn ? Pieces::Piece::W_KING : Pieces::Piece::B_KING);
 
-    {
-        this->makeMove(move);
-
-        if (this->isAttacked(__builtin_ctzll(board.bitboards[king]))) {
-            printf("info string nuhuh\n");
-            isLegal = false;
-        }
-
-        this->undoMove();
+    makeMove(move);
+    if (isAttacked(__builtin_ctzll(board.bitboards[king]))) {
+        printf("info string nuhuh\n");
+        isLegal = false;
     }
+    undoMove();
 
     return isLegal;
 }
@@ -426,19 +422,21 @@ bool Engine::isLegalMove(const Pieces::Move& move)
 
 std::string Engine::getEngineMove()
 {
-    std::array<Pieces::Move, 218ULL> botMoves = this->generateAllMoves();
+    std::array<Pieces::Move, 218ULL> botMoves = generateAllMoves();
 
     Pieces::Move botMove = botMoves[0];
-    // for (Pieces::Move& move : botMoves) {
-    //     if (isLegalMove(move)) {
-    //         botMove = move;
-    //         break;
-    //     }
-    // }
 
-    if (this->isAttacked(__builtin_ctzll(board.bitboards[this->isWhiteTurn ? Pieces::Piece::W_KING : Pieces::Piece::B_KING]))) {
-        printf("info string nuhuh !!!\n");
+    for (const Pieces::Move& move : botMoves) {
+        if (isLegalMove(move)) {
+            botMove = move;
+            break;
+        }
+        printf("info string illegal move: %s\n", Utils::toUCI(move).c_str());
     }
+
+    // if (isAttacked(__builtin_ctzll(board.bitboards[isWhiteTurn ? Pieces::Piece::W_KING : Pieces::Piece::B_KING]))) {
+    //     printf("info string nuhuh !!!\n");
+    // }
 
 
     return Utils::toUCI(botMove);
