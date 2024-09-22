@@ -41,29 +41,11 @@ namespace Pieces
     };
 
 
-    enum Promotion
-    {
-        P_NONE,
-
-        P_W_KNIGHT,
-        P_B_KNIGHT,
-
-        P_W_BISHOP,
-        P_B_BISHOP,
-
-        P_W_ROOK,
-        P_B_ROOK,
-
-        P_W_QUEEN,
-        P_B_QUEEN
-    };
-
-
     struct Move
     {
         uint8_t fromSquare = 64;
-        uint8_t toSquare = 64;
-        uint8_t promotion = 0;
+        uint8_t toSquare   = 64;
+        uint8_t promotion  = Piece::NONE;
     };
 
 
@@ -106,28 +88,6 @@ namespace Pieces
     };
 
 
-    constexpr char getPromotionChar(uint8_t promotion)
-    {
-        switch (promotion) {
-            case Promotion::P_NONE:     return '\0';
-
-            case Promotion::P_W_KNIGHT: return 'N';
-            case Promotion::P_B_KNIGHT: return 'n';
-
-            case Promotion::P_W_BISHOP: return 'B';
-            case Promotion::P_B_BISHOP: return 'b';
-
-            case Promotion::P_W_ROOK:   return 'R';
-            case Promotion::P_B_ROOK:   return 'r';
-
-            case Promotion::P_W_QUEEN:  return 'Q';
-            case Promotion::P_B_QUEEN:  return 'q';
-        }
-
-        return '\0';
-    }
-
-
     constexpr int getPieceFromChar(char c)
     {
         switch (c) {
@@ -150,23 +110,5 @@ namespace Pieces
 
         return Piece::NONE;
     };
-
-
-    constexpr int getPromotionFromChar(char c)
-    {
-        switch (c) {
-            case 'N': return Promotion::P_W_KNIGHT;
-            case 'B': return Promotion::P_W_BISHOP;
-            case 'R': return Promotion::P_W_ROOK;
-            case 'Q': return Promotion::P_W_QUEEN;
-
-            case 'n': return Promotion::P_B_KNIGHT;
-            case 'b': return Promotion::P_B_BISHOP;
-            case 'r': return Promotion::P_B_ROOK;
-            case 'q': return Promotion::P_B_QUEEN;
-        }
-
-        return Promotion::P_NONE;
-    }
 
 }

@@ -1,10 +1,20 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <bit>
 
 #include "board.hpp"
 #include "utils.hpp"
 #include "pieces.hpp"
+
+
+typedef std::array<Pieces::Move, 256ULL> MoveArray;
+
+struct MoveList
+{
+    MoveArray moves{};
+    int used = 0ULL;
+};
 
 
 struct Piece
@@ -47,15 +57,18 @@ struct Engine
     void loadFEN(const std::vector<std::string>& FEN);
 
     Bitboard generatePieceMoves(const int square, const int piece);
-    std::array<Pieces::Move, 218ULL> generateAllMoves();
-
-    bool isAttacked(const Square square);
-    bool isLegalMove(const Pieces::Move& move);
+    MoveList generateAllMoves();
 
     void makeMove(const Pieces::Move& move);
     void makeUCIMove(const std::string& UCI_Move);
 
     void undoMove();
 
+    bool isAttacked(const Square square);
+    bool isLegalMove(const Pieces::Move& move);
+
     std::string getEngineMove();
+
+    uint64_t perft(const int depth);
+    uint64_t divide(const int depth);
 };

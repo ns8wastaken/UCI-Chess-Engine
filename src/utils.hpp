@@ -68,8 +68,8 @@ namespace Utils
             static_cast<char>('1' + (move.toSquare / 8))
         };
 
-        if (move.promotion != Pieces::Promotion::P_NONE) {
-            uci += Pieces::getPromotionChar(move.promotion);
+        if (move.promotion != Pieces::Piece::NONE) {
+            uci += Pieces::getPieceChar(move.promotion);
         }
 
         return uci;
@@ -84,9 +84,10 @@ namespace Utils
 
     [[nodiscard]] Pieces::Move moveFromUCI(const std::string& UCI_Move)
     {
-        uint8_t promotion = 0;
+        uint8_t promotion = Pieces::Piece::NONE;
+
         if (UCI_Move.length() == 5) {
-            promotion = Pieces::getPromotionFromChar(UCI_Move[4]);
+            promotion = Pieces::getPieceFromChar(UCI_Move[4]);
         }
 
         return Pieces::Move{
@@ -98,40 +99,60 @@ namespace Utils
 
 
     /*
-        Bit bitmasks
+        Board flags
 
-            BitMaskA           BitMaskB
-        A * * * * * * *     * * * * * * * B
-        A * * * * * * *     * * * * * * * B
-        A * * * * * * *     * * * * * * * B
-        A * * * * * * *     * * * * * * * B
-        A * * * * * * *     * * * * * * * B
-        A * * * * * * *     * * * * * * * B
-        A * * * * * * *     * * * * * * * B
-        A * * * * * * *     * * * * * * * B
+        Castling:
 
-            BitMaskA2          BitMaskB2
-        A A * * * * * *     * * * * * * B B
-        A A * * * * * *     * * * * * * B B
-        A A * * * * * *     * * * * * * B B
-        A A * * * * * *     * * * * * * B B
-        A A * * * * * *     * * * * * * B B
-        A A * * * * * *     * * * * * * B B
-        A A * * * * * *     * * * * * * B B
-        A A * * * * * *     * * * * * * B B
+            Black kingside
+                        |   ┌- White kingside
+              0 0 0 0 1 1 1 1
+                      |   └- White queenside
+            Black queenside
     */
 
-    constexpr uint64_t BitMaskA = ~0x8080808080808080ULL;
-    constexpr uint64_t BitMaskA2 = ~0xc0c0c0c0c0c0c0c0ULL;
+    [[nodiscard]] inline bool canCastleKingside(const uint16_t& flags, const bool& isWhite)
+    {
+        return flags & (isWhite ? 1 : 4);
+    }
 
-    constexpr uint64_t BitMaskB = ~0x101010101010101ULL;
-    constexpr uint64_t BitMaskB2 = ~0x303030303030303ULL;
+    [[nodiscard]] inline bool canCastleQueenside(const uint16_t& flags, const bool& isWhite)
+    {
+        return flags & (isWhite ? 2 : 8);
+    }
+
+
+    /*
+                      Bitmasks
+
+            BitMaskA           BitMaskB
+        0 1 1 1 1 1 1 1     1 1 1 1 1 1 1 0
+        0 1 1 1 1 1 1 1     1 1 1 1 1 1 1 0
+        0 1 1 1 1 1 1 1     1 1 1 1 1 1 1 0
+        0 1 1 1 1 1 1 1     1 1 1 1 1 1 1 0
+        0 1 1 1 1 1 1 1     1 1 1 1 1 1 1 0
+        0 1 1 1 1 1 1 1     1 1 1 1 1 1 1 0
+        0 1 1 1 1 1 1 1     1 1 1 1 1 1 1 0
+        0 1 1 1 1 1 1 1     1 1 1 1 1 1 1 0
+
+            BitMaskA2          BitMaskB2
+        0 0 1 1 1 1 1 1     1 1 1 1 1 1 0 0
+        0 0 1 1 1 1 1 1     1 1 1 1 1 1 0 0
+        0 0 1 1 1 1 1 1     1 1 1 1 1 1 0 0
+        0 0 1 1 1 1 1 1     1 1 1 1 1 1 0 0
+        0 0 1 1 1 1 1 1     1 1 1 1 1 1 0 0
+        0 0 1 1 1 1 1 1     1 1 1 1 1 1 0 0
+        0 0 1 1 1 1 1 1     1 1 1 1 1 1 0 0
+        0 0 1 1 1 1 1 1     1 1 1 1 1 1 0 0
+    */
+
+    constexpr uint64_t BitMaskA  = ~0x101010101010101ULL;
+    constexpr uint64_t BitMaskA2 = ~0x303030303030303ULL;
+
+    constexpr uint64_t BitMaskB  = ~0x8080808080808080ULL;
+    constexpr uint64_t BitMaskB2 = ~0xc0c0c0c0c0c0c0c0ULL;
 
 
     constexpr uint64_t B_PawnStart = 0xff000000000000;
     constexpr uint64_t W_PawnStart = 0xff00;
-
-    constexpr uint64_t B_PawnPromote = 0xff;
-    constexpr uint64_t W_PawnPromote = 0xff00000000000000;
 
 }
