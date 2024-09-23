@@ -5,6 +5,7 @@
 
 #include "utils.hpp"
 #include "engine.cpp"
+#include "enginedebug.cpp"
 
 
 #define ifcommand(x) if (command == x)
@@ -19,9 +20,12 @@ const std::string STARTING_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w 
 void printBitboard(uint64_t bitboard)
 {
     std::string set = std::bitset<64>(bitboard).to_string();
-    for (int i = 0; i < 64; ++i) {
-        if (i % 8 == 0) std::cout << "\n";
-        std::cout << (((int)set[i] - 48) ? "# " : ". ");
+    for (int rank = 0; rank < 8; ++rank) {
+        std::cout << "\n";
+        for (int file = 0; file < 8; ++file) {
+            int index = (7 - rank) * 8 + file;
+            std::cout << (((int)set[index] - 48) ? "# " : ". ");
+        }
     }
 }
 
@@ -51,6 +55,7 @@ std::vector<std::string> splitStr(const std::string& str)
 int main()
 {
     Engine engine;
+    engine.loadFEN(splitStr(STARTING_FEN));
 
     std::string command = "";
 
@@ -101,7 +106,6 @@ int main()
                 }
                 else if (splitCommand.size() > 8) {
                     engine.makeUCIMove(splitCommand[splitCommand.size() - 1]);
-                    engine.setColor(splitCommand.size() % 2);
                 }
             }
         }
@@ -110,7 +114,6 @@ int main()
         {
             // Send bestmove (move that will be played by the engine)
             std::string uciMove = engine.getEngineMove();
-            engine.makeUCIMove(uciMove);
             std::cout << "bestmove " << uciMove << "\n";
         }
 
@@ -118,36 +121,16 @@ int main()
         {
             const uint64_t nodes = engine.perft(std::stoi(splitCommand[1]));
 
-            std::cout << nodes << "\n";
+            std::cout << "\nTotal nodes: " << nodes << "\n\n";
         }
 
         elifsplitcommand(0, "divide")
         {
+            printf("\n");
+
             const uint64_t nodes = engine.divide(std::stoi(splitCommand[1]));
 
-            std::cout << "Total nodes: " << nodes << "\n";
-        }
-
-        elifcommand("iswhite")
-        {
-            std::cout << "Is white: " << engine.isWhiteTurn << "\n";
-        }
-
-        elifcommand("get moves")
-        {
-            int count = 0;
-
-            MoveList moves = engine.generateAllMoves();
-
-            for (int i = 0; i < moves.used; ++i) {
-                Pieces::Move move = moves.moves[i];
-
-                if (engine.isLegalMove(move)) {
-                    std::cout << Utils::toUCI(move) << "\n";
-                    ++count;
-                }
-            }
-            std::cout << "Total move count: " << count << "\n";
+            std::cout << "\nTotal nodes: " << nodes << "\n\n";
         }
 
         elifcommand("print")
@@ -165,11 +148,20 @@ int main()
             }
             printf("|1\n----------------\nA B C D E F G H\n\n\n");
 
-            for (int i = 0; i < Pieces::Piece::PIECE_COUNT; ++i) {
-                printf("Piece: %c\n", Pieces::getPieceChar(i));
-                printBitboard(engine.board.bitboards[i]);
-                printf("\n\n");
-            }
+
+            // Print bitboards
+            // for (int i = 0; i < Pieces::Piece::PIECE_COUNT; ++i) {
+            //     printf("Piece: %c\n", Pieces::getPieceChar(i));
+            //     printBitboard(engine.board.bitboards[i]);
+            //     printf("\n\n");
+            // }
+
+            // Print occupied squares
+            // printf("\nWhite");
+            // printBitboard(engine.board.w_occupiedSquares);
+            // printf("\n\nBlack");
+            // printBitboard(engine.board.b_occupiedSquares);
+            // printf("\n\n");
         }
 
         elifsplitcommand(0, "move")
@@ -226,7 +218,7 @@ int main()
 
         else
         {
-            std::cout << command << "\n";
+            std::cout << "Unknown command: " << command << "\n";
         }
     }
 }

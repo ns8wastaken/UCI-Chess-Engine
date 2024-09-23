@@ -1,5 +1,5 @@
 CPP = g++ src/main.cpp
-ARGS = -std=c++20 -g -Wall -pedantic -Wextra
+ARGS = -std=c++20 -g -Wall -pedantic -Wextra -O4
 
 all: compile finish
 

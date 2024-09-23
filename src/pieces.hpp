@@ -43,9 +43,9 @@ namespace Pieces
 
     struct Move
     {
-        uint8_t fromSquare = 64;
-        uint8_t toSquare   = 64;
-        uint8_t promotion  = Piece::NONE;
+        uint8_t fromSquare     = 64;
+        uint8_t toSquare       = 64;
+        uint8_t promotionPiece = Piece::NONE;
     };
 
 

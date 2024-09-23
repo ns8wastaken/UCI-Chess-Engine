@@ -6,7 +6,7 @@
 #include "pieces.hpp"
 
 
-typedef std::array<uint64_t, Pieces::Piece::PIECE_COUNT> BitboardArray;
+typedef std::array<Bitboard, Pieces::Piece::PIECE_COUNT> BitboardArray;
 
 typedef std::array<int, 64ULL> Mailbox;
 
@@ -21,11 +21,13 @@ struct Board
         bool blackQueenside = true;
     } castlingRights;
 
+
     struct PrecomputedMoves
     {
         std::array<Bitboard, 64> knightMoves{};
         std::array<Bitboard, 64> kingMoves{};
     } precomputedMoves;
+
 
     struct HistoryState
     {
@@ -35,11 +37,10 @@ struct Board
         Square enPassantSquare;
         CastlingRights castlingRights;
 
-        Bitboard w_occupiedSquares = 0ULL;
-        Bitboard b_occupiedSquares = 0ULL;
 
-        int plyCount   = 0;
-        int moveNumber = 0;
+        Bitboard occupiedSquares[2] = {0ULL, 0ULL};
+        Bitboard w_occupiedSquares  = 0ULL;
+        Bitboard b_occupiedSquares  = 0ULL;
 
         HistoryState(const Board& board)
             : bitboards(board.bitboards),
@@ -49,17 +50,14 @@ struct Board
               castlingRights(board.castlingRights),
 
               w_occupiedSquares(board.w_occupiedSquares),
-              b_occupiedSquares(board.b_occupiedSquares),
-
-              plyCount(board.plyCount),
-              moveNumber(board.moveNumber)
+              b_occupiedSquares(board.b_occupiedSquares)
         {}
     };
 
-    int plyCount   = 0;
-    int moveNumber = 0;
 
-    Square enPassantSquare = 0;
+    int plyCount = 0;
+
+    Square enPassantSquare = 64;
 
     std::stack<HistoryState> history{};
 

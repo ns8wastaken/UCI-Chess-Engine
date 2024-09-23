@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <bit>
+#include <iostream>
 
 #include "board.hpp"
 #include "utils.hpp"
@@ -32,6 +33,7 @@ struct Engine
 {
     Engine();
     void setColor(bool color);
+    void flipColor();
     Board board;
 
     Piece ownPiece = {
