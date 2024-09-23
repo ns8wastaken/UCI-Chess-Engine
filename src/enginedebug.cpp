@@ -28,6 +28,8 @@ uint64_t Engine::perft(const int depth)
 
 uint64_t Engine::divide(const int depth)
 {
+    const auto start = std::chrono::high_resolution_clock::now();
+
     MoveList move_list = generateAllMoves();
 
     uint64_t totalNodes = 0;
@@ -45,6 +47,10 @@ uint64_t Engine::divide(const int depth)
 
         undoMove();
     }
+
+    const auto end = std::chrono::high_resolution_clock::now();
+
+    std::cout << "\nTime: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "ms\n";
 
     return totalNodes;
 }

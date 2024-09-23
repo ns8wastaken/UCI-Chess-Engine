@@ -88,10 +88,8 @@ void Engine::loadFEN(const std::vector<std::string>& FEN)
     board.occupiedSquares[0] = 0ULL;
     board.occupiedSquares[1] = 0ULL;
 
-    board.castlingRights.whiteKingside  = false;
-    board.castlingRights.whiteQueenside = false;
-    board.castlingRights.blackKingside  = false;
-    board.castlingRights.blackQueenside = false;
+
+    board.castlingFlags = 0;
 
 
     for (const char& c : FEN[0]) {
@@ -122,10 +120,10 @@ void Engine::loadFEN(const std::vector<std::string>& FEN)
 
     for (const char& c : FEN[2]) {
         switch (c) {
-            case 'K': board.castlingRights.whiteKingside = true; break;
-            case 'Q': board.castlingRights.whiteQueenside = true; break;
-            case 'k': board.castlingRights.blackKingside = true; break;
-            case 'q': board.castlingRights.blackQueenside = true; break;
+            case 'K': board.castlingFlags |= Utils::CastlingRightsFlags::W_KINGSIDE; break;
+            case 'Q': board.castlingFlags |= Utils::CastlingRightsFlags::W_QUEENSIDE; break;
+            case 'k': board.castlingFlags |= Utils::CastlingRightsFlags::B_KINGSIDE; break;
+            case 'q': board.castlingFlags |= Utils::CastlingRightsFlags::B_QUEENSIDE; break;
         }
     }
 
@@ -291,12 +289,12 @@ Bitboard Engine::generatePieceMoves(const int square, const int piece)
         case Pieces::Piece::W_KING: {
             Bitboard moves = board.precomputedMoves.kingMoves[square];
 
-            if (board.castlingRights.whiteKingside &&
+            if ((board.castlingFlags & Utils::CastlingRightsFlags::W_KINGSIDE) &&
                 board.mailbox[square + 1] == Pieces::Piece::NONE &&
                 board.mailbox[square + 2] == Pieces::Piece::NONE) {
                 moves |= (position << 2);
             }
-            if (board.castlingRights.whiteQueenside &&
+            if ((board.castlingFlags & Utils::CastlingRightsFlags::W_QUEENSIDE) &&
                 board.mailbox[square - 1] == Pieces::Piece::NONE &&
                 board.mailbox[square - 2] == Pieces::Piece::NONE &&
                 board.mailbox[square - 3] == Pieces::Piece::NONE) {
@@ -308,12 +306,12 @@ Bitboard Engine::generatePieceMoves(const int square, const int piece)
         case Pieces::Piece::B_KING: {
             Bitboard moves = board.precomputedMoves.kingMoves[square];
 
-            if (board.castlingRights.blackKingside &&
+            if ((board.castlingFlags & Utils::CastlingRightsFlags::B_KINGSIDE) &&
                 board.mailbox[square + 1] == Pieces::Piece::NONE &&
                 board.mailbox[square + 2] == Pieces::Piece::NONE) {
                 moves |= (position << 2);
             }
-            if (board.castlingRights.blackQueenside &&
+            if ((board.castlingFlags & Utils::CastlingRightsFlags::B_QUEENSIDE) &&
                 board.mailbox[square - 1] == Pieces::Piece::NONE &&
                 board.mailbox[square - 2] == Pieces::Piece::NONE &&
                 board.mailbox[square - 3] == Pieces::Piece::NONE) {
@@ -395,26 +393,26 @@ void Engine::makeMove(const Pieces::Move& move)
     // Remove castling rights
     if (piece == ownPiece.KING) {
         if (Utils::isPieceWhite(ownPiece.KING)) {
-            board.castlingRights.whiteKingside  = false;
-            board.castlingRights.whiteQueenside = false;
+            board.castlingFlags &= ~Utils::CastlingRightsFlags::W_KINGSIDE;
+            board.castlingFlags &= ~Utils::CastlingRightsFlags::W_QUEENSIDE;
         }
         else {
-            board.castlingRights.blackKingside  = false;
-            board.castlingRights.blackQueenside = false;
+            board.castlingFlags &= ~Utils::CastlingRightsFlags::B_KINGSIDE;
+            board.castlingFlags &= ~Utils::CastlingRightsFlags::B_QUEENSIDE;
         }
     }
     else {
         switch (move.fromSquare) {
-            case 0:  board.castlingRights.whiteQueenside = false; break;
-            case 7:  board.castlingRights.whiteKingside = false; break;
-            case 56: board.castlingRights.blackQueenside = false; break;
-            case 63: board.castlingRights.blackKingside = false; break;
+            case 0:  board.castlingFlags &= ~Utils::CastlingRightsFlags::W_QUEENSIDE; break;
+            case 7:  board.castlingFlags &= ~Utils::CastlingRightsFlags::W_KINGSIDE; break;
+            case 56: board.castlingFlags &= ~Utils::CastlingRightsFlags::B_QUEENSIDE; break;
+            case 63: board.castlingFlags &= ~Utils::CastlingRightsFlags::B_KINGSIDE; break;
         }
         switch (move.toSquare) {
-            case 0:  board.castlingRights.whiteQueenside = false; break;
-            case 7:  board.castlingRights.whiteKingside = false; break;
-            case 56: board.castlingRights.blackQueenside = false; break;
-            case 63: board.castlingRights.blackKingside = false; break;
+            case 0:  board.castlingFlags &= ~Utils::CastlingRightsFlags::W_QUEENSIDE; break;
+            case 7:  board.castlingFlags &= ~Utils::CastlingRightsFlags::W_KINGSIDE; break;
+            case 56: board.castlingFlags &= ~Utils::CastlingRightsFlags::B_QUEENSIDE; break;
+            case 63: board.castlingFlags &= ~Utils::CastlingRightsFlags::B_KINGSIDE; break;
         }
     }
 
@@ -524,7 +522,7 @@ void Engine::undoMove()
     board.bitboards          = state.bitboards;
     board.mailbox            = state.mailbox;
     board.enPassantSquare    = state.enPassantSquare;
-    board.castlingRights     = state.castlingRights;
+    board.castlingFlags      = state.castlingFlags;
     board.occupiedSquares[0] = state.occupiedSquares[0];
     board.occupiedSquares[1] = state.occupiedSquares[1];
 

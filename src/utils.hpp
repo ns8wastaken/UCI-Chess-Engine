@@ -91,15 +91,14 @@ namespace Utils
             Black queenside
     */
 
-    [[nodiscard]] inline bool canCastleKingside(const uint16_t& flags, const bool& isWhite)
+    enum CastlingRightsFlags
     {
-        return flags & (isWhite ? 1 : 4);
-    }
+        W_KINGSIDE  = 1,
+        W_QUEENSIDE = 2,
+        B_KINGSIDE  = 4,
+        B_QUEENSIDE = 8
+    };
 
-    [[nodiscard]] inline bool canCastleQueenside(const uint16_t& flags, const bool& isWhite)
-    {
-        return flags & (isWhite ? 2 : 8);
-    }
 
 
     /*

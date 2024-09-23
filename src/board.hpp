@@ -1,6 +1,7 @@
 #pragma once
 #include <array>
 #include <stack>
+#include <chrono>
 
 #include "utils.hpp"
 #include "pieces.hpp"
@@ -13,21 +14,11 @@ typedef std::array<int, 64ULL> Mailbox;
 
 struct Board
 {
-    struct CastlingRights
-    {
-        bool whiteKingside  = true;
-        bool whiteQueenside = true;
-        bool blackKingside  = true;
-        bool blackQueenside = true;
-    } castlingRights;
-
-
     struct PrecomputedMoves
     {
         std::array<Bitboard, 64> knightMoves{};
         std::array<Bitboard, 64> kingMoves{};
     } precomputedMoves;
-
 
     struct HistoryState
     {
@@ -35,8 +26,7 @@ struct Board
         Mailbox mailbox;
 
         Square enPassantSquare;
-        CastlingRights castlingRights;
-
+        uint16_t castlingFlags;
 
         Bitboard occupiedSquares[2] = {0ULL, 0ULL};
 
@@ -45,7 +35,7 @@ struct Board
               mailbox(board.mailbox),
 
               enPassantSquare(board.enPassantSquare),
-              castlingRights(board.castlingRights),
+              castlingFlags(board.castlingFlags),
 
               occupiedSquares{board.occupiedSquares[0], board.occupiedSquares[1]}
         {}
@@ -53,6 +43,8 @@ struct Board
 
 
     int plyCount = 0;
+
+    char castlingFlags = 0;
 
     Square enPassantSquare = 64;
 
