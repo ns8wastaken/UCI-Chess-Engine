@@ -39,8 +39,6 @@ struct Board
 
 
         Bitboard occupiedSquares[2] = {0ULL, 0ULL};
-        Bitboard w_occupiedSquares  = 0ULL;
-        Bitboard b_occupiedSquares  = 0ULL;
 
         HistoryState(const Board& board)
             : bitboards(board.bitboards),
@@ -49,8 +47,7 @@ struct Board
               enPassantSquare(board.enPassantSquare),
               castlingRights(board.castlingRights),
 
-              w_occupiedSquares(board.w_occupiedSquares),
-              b_occupiedSquares(board.b_occupiedSquares)
+              occupiedSquares{board.occupiedSquares[0], board.occupiedSquares[1]}
         {}
     };
 
@@ -66,10 +63,9 @@ struct Board
 
     Bitboard attackedSquares = 0ULL;
 
-    // Occupied white squares
-    Bitboard w_occupiedSquares = 0ULL;
-    // Occupied black squares
-    Bitboard b_occupiedSquares = 0ULL;
+    // 0: Black
+    // 1: White
+    Bitboard occupiedSquares[2] = {0ULL, 0ULL};
 
     void precomputeMoves();
 };

@@ -85,8 +85,8 @@ void Engine::loadFEN(const std::vector<std::string>& FEN)
     board.bitboards.fill(0ULL);
     board.mailbox.fill(Pieces::Piece::NONE);
 
-    board.w_occupiedSquares = 0ULL;
-    board.b_occupiedSquares = 0ULL;
+    board.occupiedSquares[0] = 0ULL;
+    board.occupiedSquares[1] = 0ULL;
 
     board.castlingRights.whiteKingside  = false;
     board.castlingRights.whiteQueenside = false;
@@ -107,10 +107,7 @@ void Engine::loadFEN(const std::vector<std::string>& FEN)
             board.bitboards[piece] |= (1ULL << square);
             board.mailbox[square] = piece;
 
-            if (Utils::isPieceWhite(piece))
-                board.w_occupiedSquares |= (1ULL << square);
-            else
-                board.b_occupiedSquares |= (1ULL << square);
+            board.occupiedSquares[Utils::isPieceWhite(piece)] |= (1ULL << square);
 
             ++square;
         }
@@ -139,7 +136,7 @@ void Engine::loadFEN(const std::vector<std::string>& FEN)
 
 Bitboard Engine::generatePieceMoves(const int square, const int piece)
 {
-    const Bitboard occupiedSquaresAll = (board.w_occupiedSquares | board.b_occupiedSquares);
+    const Bitboard occupiedSquaresAll = (board.occupiedSquares[0] | board.occupiedSquares[1]);
 
     Bitboard position = (1ULL << square);
 
@@ -165,8 +162,8 @@ Bitboard Engine::generatePieceMoves(const int square, const int piece)
             Bitboard moves = 0ULL;
 
             moves |= (position << 8) & ~occupiedSquaresAll;
-            moves |= (position << 7) & Utils::BitMaskB & (board.b_occupiedSquares | enPassantPos);
-            moves |= (position << 9) & Utils::BitMaskA & (board.b_occupiedSquares | enPassantPos);
+            moves |= (position << 7) & Utils::BitMaskB & (board.occupiedSquares[0] | enPassantPos);
+            moves |= (position << 9) & Utils::BitMaskA & (board.occupiedSquares[0] | enPassantPos);
 
             // Double push if possible
             if ((position & Utils::W_PawnStart) && ((position << 8) & ~occupiedSquaresAll))
@@ -178,8 +175,8 @@ Bitboard Engine::generatePieceMoves(const int square, const int piece)
             Bitboard moves = 0ULL;
 
             moves |= (position >> 8) & ~occupiedSquaresAll;
-            moves |= (position >> 7) & Utils::BitMaskA & (board.w_occupiedSquares | enPassantPos);
-            moves |= (position >> 9) & Utils::BitMaskB & (board.w_occupiedSquares | enPassantPos);
+            moves |= (position >> 7) & Utils::BitMaskA & (board.occupiedSquares[1] | enPassantPos);
+            moves |= (position >> 9) & Utils::BitMaskB & (board.occupiedSquares[1] | enPassantPos);
 
             // Double push if possible
             if ((position & Utils::B_PawnStart) && ((position >> 8) & ~occupiedSquaresAll))
@@ -192,7 +189,7 @@ Bitboard Engine::generatePieceMoves(const int square, const int piece)
         case Pieces::Piece::W_KNIGHT:
         case Pieces::Piece::B_KNIGHT: {
             Bitboard moves = board.precomputedMoves.knightMoves[square];
-            return moves & ~(Utils::isPieceWhite(piece) ? board.w_occupiedSquares : board.b_occupiedSquares);
+            return moves & ~board.occupiedSquares[Utils::isPieceWhite(piece)];
         }
 
 
@@ -224,7 +221,7 @@ Bitboard Engine::generatePieceMoves(const int square, const int piece)
                 }
             }
 
-            return moves & ~(Utils::isPieceWhite(piece) ? board.w_occupiedSquares : board.b_occupiedSquares);
+            return moves & ~board.occupiedSquares[Utils::isPieceWhite(piece)];
         }
 
 
@@ -251,7 +248,7 @@ Bitboard Engine::generatePieceMoves(const int square, const int piece)
                 }
             }
 
-            return moves & ~(Utils::isPieceWhite(piece) ? board.w_occupiedSquares : board.b_occupiedSquares);
+            return moves & ~board.occupiedSquares[Utils::isPieceWhite(piece)];
         }
 
 
@@ -287,7 +284,7 @@ Bitboard Engine::generatePieceMoves(const int square, const int piece)
                 }
             }
 
-            return moves & ~(Utils::isPieceWhite(piece) ? board.w_occupiedSquares : board.b_occupiedSquares);
+            return moves & ~board.occupiedSquares[Utils::isPieceWhite(piece)];
         }
 
 
@@ -306,7 +303,7 @@ Bitboard Engine::generatePieceMoves(const int square, const int piece)
                 moves |= (position >> 2);
             }
 
-            return moves & ~board.w_occupiedSquares;
+            return moves & ~board.occupiedSquares[1];
         }
         case Pieces::Piece::B_KING: {
             Bitboard moves = board.precomputedMoves.kingMoves[square];
@@ -323,7 +320,7 @@ Bitboard Engine::generatePieceMoves(const int square, const int piece)
                 moves |= (position >> 2);
             }
 
-            return moves & ~board.b_occupiedSquares;
+            return moves & ~board.occupiedSquares[0];
         }
     }
 
@@ -431,14 +428,8 @@ void Engine::makeMove(const Pieces::Move& move)
         board.mailbox[move.toSquare + 1] = Pieces::Piece::NONE;
         board.mailbox[move.toSquare - 1] = ownPiece.ROOK;
 
-        if (Utils::isPieceWhite(piece)) {
-            board.w_occupiedSquares &= ~(toPos << 1);
-            board.w_occupiedSquares |= (toPos >> 1);
-        }
-        else {
-            board.b_occupiedSquares &= ~(toPos << 1);
-            board.b_occupiedSquares |= (toPos >> 1);
-        }
+        board.occupiedSquares[Utils::isPieceWhite(piece)] &= ~(toPos << 1);
+        board.occupiedSquares[Utils::isPieceWhite(piece)] |= (toPos >> 1);
     }
     else if ((piece >> 1 == Pieces::PieceType::KING) && (move.fromSquare - 2 == move.toSquare)) {
         // Queenside castle
@@ -448,37 +439,29 @@ void Engine::makeMove(const Pieces::Move& move)
         board.mailbox[move.toSquare - 2] = Pieces::Piece::NONE;
         board.mailbox[move.toSquare + 1] = ownPiece.ROOK;
 
-        if (Utils::isPieceWhite(piece)) {
-            board.w_occupiedSquares &= ~(toPos >> 2);
-            board.w_occupiedSquares |= (toPos << 1);
-        }
-        else {
-            board.b_occupiedSquares &= ~(toPos >> 2);
-            board.b_occupiedSquares |= (toPos << 1);
-        }
+        board.occupiedSquares[Utils::isPieceWhite(piece)] &= ~(toPos >> 2);
+        board.occupiedSquares[Utils::isPieceWhite(piece)] |= (toPos << 1);
     }
 
 
     // Handle captures (if any)
     if (board.mailbox[move.toSquare] != Pieces::Piece::NONE) {
         int capturedPiece = board.mailbox[move.toSquare];
-        board.bitboards[capturedPiece] &= ~toPos; // Remove captured piece from bitboard
+        // Remove captured piece from bitboard
+        board.bitboards[capturedPiece] &= ~toPos;
 
         // Remove captured piece from occupied squares
-        if (Utils::isPieceWhite(capturedPiece))
-            board.w_occupiedSquares &= ~toPos;
-        else
-            board.b_occupiedSquares &= ~toPos;
+        board.occupiedSquares[Utils::isPieceWhite(capturedPiece)] &= ~toPos;
     }
     else if ((piece >> 1) == Pieces::PieceType::PAWN && (move.toSquare == board.enPassantSquare)) {
         if (Utils::isPieceWhite(piece)) {
             board.bitboards[enemyPiece.PAWN] &= ~(toPos >> 8);
-            board.b_occupiedSquares &= ~(toPos >> 8);
+            board.occupiedSquares[0] &= ~(toPos >> 8);
             board.mailbox[move.toSquare - 8] = Pieces::Piece::NONE;
         }
         else {
             board.bitboards[enemyPiece.PAWN] &= ~(toPos << 8);
-            board.w_occupiedSquares &= ~(toPos << 8);
+            board.occupiedSquares[1] &= ~(toPos << 8);
             board.mailbox[move.toSquare + 8] = Pieces::Piece::NONE;
         }
     }
@@ -505,14 +488,8 @@ void Engine::makeMove(const Pieces::Move& move)
 
 
     // Update occupied squares
-    if (Utils::isPieceWhite(piece)) {
-        board.w_occupiedSquares &= ~fromPos;
-        board.w_occupiedSquares |= toPos;
-    }
-    else {
-        board.b_occupiedSquares &= ~fromPos;
-        board.b_occupiedSquares |= toPos;
-    }
+    board.occupiedSquares[Utils::isPieceWhite(piece)] &= ~fromPos;
+    board.occupiedSquares[Utils::isPieceWhite(piece)] |= toPos;
 
 
     flipColor();
@@ -544,12 +521,12 @@ void Engine::undoMove()
 
     flipColor();
 
-    board.bitboards         = state.bitboards;
-    board.mailbox           = state.mailbox;
-    board.enPassantSquare   = state.enPassantSquare;
-    board.castlingRights    = state.castlingRights;
-    board.w_occupiedSquares = state.w_occupiedSquares;
-    board.b_occupiedSquares = state.b_occupiedSquares;
+    board.bitboards          = state.bitboards;
+    board.mailbox            = state.mailbox;
+    board.enPassantSquare    = state.enPassantSquare;
+    board.castlingRights     = state.castlingRights;
+    board.occupiedSquares[0] = state.occupiedSquares[0];
+    board.occupiedSquares[1] = state.occupiedSquares[1];
 
     --board.plyCount;
 
