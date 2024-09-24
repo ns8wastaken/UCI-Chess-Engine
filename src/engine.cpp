@@ -188,9 +188,9 @@ Bitboard Engine::generatePieceMoves(const int square, const int piece)
             int distUp    = 7 - (square / 8);
             int distDown  = square / 8;
 
-            int shifts[] = {9, -9, 7, -7};
+            int shifts[4] = {9, -9, 7, -7};
 
-            int maxLengths[] = {
+            int maxLengths[4] = {
                 std::min(distLeft, distUp),    // Top left
                 std::min(distRight, distDown), // Bottom right
                 std::min(distRight, distUp),   // Top right
@@ -215,9 +215,9 @@ Bitboard Engine::generatePieceMoves(const int square, const int piece)
 
         case Pieces::Piece::W_ROOK:
         case Pieces::Piece::B_ROOK: {
-            int shifts[] = {1, -1, 8, -8};
+            int shifts[4] = {1, -1, 8, -8};
 
-            int maxLengths[] = {
+            int maxLengths[4] = {
                 7 - (square % 8),
                 square % 8,
                 7 - (square / 8),
@@ -247,9 +247,9 @@ Bitboard Engine::generatePieceMoves(const int square, const int piece)
             int distUp    = 7 - (square / 8);
             int distDown  = square / 8;
 
-            int shifts[] = {1, -1, 8, -8, 9, -9, 7, -7};
+            int shifts[8] = {1, -1, 8, -8, 9, -9, 7, -7};
 
-            int maxLengths[] = {
+            int maxLengths[8] = {
                 distLeft,
                 distRight,
                 distUp,

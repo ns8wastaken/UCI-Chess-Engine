@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <string>
 #include <vector>
 #include <bit>
@@ -9,6 +10,7 @@
 
 
 typedef std::array<Pieces::Move, 256ULL> MoveArray;
+
 
 struct MoveList
 {

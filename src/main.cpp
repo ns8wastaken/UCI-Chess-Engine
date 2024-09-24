@@ -126,11 +126,11 @@ int main()
 
             const auto end = std::chrono::high_resolution_clock::now();
 
-            const int64_t time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() / 1000.0f;
+            const double time = s_cast(double, std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()) / 1000.0;
 
             std::cout << "\nTotal nodes: " << nodes << "\n";
             std::cout << "\nTime: " << time << "s\n";
-            std::cout << "\nNodes per second: " << s_cast(double, nodes) / s_cast(double, time) << "\n\n";
+            std::cout << "\nNodes per second: " << s_cast(uint64_t, s_cast(double, nodes) / time) << "\n\n";
         }
 
         elifsplitcommand(0, "divide")
@@ -143,11 +143,11 @@ int main()
 
             const auto end = std::chrono::high_resolution_clock::now();
 
-            const int64_t time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() / 1000.0f;
+            const double time = s_cast(double, std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()) / 1000.0;
 
             std::cout << "\nTotal nodes: " << nodes << "\n\n";
             std::cout << "\nTime: " << time << "s\n";
-            std::cout << "\nNodes per second: " << s_cast(int64_t, nodes) / time << "\n\n";
+            std::cout << "\nNodes per second: " << s_cast(uint64_t, s_cast(double, nodes) / time) << "\n\n";
         }
 
         elifcommand("print")
