@@ -1,7 +1,5 @@
 #pragma once
 #include <array>
-#include <stack>
-#include <chrono>
 
 #include "utils.hpp"
 #include "pieces.hpp"
@@ -16,20 +14,21 @@ struct Board
 {
     struct PrecomputedMoves
     {
-        std::array<Bitboard, 64> knightMoves{};
-        std::array<Bitboard, 64> kingMoves{};
+        std::array<Bitboard, 64ULL> knightMoves{};
+        std::array<Bitboard, 64ULL> kingMoves{};
     } precomputedMoves;
 
     struct HistoryState
     {
-        BitboardArray bitboards;
-        Mailbox mailbox;
+        BitboardArray bitboards{};
+        Mailbox mailbox{};
 
-        Square enPassantSquare;
-        char castlingFlags;
+        Square enPassantSquare = 0;
+        char castlingFlags     = 0;
 
         Bitboard occupiedSquares[2] = {0ULL, 0ULL};
 
+        HistoryState() = default;
         HistoryState(const Board& board)
             : bitboards(board.bitboards),
               mailbox(board.mailbox),
@@ -41,6 +40,12 @@ struct Board
         {}
     };
 
+    struct HistoryList
+    {
+        std::array<HistoryState, 300ULL> history{};
+        int used = 0ULL;
+    };
+
 
     int plyCount = 0;
 
@@ -48,7 +53,7 @@ struct Board
 
     Square enPassantSquare = 64;
 
-    std::stack<HistoryState> history{};
+    HistoryList history{};
 
     BitboardArray bitboards{};
     Mailbox mailbox{};

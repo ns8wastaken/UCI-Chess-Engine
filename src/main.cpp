@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <bitset>
+#include <chrono>
 
 #include "utils.hpp"
 #include "engine.cpp"
@@ -125,11 +126,11 @@ int main()
 
             const auto end = std::chrono::high_resolution_clock::now();
 
-            const double time = s_cast(double, std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()) / 1000.0f;
+            const int64_t time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() / 1000.0f;
 
             std::cout << "\nTotal nodes: " << nodes << "\n";
             std::cout << "\nTime: " << time << "s\n";
-            std::cout << "\nNodes per second: " << std::setprecision(15) << s_cast(double, nodes) / s_cast(double, time) << "\n\n";
+            std::cout << "\nNodes per second: " << s_cast(double, nodes) / s_cast(double, time) << "\n\n";
         }
 
         elifsplitcommand(0, "divide")
@@ -142,11 +143,11 @@ int main()
 
             const auto end = std::chrono::high_resolution_clock::now();
 
-            const double time = s_cast(double, std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()) / 1000.0f;
+            const int64_t time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() / 1000.0f;
 
             std::cout << "\nTotal nodes: " << nodes << "\n\n";
             std::cout << "\nTime: " << time << "s\n";
-            std::cout << "\nNodes per second: " << s_cast(double, nodes) / s_cast(double, time) << "\n\n";
+            std::cout << "\nNodes per second: " << s_cast(int64_t, nodes) / time << "\n\n";
         }
 
         elifcommand("print")
@@ -228,8 +229,7 @@ int main()
 
         elifcommand("quit")
         {
-            // Quit the engine
-            std::exit(0);
+            std::exit(0); // Quit the engine
         }
 
         else

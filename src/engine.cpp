@@ -52,29 +52,19 @@ void Engine::flipColor()
 {
     isWhiteTurn = !isWhiteTurn;
 
-    ownPiece.PAWN ^= enemyPiece.PAWN;
-    enemyPiece.PAWN ^= ownPiece.PAWN;
-    ownPiece.PAWN ^= enemyPiece.PAWN;
+    ownPiece.PAWN ^= 1;
+    ownPiece.KNIGHT ^= 1;
+    ownPiece.BISHOP ^= 1;
+    ownPiece.ROOK ^= 1;
+    ownPiece.QUEEN ^= 1;
+    ownPiece.KING ^= 1;
 
-    ownPiece.KNIGHT ^= enemyPiece.KNIGHT;
-    enemyPiece.KNIGHT ^= ownPiece.KNIGHT;
-    ownPiece.KNIGHT ^= enemyPiece.KNIGHT;
-
-    ownPiece.BISHOP ^= enemyPiece.BISHOP;
-    enemyPiece.BISHOP ^= ownPiece.BISHOP;
-    ownPiece.BISHOP ^= enemyPiece.BISHOP;
-
-    ownPiece.ROOK ^= enemyPiece.ROOK;
-    enemyPiece.ROOK ^= ownPiece.ROOK;
-    ownPiece.ROOK ^= enemyPiece.ROOK;
-
-    ownPiece.QUEEN ^= enemyPiece.QUEEN;
-    enemyPiece.QUEEN ^= ownPiece.QUEEN;
-    ownPiece.QUEEN ^= enemyPiece.QUEEN;
-
-    ownPiece.KING ^= enemyPiece.KING;
-    enemyPiece.KING ^= ownPiece.KING;
-    ownPiece.KING ^= enemyPiece.KING;
+    enemyPiece.PAWN ^= 1;
+    enemyPiece.KNIGHT ^= 1;
+    enemyPiece.BISHOP ^= 1;
+    enemyPiece.ROOK ^= 1;
+    enemyPiece.QUEEN ^= 1;
+    enemyPiece.KING ^= 1;
 }
 
 
@@ -378,7 +368,7 @@ MoveList Engine::generateAllMoves()
 void Engine::makeMove(const Pieces::Move& move)
 {
     // Store history
-    board.history.push(Board::HistoryState(board));
+    board.history.history[board.history.used++] = Board::HistoryState(board);
 
 
     ++board.plyCount;
@@ -515,7 +505,7 @@ void Engine::makeUCIMove(const std::string& UCI_Move)
 
 void Engine::undoMove()
 {
-    const Board::HistoryState& state = board.history.top();
+    const Board::HistoryState state = board.history.history[--board.history.used];
 
     flipColor();
 
@@ -527,8 +517,6 @@ void Engine::undoMove()
     board.occupiedSquares[1] = state.occupiedSquares[1];
 
     --board.plyCount;
-
-    board.history.pop();
 }
 
 
