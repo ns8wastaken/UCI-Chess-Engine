@@ -26,7 +26,7 @@ struct Board
         Mailbox mailbox;
 
         Square enPassantSquare;
-        uint16_t castlingFlags;
+        char castlingFlags;
 
         Bitboard occupiedSquares[2] = {0ULL, 0ULL};
 

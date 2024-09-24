@@ -119,18 +119,34 @@ int main()
 
         elifsplitcommand(0, "perft")
         {
+            const auto start = std::chrono::high_resolution_clock::now();
+
             const uint64_t nodes = engine.perft(std::stoi(splitCommand[1]));
 
-            std::cout << "\nTotal nodes: " << nodes << "\n\n";
+            const auto end = std::chrono::high_resolution_clock::now();
+
+            const double time = s_cast(double, std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()) / 1000.0f;
+
+            std::cout << "\nTotal nodes: " << nodes << "\n";
+            std::cout << "\nTime: " << time << "s\n";
+            std::cout << "\nNodes per second: " << std::setprecision(15) << s_cast(double, nodes) / s_cast(double, time) << "\n\n";
         }
 
         elifsplitcommand(0, "divide")
         {
             printf("\n");
 
+            const auto start = std::chrono::high_resolution_clock::now();
+
             const uint64_t nodes = engine.divide(std::stoi(splitCommand[1]));
 
+            const auto end = std::chrono::high_resolution_clock::now();
+
+            const double time = s_cast(double, std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()) / 1000.0f;
+
             std::cout << "\nTotal nodes: " << nodes << "\n\n";
+            std::cout << "\nTime: " << time << "s\n";
+            std::cout << "\nNodes per second: " << s_cast(double, nodes) / s_cast(double, time) << "\n\n";
         }
 
         elifcommand("print")
