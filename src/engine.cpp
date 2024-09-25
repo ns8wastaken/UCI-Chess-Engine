@@ -345,6 +345,7 @@ MoveList Engine::generateAllMoves()
                 botMoves.moves[botMoves.used + 1] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::W_BISHOP};
                 botMoves.moves[botMoves.used + 2] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::W_ROOK};
                 botMoves.moves[botMoves.used + 3] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::W_QUEEN};
+
                 botMoves.used += 4;
             }
             else if ((piece == Pieces::Piece::B_PAWN) && ((1ULL << i) & Utils::W_PawnStart)) {
@@ -352,11 +353,11 @@ MoveList Engine::generateAllMoves()
                 botMoves.moves[botMoves.used + 1] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::B_BISHOP};
                 botMoves.moves[botMoves.used + 2] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::B_ROOK};
                 botMoves.moves[botMoves.used + 3] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::B_QUEEN};
+
                 botMoves.used += 4;
             }
             else {
-                botMoves.moves[botMoves.used] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::NONE};
-                ++botMoves.used;
+                botMoves.moves[botMoves.used++] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::NONE};
             }
         }
     }
@@ -373,8 +374,8 @@ void Engine::makeMove(const Pieces::Move& move)
 
     ++board.plyCount;
 
-
-    const int piece = board.mailbox[move.fromSquare];
+    const int piece    = board.mailbox[move.fromSquare];
+    const bool isWhite = Utils::isPieceWhite(piece);
 
     const Bitboard fromPos = 1ULL << move.fromSquare;
     const Bitboard toPos   = 1ULL << move.toSquare;
@@ -416,8 +417,8 @@ void Engine::makeMove(const Pieces::Move& move)
         board.mailbox[move.toSquare + 1] = Pieces::Piece::NONE;
         board.mailbox[move.toSquare - 1] = ownPiece.ROOK;
 
-        board.occupiedSquares[Utils::isPieceWhite(piece)] &= ~(toPos << 1);
-        board.occupiedSquares[Utils::isPieceWhite(piece)] |= (toPos >> 1);
+        board.occupiedSquares[isWhite] &= ~(toPos << 1);
+        board.occupiedSquares[isWhite] |= (toPos >> 1);
     }
     else if ((piece >> 1 == Pieces::PieceType::KING) && (move.fromSquare - 2 == move.toSquare)) {
         // Queenside castle
@@ -427,8 +428,8 @@ void Engine::makeMove(const Pieces::Move& move)
         board.mailbox[move.toSquare - 2] = Pieces::Piece::NONE;
         board.mailbox[move.toSquare + 1] = ownPiece.ROOK;
 
-        board.occupiedSquares[Utils::isPieceWhite(piece)] &= ~(toPos >> 2);
-        board.occupiedSquares[Utils::isPieceWhite(piece)] |= (toPos << 1);
+        board.occupiedSquares[isWhite] &= ~(toPos >> 2);
+        board.occupiedSquares[isWhite] |= (toPos << 1);
     }
 
 
@@ -442,7 +443,7 @@ void Engine::makeMove(const Pieces::Move& move)
         board.occupiedSquares[Utils::isPieceWhite(capturedPiece)] &= ~toPos;
     }
     else if ((piece >> 1) == Pieces::PieceType::PAWN && (move.toSquare == board.enPassantSquare)) {
-        if (Utils::isPieceWhite(piece)) {
+        if (isWhite) {
             board.bitboards[enemyPiece.PAWN] &= ~(toPos >> 8);
             board.occupiedSquares[0] &= ~(toPos >> 8);
             board.mailbox[move.toSquare - 8] = Pieces::Piece::NONE;
@@ -476,8 +477,8 @@ void Engine::makeMove(const Pieces::Move& move)
 
 
     // Update occupied squares
-    board.occupiedSquares[Utils::isPieceWhite(piece)] &= ~fromPos;
-    board.occupiedSquares[Utils::isPieceWhite(piece)] |= toPos;
+    board.occupiedSquares[isWhite] &= ~fromPos;
+    board.occupiedSquares[isWhite] |= toPos;
 
 
     flipColor();
@@ -534,12 +535,14 @@ bool Engine::isAttacked(const Square square)
 }
 
 
-bool Engine::isLegalMove(const Pieces::Move& move)
+bool Engine::isLegalCastle(const Pieces::Move& move)
 {
-    Square ownKingSquare = std::countr_zero(board.bitboards[ownPiece.KING]);
-
     // Castling legality
-    if (board.mailbox[move.fromSquare] == ownPiece.KING && ((move.toSquare == move.fromSquare + 2) || (move.toSquare == move.fromSquare - 2))) {
+    if ((board.mailbox[move.fromSquare] == ownPiece.KING) &&
+        ((move.toSquare == move.fromSquare + 2) || (move.toSquare == move.fromSquare - 2))) {
+
+        Square ownKingSquare = std::countr_zero(board.bitboards[ownPiece.KING]);
+
         if (isAttacked(ownKingSquare) ||
             ((move.fromSquare + 2 == move.toSquare) && (isAttacked(ownKingSquare + 1) || isAttacked(ownKingSquare + 2))) ||
             ((move.fromSquare - 2 == move.toSquare) && (isAttacked(ownKingSquare - 1) || isAttacked(ownKingSquare - 2)))) {
@@ -549,14 +552,17 @@ bool Engine::isLegalMove(const Pieces::Move& move)
             return true;
         }
     }
+    return true;
+}
 
-    makeMove(move);
+
+bool Engine::wasLegalMove()
+{
     flipColor();
 
     bool isLegal = !isAttacked(std::countr_zero(board.bitboards[ownPiece.KING]));
 
     flipColor();
-    undoMove();
 
     return isLegal;
 }
@@ -571,13 +577,17 @@ std::string Engine::getEngineMove()
     for (int i = 0; i < botMoves.used; ++i) {
         Pieces::Move move = botMoves.moves[i];
 
-        if (isLegalMove(move)) {
-            botMove = move;
-            break;
-        }
-    }
+        if (!isLegalCastle(move)) continue;
 
-    makeMove(botMove);
+        makeMove(move);
+
+        if (!wasLegalMove()) {
+            undoMove();
+            continue;
+        }
+
+        botMove = move;
+    }
 
     return Utils::toUCI(botMove);
 }

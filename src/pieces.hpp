@@ -41,11 +41,23 @@ namespace Pieces
     };
 
 
+    enum class MoveFlag
+    {
+        CASTLING         = 0,
+        PROMOTION_KNIGHT = 2,
+        PROMOTION_BISHOP = 4,
+        PROMOTION_ROOK   = 6,
+        PROMOTION_QUEEN  = 8
+    };
+
+
     struct Move
     {
-        uint8_t fromSquare     = 64;
-        uint8_t toSquare       = 64;
-        uint8_t promotionPiece = Piece::NONE;
+        uint8_t fromSquare = 64;
+        uint8_t toSquare   = 64;
+        int promotionPiece = Piece::NONE;
+        bool isCastle      = false;
+        // MoveFlag flags     = Piece::NONE;
     };
 
 

@@ -73,15 +73,7 @@ namespace Utils
     }
 
 
-    /*  Board flags (10 bits used)
-
-
-        En passant square: (6 bits)
-
-            1 1 1 1 1 1 ... + 4 bits (castling rights)
-
-
-
+    /*
         Castling rights: (4 bits)
 
                Black kingside

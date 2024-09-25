@@ -13,9 +13,14 @@ uint64_t Engine::perft(const int depth)
     for (int i = 0; i < move_list.used; ++i) {
         Pieces::Move move = move_list.moves[i];
 
-        if (!isLegalMove(move)) continue;
+        if (!isLegalCastle(move)) continue;
 
         makeMove(move);
+
+        if (!wasLegalMove()) {
+            undoMove();
+            continue;
+        }
 
         nodes += perft(depth - 1);
 
@@ -35,9 +40,14 @@ uint64_t Engine::divide(const int depth)
     for (int i = 0; i < move_list.used; ++i) {
         Pieces::Move move = move_list.moves[i];
 
-        if (!isLegalMove(move)) continue;
+        if (!isLegalCastle(move)) continue;
 
         makeMove(move);
+
+        if (!wasLegalMove()) {
+            undoMove();
+            continue;
+        }
 
         uint64_t moveNodes = perft(depth - 1);
         std::cout << Utils::toUCI(move) << ": " << moveNodes << "\n";

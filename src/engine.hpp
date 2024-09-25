@@ -68,7 +68,8 @@ struct Engine
     void undoMove();
 
     bool isAttacked(const Square square);
-    bool isLegalMove(const Pieces::Move& move);
+    bool isLegalCastle(const Pieces::Move& move);
+    bool wasLegalMove();
 
     std::string getEngineMove();
 
