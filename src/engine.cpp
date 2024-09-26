@@ -319,21 +319,20 @@ Bitboard Engine::generatePieceMoves(const int square, const int piece)
 MoveList Engine::generateAllMoves()
 {
     MoveList botMoves;
-    botMoves.moves.fill(Pieces::Move{64, 64, 0});
 
     for (int i = 0; i < 64; ++i) {
         int piece = board.mailbox[i];
 
         if (piece == Pieces::Piece::NONE)
             continue;
-        else if (isWhiteTurn && !Utils::isPieceWhite(board.mailbox[i])) {
+        else if (isWhiteTurn && !Utils::isPieceWhite(piece)) {
             continue;
         }
-        else if (!isWhiteTurn && Utils::isPieceWhite(board.mailbox[i])) {
+        else if (!isWhiteTurn && Utils::isPieceWhite(piece)) {
             continue;
         }
 
-        Bitboard movesBitboard = generatePieceMoves(i, board.mailbox[i]);
+        Bitboard movesBitboard = generatePieceMoves(i, piece);
 
         // Loop over piece moves (loop over the bits)
         while (movesBitboard) {
