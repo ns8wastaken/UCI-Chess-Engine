@@ -59,7 +59,9 @@ struct Engine
 
     void loadFEN(const std::vector<std::string>& FEN);
 
-    Bitboard generatePieceMoves(const int square, const int piece);
+    int evaluateBoard();
+
+    Bitboard generatePieceMoves(const Square square, const int piece);
     MoveList generateAllMoves();
 
     void makeMove(const Pieces::Move& move);

@@ -122,7 +122,23 @@ void Engine::loadFEN(const std::vector<std::string>& FEN)
 }
 
 
-Bitboard Engine::generatePieceMoves(const int square, const int piece)
+int Engine::evaluateBoard()
+{
+    int score = 0;
+
+    for (int i = 0; i < 64; ++i) {
+        const int piece = board.mailbox[i];
+
+        if (piece != Pieces::Piece::NONE) {
+            score += Pieces::pieceValues[piece >> 1] * (isWhiteTurn - !isWhiteTurn);
+        }
+    }
+
+    return score;
+}
+
+
+Bitboard Engine::generatePieceMoves(const Square square, const int piece)
 {
     const Bitboard occupiedSquaresAll = (board.occupiedSquares[0] | board.occupiedSquares[1]);
 
@@ -320,8 +336,8 @@ MoveList Engine::generateAllMoves()
 {
     MoveList botMoves;
 
-    for (int i = 0; i < 64; ++i) {
-        int piece = board.mailbox[i];
+    for (int square = 0; square < 64; ++square) {
+        int piece = board.mailbox[square];
 
         if (piece == Pieces::Piece::NONE)
             continue;
@@ -332,31 +348,31 @@ MoveList Engine::generateAllMoves()
             continue;
         }
 
-        Bitboard movesBitboard = generatePieceMoves(i, piece);
+        Bitboard movesBitboard = generatePieceMoves(square, piece);
 
         // Loop over piece moves (loop over the bits)
         while (movesBitboard) {
-            int offset = std::countr_zero(movesBitboard);
+            Square offset = static_cast<Square>(std::countr_zero(movesBitboard));
             movesBitboard &= ~(1ULL << offset);
 
-            if ((piece == Pieces::Piece::W_PAWN) && ((1ULL << i) & Utils::B_PawnStart)) {
-                botMoves.moves[botMoves.used]     = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::W_KNIGHT};
-                botMoves.moves[botMoves.used + 1] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::W_BISHOP};
-                botMoves.moves[botMoves.used + 2] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::W_ROOK};
-                botMoves.moves[botMoves.used + 3] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::W_QUEEN};
+            if ((piece == Pieces::Piece::W_PAWN) && ((1ULL << square) & Utils::B_PawnStart)) {
+                botMoves.moves[botMoves.used]     = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::W_KNIGHT};
+                botMoves.moves[botMoves.used + 1] = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::W_BISHOP};
+                botMoves.moves[botMoves.used + 2] = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::W_ROOK};
+                botMoves.moves[botMoves.used + 3] = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::W_QUEEN};
 
                 botMoves.used += 4;
             }
-            else if ((piece == Pieces::Piece::B_PAWN) && ((1ULL << i) & Utils::W_PawnStart)) {
-                botMoves.moves[botMoves.used]     = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::B_KNIGHT};
-                botMoves.moves[botMoves.used + 1] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::B_BISHOP};
-                botMoves.moves[botMoves.used + 2] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::B_ROOK};
-                botMoves.moves[botMoves.used + 3] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::B_QUEEN};
+            else if ((piece == Pieces::Piece::B_PAWN) && ((1ULL << square) & Utils::W_PawnStart)) {
+                botMoves.moves[botMoves.used]     = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::B_KNIGHT};
+                botMoves.moves[botMoves.used + 1] = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::B_BISHOP};
+                botMoves.moves[botMoves.used + 2] = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::B_ROOK};
+                botMoves.moves[botMoves.used + 3] = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::B_QUEEN};
 
                 botMoves.used += 4;
             }
             else {
-                botMoves.moves[botMoves.used++] = Pieces::Move{s_cast(uint8_t, i), s_cast(uint8_t, offset), Pieces::Piece::NONE};
+                botMoves.moves[botMoves.used++] = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::NONE};
             }
         }
     }
@@ -522,12 +538,119 @@ void Engine::undoMove()
 
 bool Engine::isAttacked(const Square square)
 {
+    const Bitboard occupiedSquaresAll = (board.occupiedSquares[0] | board.occupiedSquares[1]);
+
+    const Bitboard position = 1ULL << square;
+
+
+    // General
+    int distLeft  = 7 - (square % 8);
+    int distRight = square % 8;
+    int distUp    = 7 - (square / 8);
+    int distDown  = square / 8;
+
+
+
+    // Knight =============================================================
+    Bitboard knightMoves = board.precomputedMoves.knightMoves[square];
+    // ====================================================================
+
+
+
+    // Queen ==============================================================
+    int shiftsQueen[8]     = {1, -1, 8, -8, 9, -9, 7, -7};
+    int maxLengthsQueen[8] = {
+        distLeft,
+        distRight,
+        distUp,
+        distDown,
+        std::min(distLeft, distUp),    // Top left
+        std::min(distRight, distDown), // Bottom right
+        std::min(distRight, distUp),   // Top right
+        std::min(distLeft, distDown)   // Bottom left
+    };
+
+    Bitboard queenMoves = 0ULL;
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 1; j <= maxLengthsQueen[i]; ++j) {
+            Bitboard result = Utils::BitShift(position, shiftsQueen[i] * j);
+            queenMoves |= result;
+
+            if (result & occupiedSquaresAll)
+                break;
+        }
+    }
+    // ====================================================================
+
+
+
+    // Rook ===============================================================
+    int shiftsRook[4]     = {1, -1, 8, -8};
+    int maxLengthsRook[4] = {
+        7 - (square % 8),
+        square % 8,
+        7 - (square / 8),
+        square / 8
+    };
+
+    Bitboard rookMoves = 0ULL;
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 1; j <= maxLengthsRook[i]; ++j) {
+            Bitboard result = Utils::BitShift(position, shiftsRook[i] * j);
+            rookMoves |= result;
+
+            if (result & occupiedSquaresAll)
+                break;
+        }
+    }
+    // ====================================================================
+
+
+
+    // Bishop =============================================================
+    int shiftsBishop[4]     = {9, -9, 7, -7};
+    int maxLengthsBishop[4] = {
+        std::min(distLeft, distUp),    // Top left
+        std::min(distRight, distDown), // Bottom right
+        std::min(distRight, distUp),   // Top right
+        std::min(distLeft, distDown)   // Bottom left
+    };
+
+    Bitboard bishopMoves = 0ULL;
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 1; j <= maxLengthsBishop[i]; ++j) {
+            Bitboard result = Utils::BitShift(position, shiftsBishop[i] * j);
+            bishopMoves |= result;
+
+            if (result & occupiedSquaresAll)
+                break;
+        }
+    }
+    // ====================================================================
+
+
+
+    // Pawn ===============================================================
+    Bitboard pawnMoves = 0ULL;
+    if (Utils::isPieceWhite(ownPiece.KING)) {
+        pawnMoves |= (position << 8) & ~occupiedSquaresAll;
+        pawnMoves |= (position << 7) & Utils::BitMaskB;
+        pawnMoves |= (position << 9) & Utils::BitMaskA;
+    }
+    else {
+        pawnMoves |= (position >> 8) & ~occupiedSquaresAll;
+        pawnMoves |= (position >> 7) & Utils::BitMaskA;
+        pawnMoves |= (position >> 9) & Utils::BitMaskB;
+    }
+    // ====================================================================
+
+
     // clang-format off
-    if      (generatePieceMoves(square, ownPiece.QUEEN)  & board.bitboards[enemyPiece.QUEEN])  return true;
-    else if (generatePieceMoves(square, ownPiece.ROOK)   & board.bitboards[enemyPiece.ROOK])   return true;
-    else if (generatePieceMoves(square, ownPiece.BISHOP) & board.bitboards[enemyPiece.BISHOP]) return true;
-    else if (generatePieceMoves(square, ownPiece.KNIGHT) & board.bitboards[enemyPiece.KNIGHT]) return true;
-    else if (generatePieceMoves(square, ownPiece.PAWN)   & board.bitboards[enemyPiece.PAWN])   return true;
+    if      (queenMoves  & board.bitboards[enemyPiece.QUEEN])  return true;
+    else if (rookMoves   & board.bitboards[enemyPiece.ROOK])   return true;
+    else if (bishopMoves & board.bitboards[enemyPiece.BISHOP]) return true;
+    else if (knightMoves & board.bitboards[enemyPiece.KNIGHT]) return true;
+    else if (pawnMoves   & board.bitboards[enemyPiece.PAWN])   return true;
 
     return false;
     // clang-format on
@@ -551,6 +674,8 @@ bool Engine::isLegalCastle(const Pieces::Move& move)
             return true;
         }
     }
+
+    // Not a castle move
     return true;
 }
 

@@ -41,6 +41,11 @@ namespace Pieces
     };
 
 
+    constexpr int pieceValues[6] = {
+        100, 300, 300, 500, 900, 31415926
+    };
+
+
     enum class MoveFlag
     {
         CASTLING         = 0,
@@ -59,21 +64,6 @@ namespace Pieces
         bool isCastle      = false;
         // MoveFlag flags     = Piece::NONE;
     };
-
-
-    constexpr int getPieceValue(int pieceType)
-    {
-        switch (pieceType) {
-            case PieceType::PAWN:   return 100;
-            case PieceType::KNIGHT: return 300;
-            case PieceType::BISHOP: return 300;
-            case PieceType::ROOK:   return 500;
-            case PieceType::QUEEN:  return 900;
-            case PieceType::KING:   return 31415926;
-        }
-
-        return 0;
-    }
 
 
     constexpr char getPieceChar(int piece)
