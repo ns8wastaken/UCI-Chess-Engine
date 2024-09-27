@@ -352,27 +352,27 @@ MoveList Engine::generateAllMoves()
 
         // Loop over piece moves (loop over the bits)
         while (movesBitboard) {
-            Square offset = static_cast<Square>(std::countr_zero(movesBitboard));
+            int offset = std::countr_zero(movesBitboard);
             movesBitboard &= ~(1ULL << offset);
 
             if ((piece == Pieces::Piece::W_PAWN) && ((1ULL << square) & Utils::B_PawnStart)) {
-                botMoves.moves[botMoves.used]     = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::W_KNIGHT};
-                botMoves.moves[botMoves.used + 1] = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::W_BISHOP};
-                botMoves.moves[botMoves.used + 2] = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::W_ROOK};
-                botMoves.moves[botMoves.used + 3] = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::W_QUEEN};
+                botMoves.moves[botMoves.used]     = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::W_KNIGHT};
+                botMoves.moves[botMoves.used + 1] = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::W_BISHOP};
+                botMoves.moves[botMoves.used + 2] = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::W_ROOK};
+                botMoves.moves[botMoves.used + 3] = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::W_QUEEN};
 
                 botMoves.used += 4;
             }
             else if ((piece == Pieces::Piece::B_PAWN) && ((1ULL << square) & Utils::W_PawnStart)) {
-                botMoves.moves[botMoves.used]     = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::B_KNIGHT};
-                botMoves.moves[botMoves.used + 1] = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::B_BISHOP};
-                botMoves.moves[botMoves.used + 2] = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::B_ROOK};
-                botMoves.moves[botMoves.used + 3] = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::B_QUEEN};
+                botMoves.moves[botMoves.used]     = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::B_KNIGHT};
+                botMoves.moves[botMoves.used + 1] = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::B_BISHOP};
+                botMoves.moves[botMoves.used + 2] = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::B_ROOK};
+                botMoves.moves[botMoves.used + 3] = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::B_QUEEN};
 
                 botMoves.used += 4;
             }
             else {
-                botMoves.moves[botMoves.used++] = Pieces::Move{s_cast(Square, square), offset, Pieces::Piece::NONE};
+                botMoves.moves[botMoves.used++] = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::NONE};
             }
         }
     }
@@ -692,26 +692,65 @@ bool Engine::wasLegalMove()
 }
 
 
-std::string Engine::getEngineMove()
+int Engine::alphaBeta(int depth, int alpha, int beta)
 {
-    MoveList botMoves = generateAllMoves();
+    if (depth == 0)
+        // return quiesce(alpha, beta);
+        return evaluateBoard();
 
-    Pieces::Move botMove = botMoves.moves[0];
+    int bestValue = -std::numeric_limits<int>::max();
 
-    for (int i = 0; i < botMoves.used; ++i) {
-        Pieces::Move move = botMoves.moves[i];
+    MoveList moves = generateAllMoves();
 
-        if (!isLegalCastle(move)) continue;
+    for (int i = 0; i < moves.used; ++i) {
+        makeMove(moves.moves[i]);
 
-        makeMove(move);
+        int score = -alphaBeta(depth - 1, -beta, -alpha);
 
-        if (!wasLegalMove()) {
-            undoMove();
-            continue;
+        undoMove();
+
+        if (score > bestValue) {
+            bestValue = score;
+
+            if (depth == Settings::maxPlyDepth)
+                bestMove = moves.moves[i];
+
+            if (score > alpha)
+                alpha = score;
         }
 
-        botMove = move;
+        if (score >= beta)
+            return bestValue;
     }
 
-    return Utils::toUCI(botMove);
+    return bestValue;
+}
+
+
+std::string Engine::getEngineMove()
+{
+    // MoveList botMoves = generateAllMoves();
+
+    // Pieces::Move botMove = botMoves.moves[0];
+
+    // for (int i = 0; i < botMoves.used; ++i) {
+    //     Pieces::Move move = botMoves.moves[i];
+
+    //     if (!isLegalCastle(move)) continue;
+
+    //     makeMove(move);
+
+    //     if (!wasLegalMove()) {
+    //         undoMove();
+    //         continue;
+    //     }
+
+    //     botMove = move;
+    // }
+
+    alphaBeta(Settings::maxPlyDepth, -std::numeric_limits<int>::max(), std::numeric_limits<int>::max());
+
+    makeMove(bestMove);
+
+    return Utils::toUCI(bestMove);
 }

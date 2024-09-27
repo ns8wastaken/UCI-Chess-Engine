@@ -4,6 +4,7 @@
 #include <vector>
 #include <bit>
 
+#include "settings.hpp"
 #include "board.hpp"
 #include "utils.hpp"
 #include "pieces.hpp"
@@ -57,6 +58,8 @@ struct Engine
 
     bool isWhiteTurn = true;
 
+    Pieces::Move bestMove = {};
+
     void loadFEN(const std::vector<std::string>& FEN);
 
     int evaluateBoard();
@@ -72,6 +75,8 @@ struct Engine
     bool isAttacked(const Square square);
     bool isLegalCastle(const Pieces::Move& move);
     bool wasLegalMove();
+
+    int alphaBeta(int depth, int alpha, int beta);
 
     std::string getEngineMove();
 
