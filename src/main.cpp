@@ -6,6 +6,7 @@
 
 #include "utils.hpp"
 #include "engine.cpp"
+#include "movegen.cpp"
 #include "enginedebug.cpp"
 
 
@@ -18,16 +19,21 @@
 const std::string STARTING_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 
-void printBitboard(uint64_t bitboard)
+void printBitboard(const uint64_t& bitboard)
 {
     std::string set = std::bitset<64>(bitboard).to_string();
-    for (int rank = 0; rank < 8; ++rank) {
-        std::cout << "\n";
-        for (int file = 0; file < 8; ++file) {
-            int index = (7 - rank) * 8 + file;
-            std::cout << (((int)set[index] - 48) ? "# " : ". ");
-        }
+
+    printf("\n\nA B C D E F G H\n----------------\n");
+    for (int i = 0; i < 64; ++i) {
+        int row = i / 8;
+        int col = i % 8;
+        int bit = set[row * 8 + (7 - col)];
+
+        if (i % 8 == 0 && i > 0) std::cout << "|" << (9 - row) << "\n";
+
+        std::cout << ((bit == '0') ? '.' : '#') << ' ';
     }
+    printf("|1\n----------------\nA B C D E F G H\n\n\n");
 }
 
 
@@ -68,7 +74,7 @@ int main()
         ifcommand("uci")
         {
             // UCI identification info
-            // std::cout << "id name MyChessEngine\n";
+            // std::cout << "id name 通常\n";
             // std::cout << "id author ns8\n";
 
             std::cout << "uciok\n"; // UCI approval
@@ -126,7 +132,7 @@ int main()
 
             const auto end = std::chrono::high_resolution_clock::now();
 
-            const double time = s_cast(double, std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()) / 1000.0;
+            const double time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 
             std::cout << "\nTotal nodes: " << nodes << "\n";
             std::cout << "\nTime: " << time << "s\n";
@@ -150,35 +156,40 @@ int main()
             std::cout << "\nNodes per second: " << s_cast(uint64_t, s_cast(double, nodes) / time) << "\n\n";
         }
 
-        elifcommand("print")
+        elifsplitcommand(0, "print")
         {
-            printf("\n\nA B C D E F G H\n----------------\n");
-            for (int i = 63; i >= 0; --i) {
-                int row   = i / 8;
-                int col   = i % 8;
-                int piece = engine.board.mailbox[row * 8 + (7 - col)];
+            if (splitCommand.size() == 1) {
+                printf("\n\nA B C D E F G H\n----------------\n");
+                for (int i = 63; i >= 0; --i) {
+                    int row   = i / 8;
+                    int col   = i % 8;
+                    int piece = engine.board.mailbox[row * 8 + (7 - col)];
 
-                if (i % 8 == 7 && i < 63)
-                    std::cout << "|" << (row + 2) << "\n";
+                    if (i % 8 == 7 && i < 63)
+                        std::cout << "|" << (row + 2) << "\n";
 
-                std::cout << ((piece == Pieces::Piece::NONE) ? ' ' : Pieces::getPieceChar(piece)) << " ";
+                    std::cout << ((piece == Pieces::Piece::NONE) ? ' ' : Pieces::getPieceChar(piece)) << " ";
+                }
+                printf("|1\n----------------\nA B C D E F G H\n\n\n");
             }
-            printf("|1\n----------------\nA B C D E F G H\n\n\n");
 
+            else if (splitCommand[1] == "bitboards") {
+                // Print bitboards
+                for (int i = 0; i < Pieces::Piece::PIECE_COUNT; ++i) {
+                    printf("Piece: %c\n", Pieces::getPieceChar(i));
+                    printBitboard(engine.board.bitboards[i]);
+                    printf("\n\n");
+                }
+            }
 
-            // Print bitboards
-            // for (int i = 0; i < Pieces::Piece::PIECE_COUNT; ++i) {
-            //     printf("Piece: %c\n", Pieces::getPieceChar(i));
-            //     printBitboard(engine.board.bitboards[i]);
-            //     printf("\n\n");
-            // }
-
-            // Print occupied squares
-            // printf("\nWhite");
-            // printBitboard(engine.board.w_occupiedSquares);
-            // printf("\n\nBlack");
-            // printBitboard(engine.board.b_occupiedSquares);
-            // printf("\n\n");
+            else if (splitCommand[1] == "occupied") {
+                // Print occupied squares
+                printf("\nWhite");
+                printBitboard(engine.board.occupiedSquares[1]);
+                printf("\n\nBlack");
+                printBitboard(engine.board.occupiedSquares[0]);
+                printf("\n\n");
+            }
         }
 
         elifsplitcommand(0, "move")

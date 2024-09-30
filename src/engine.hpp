@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <limits>
 #include <bit>
 
 #include "settings.hpp"
@@ -15,8 +16,8 @@ typedef std::array<Pieces::Move, 256ULL> MoveArray;
 
 struct MoveList
 {
-    MoveArray moves{};
-    int used = 0ULL;
+    MoveArray moves = {};
+    int used        = 0ULL;
 };
 
 
@@ -34,6 +35,7 @@ struct Piece
 struct Engine
 {
     Engine();
+
     void setColor(bool color);
     void flipColor();
     Board board;
@@ -74,8 +76,10 @@ struct Engine
 
     bool isAttacked(const Square square);
     bool isLegalCastle(const Pieces::Move& move);
-    bool wasLegalMove();
+    bool wasIllegalMove();
 
+    void randomMove();
+    int negaMax(int depth);
     int alphaBeta(int depth, int alpha, int beta);
 
     std::string getEngineMove();

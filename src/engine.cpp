@@ -8,6 +8,8 @@ Engine::Engine()
     board.mailbox.fill(Pieces::Piece::NONE);
 
     board.precomputeMoves();
+
+    std::srand(std::time(0));
 }
 
 
@@ -126,15 +128,12 @@ int Engine::evaluateBoard()
 {
     int score = 0;
 
-    for (int i = 0; i < 64; ++i) {
-        const int piece = board.mailbox[i];
-
-        if (piece != Pieces::Piece::NONE) {
-            score += Pieces::pieceValues[piece >> 1] * (isWhiteTurn - !isWhiteTurn);
-        }
+    for (int i = 0; i < Pieces::Piece::PIECE_COUNT; ++i) {
+        const bool isPieceWhite = Utils::isPieceWhite(board.mailbox[i]);
+        score += std::popcount(board.bitboards[i]) * (isPieceWhite - !isPieceWhite);
     }
 
-    return score;
+    return score * (isWhiteTurn - !isWhiteTurn);
 }
 
 
@@ -498,6 +497,7 @@ void Engine::makeMove(const Pieces::Move& move)
 
     flipColor();
 
+
     // Remove en passant square
     board.enPassantSquare = 64;
 
@@ -540,7 +540,7 @@ bool Engine::isAttacked(const Square square)
 {
     const Bitboard occupiedSquaresAll = (board.occupiedSquares[0] | board.occupiedSquares[1]);
 
-    const Bitboard position = 1ULL << square;
+    const Bitboard position = (1ULL << square);
 
 
     // General
@@ -645,12 +645,20 @@ bool Engine::isAttacked(const Square square)
     // ====================================================================
 
 
+
+    // King ===============================================================
+    Bitboard kingMoves = board.precomputedMoves.kingMoves[square];
+    // ====================================================================
+
+
+
     // clang-format off
     if      (queenMoves  & board.bitboards[enemyPiece.QUEEN])  return true;
     else if (rookMoves   & board.bitboards[enemyPiece.ROOK])   return true;
     else if (bishopMoves & board.bitboards[enemyPiece.BISHOP]) return true;
     else if (knightMoves & board.bitboards[enemyPiece.KNIGHT]) return true;
     else if (pawnMoves   & board.bitboards[enemyPiece.PAWN])   return true;
+    else if (kingMoves   & board.bitboards[enemyPiece.KING])   return true;
 
     return false;
     // clang-format on
@@ -680,75 +688,25 @@ bool Engine::isLegalCastle(const Pieces::Move& move)
 }
 
 
-bool Engine::wasLegalMove()
+bool Engine::wasIllegalMove()
 {
     flipColor();
 
-    bool isLegal = !isAttacked(std::countr_zero(board.bitboards[ownPiece.KING]));
+    bool isIllegalMove = isAttacked(std::countr_zero(board.bitboards[ownPiece.KING]));
 
     flipColor();
 
-    return isLegal;
-}
-
-
-int Engine::alphaBeta(int depth, int alpha, int beta)
-{
-    if (depth == 0)
-        // return quiesce(alpha, beta);
-        return evaluateBoard();
-
-    int bestValue = -std::numeric_limits<int>::max();
-
-    MoveList moves = generateAllMoves();
-
-    for (int i = 0; i < moves.used; ++i) {
-        makeMove(moves.moves[i]);
-
-        int score = -alphaBeta(depth - 1, -beta, -alpha);
-
-        undoMove();
-
-        if (score > bestValue) {
-            bestValue = score;
-
-            if (depth == Settings::maxPlyDepth)
-                bestMove = moves.moves[i];
-
-            if (score > alpha)
-                alpha = score;
-        }
-
-        if (score >= beta)
-            return bestValue;
-    }
-
-    return bestValue;
+    return isIllegalMove;
 }
 
 
 std::string Engine::getEngineMove()
 {
-    // MoveList botMoves = generateAllMoves();
+    bestMove = {};
 
-    // Pieces::Move botMove = botMoves.moves[0];
-
-    // for (int i = 0; i < botMoves.used; ++i) {
-    //     Pieces::Move move = botMoves.moves[i];
-
-    //     if (!isLegalCastle(move)) continue;
-
-    //     makeMove(move);
-
-    //     if (!wasLegalMove()) {
-    //         undoMove();
-    //         continue;
-    //     }
-
-    //     botMove = move;
-    // }
-
-    alphaBeta(Settings::maxPlyDepth, -std::numeric_limits<int>::max(), std::numeric_limits<int>::max());
+    randomMove();
+    // negaMax(Settings::maxPlyDepth);
+    // alphaBeta(Settings::maxPlyDepth, -std::numeric_limits<int>::max(), std::numeric_limits<int>::max());
 
     makeMove(bestMove);
 

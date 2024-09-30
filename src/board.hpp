@@ -14,14 +14,14 @@ struct Board
 {
     struct PrecomputedMoves
     {
-        std::array<Bitboard, 64ULL> knightMoves{};
-        std::array<Bitboard, 64ULL> kingMoves{};
+        std::array<Bitboard, 64ULL> knightMoves = {};
+        std::array<Bitboard, 64ULL> kingMoves   = {};
     } precomputedMoves;
 
     struct HistoryState
     {
-        BitboardArray bitboards{};
-        Mailbox mailbox{};
+        BitboardArray bitboards = {};
+        Mailbox mailbox         = {};
 
         Square enPassantSquare = 0;
         char castlingFlags     = 0;
@@ -49,14 +49,13 @@ struct Board
 
     int plyCount = 0;
 
-    char castlingFlags = 0;
-
+    char castlingFlags     = 0;
     Square enPassantSquare = 64;
 
-    HistoryList history{};
+    HistoryList history = {};
 
-    BitboardArray bitboards{};
-    Mailbox mailbox{};
+    BitboardArray bitboards = {};
+    Mailbox mailbox         = {};
 
     Bitboard attackedSquares = 0ULL;
 

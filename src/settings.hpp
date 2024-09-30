@@ -2,5 +2,5 @@
 
 namespace Settings
 {
-    constexpr int maxPlyDepth = 5;
+    constexpr int maxPlyDepth = 4;
 }

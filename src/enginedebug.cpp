@@ -17,7 +17,7 @@ uint64_t Engine::perft(const int depth)
 
         makeMove(move);
 
-        if (!wasLegalMove()) {
+        if (wasIllegalMove()) {
             undoMove();
             continue;
         }
@@ -44,7 +44,7 @@ uint64_t Engine::divide(const int depth)
 
         makeMove(move);
 
-        if (!wasLegalMove()) {
+        if (wasIllegalMove()) {
             undoMove();
             continue;
         }
