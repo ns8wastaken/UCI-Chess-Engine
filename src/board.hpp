@@ -18,6 +18,7 @@ struct Board
         std::array<Bitboard, 64ULL> kingMoves   = {};
     } precomputedMoves;
 
+
     struct HistoryState
     {
         BitboardArray bitboards = {};
@@ -40,19 +41,18 @@ struct Board
         {}
     };
 
+
     struct HistoryList
     {
-        std::array<HistoryState, 300ULL> history{};
+        std::array<HistoryState, 1000ULL> history{};
         int used = 0ULL;
-    };
+    } history;
 
 
     int plyCount = 0;
 
     char castlingFlags     = 0;
     Square enPassantSquare = 64;
-
-    HistoryList history = {};
 
     BitboardArray bitboards = {};
     Mailbox mailbox         = {};

@@ -19,9 +19,9 @@ void Engine::randomMove()
             continue;
         }
 
-        undoMove();
-
         legalMoves.moves[legalMoves.used++] = move;
+
+        undoMove();
     }
 
     bestMove = legalMoves.moves[Utils::randomInt(0, legalMoves.used - 1)];

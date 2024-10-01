@@ -9,7 +9,23 @@ Engine::Engine()
 
     board.precomputeMoves();
 
-    std::srand(std::time(0));
+    ownPiece = {
+        Pieces::Piece::W_PAWN,
+        Pieces::Piece::W_KNIGHT,
+        Pieces::Piece::W_BISHOP,
+        Pieces::Piece::W_ROOK,
+        Pieces::Piece::W_QUEEN,
+        Pieces::Piece::W_KING
+    };
+
+    enemyPiece = {
+        Pieces::Piece::B_PAWN,
+        Pieces::Piece::B_KNIGHT,
+        Pieces::Piece::B_BISHOP,
+        Pieces::Piece::B_ROOK,
+        Pieces::Piece::B_QUEEN,
+        Pieces::Piece::B_KING
+    };
 }
 
 
@@ -124,7 +140,7 @@ void Engine::loadFEN(const std::vector<std::string>& FEN)
 }
 
 
-int Engine::evaluateBoard()
+int Engine::evaluateBoard() const
 {
     int score = 0;
 
@@ -141,12 +157,9 @@ Bitboard Engine::generatePieceMoves(const Square square, const int piece)
 {
     const Bitboard occupiedSquaresAll = (board.occupiedSquares[0] | board.occupiedSquares[1]);
 
-    Bitboard position = (1ULL << square);
+    const Bitboard position = (1ULL << square);
 
-    Bitboard enPassantPos = (1ULL << board.enPassantSquare);
-    if (board.enPassantSquare == 64) {
-        enPassantPos = 0ULL;
-    }
+    const Bitboard enPassantPos = (board.enPassantSquare == 64) ? 0ULL : (1ULL << board.enPassantSquare);
 
 
     /*
@@ -331,7 +344,7 @@ Bitboard Engine::generatePieceMoves(const Square square, const int piece)
 }
 
 
-MoveList Engine::generateAllMoves()
+Engine::MoveList Engine::generateAllMoves()
 {
     MoveList botMoves;
 
@@ -384,7 +397,6 @@ void Engine::makeMove(const Pieces::Move& move)
 {
     // Store history
     board.history.history[board.history.used++] = Board::HistoryState(board);
-
 
     ++board.plyCount;
 

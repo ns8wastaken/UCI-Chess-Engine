@@ -14,49 +14,33 @@
 typedef std::array<Pieces::Move, 256ULL> MoveArray;
 
 
-struct MoveList
-{
-    MoveArray moves = {};
-    int used        = 0ULL;
-};
-
-
-struct Piece
-{
-    int PAWN;
-    int KNIGHT;
-    int BISHOP;
-    int ROOK;
-    int QUEEN;
-    int KING;
-};
-
-
 struct Engine
 {
+    struct MoveList
+    {
+        MoveArray moves = {};
+        int used        = 0ULL;
+    };
+
+
+    struct Piece
+    {
+        int PAWN;
+        int KNIGHT;
+        int BISHOP;
+        int ROOK;
+        int QUEEN;
+        int KING;
+    } ownPiece, enemyPiece;
+
+
     Engine();
 
+
+    // Board stuff
     void setColor(bool color);
     void flipColor();
     Board board;
-
-    Piece ownPiece = {
-        Pieces::Piece::W_PAWN,
-        Pieces::Piece::W_KNIGHT,
-        Pieces::Piece::W_BISHOP,
-        Pieces::Piece::W_ROOK,
-        Pieces::Piece::W_QUEEN,
-        Pieces::Piece::W_KING
-    };
-
-    Piece enemyPiece = {
-        Pieces::Piece::B_PAWN,
-        Pieces::Piece::B_KNIGHT,
-        Pieces::Piece::B_BISHOP,
-        Pieces::Piece::B_ROOK,
-        Pieces::Piece::B_QUEEN,
-        Pieces::Piece::B_KING
-    };
 
     bool isWhiteTurn = true;
 
@@ -64,7 +48,8 @@ struct Engine
 
     void loadFEN(const std::vector<std::string>& FEN);
 
-    int evaluateBoard();
+    // Engine functions
+    int evaluateBoard() const;
 
     Bitboard generatePieceMoves(const Square square, const int piece);
     MoveList generateAllMoves();
@@ -78,6 +63,7 @@ struct Engine
     bool isLegalCastle(const Pieces::Move& move);
     bool wasIllegalMove();
 
+    // Movegen
     void randomMove();
     int negaMax(int depth);
     int alphaBeta(int depth, int alpha, int beta);
