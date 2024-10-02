@@ -38,7 +38,7 @@ uint64_t Engine::divide(const int depth)
     uint64_t totalNodes = 0;
 
     for (int i = 0; i < move_list.used; ++i) {
-        Pieces::Move move = move_list.moves[i];
+        const Pieces::Move& move = move_list.moves[i];
 
         if (!isLegalCastle(move)) continue;
 

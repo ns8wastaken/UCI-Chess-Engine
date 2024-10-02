@@ -153,7 +153,7 @@ int Engine::evaluateBoard() const
 }
 
 
-Bitboard Engine::generatePieceMoves(const Square square, const int piece)
+Bitboard Engine::generatePieceMoves(const Square& square, const int& piece)
 {
     const Bitboard occupiedSquaresAll = (board.occupiedSquares[0] | board.occupiedSquares[1]);
 
@@ -353,12 +353,10 @@ Engine::MoveList Engine::generateAllMoves()
 
         if (piece == Pieces::Piece::NONE)
             continue;
-        else if (isWhiteTurn && !Utils::isPieceWhite(piece)) {
+        else if (isWhiteTurn && !Utils::isPieceWhite(piece))
             continue;
-        }
-        else if (!isWhiteTurn && Utils::isPieceWhite(piece)) {
+        else if (!isWhiteTurn && Utils::isPieceWhite(piece))
             continue;
-        }
 
         Bitboard movesBitboard = generatePieceMoves(square, piece);
 
@@ -367,24 +365,18 @@ Engine::MoveList Engine::generateAllMoves()
             int offset = std::countr_zero(movesBitboard);
             movesBitboard &= ~(1ULL << offset);
 
-            if ((piece == Pieces::Piece::W_PAWN) && ((1ULL << square) & Utils::B_PawnStart)) {
-                botMoves.moves[botMoves.used]     = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::W_KNIGHT};
-                botMoves.moves[botMoves.used + 1] = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::W_BISHOP};
-                botMoves.moves[botMoves.used + 2] = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::W_ROOK};
-                botMoves.moves[botMoves.used + 3] = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::W_QUEEN};
+            if (((piece == Pieces::Piece::W_PAWN) && ((1ULL << square) & Utils::B_PawnStart)) ||
+                ((piece == Pieces::Piece::B_PAWN) && ((1ULL << square) & Utils::W_PawnStart))) {
 
-                botMoves.used += 4;
-            }
-            else if ((piece == Pieces::Piece::B_PAWN) && ((1ULL << square) & Utils::W_PawnStart)) {
-                botMoves.moves[botMoves.used]     = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::B_KNIGHT};
-                botMoves.moves[botMoves.used + 1] = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::B_BISHOP};
-                botMoves.moves[botMoves.used + 2] = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::B_ROOK};
-                botMoves.moves[botMoves.used + 3] = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::B_QUEEN};
+                botMoves.moves[botMoves.used]     = Pieces::Move{s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::KNIGHT};
+                botMoves.moves[botMoves.used + 1] = Pieces::Move{s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::BISHOP};
+                botMoves.moves[botMoves.used + 2] = Pieces::Move{s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::ROOK};
+                botMoves.moves[botMoves.used + 3] = Pieces::Move{s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::QUEEN};
 
                 botMoves.used += 4;
             }
             else {
-                botMoves.moves[botMoves.used++] = Pieces::Move{s_cast(Square, square), s_cast(Square, offset), Pieces::Piece::NONE};
+                botMoves.moves[botMoves.used++] = Pieces::Move{s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::PIECE_TYPE_COUNT};
             }
         }
     }
@@ -482,24 +474,14 @@ void Engine::makeMove(const Pieces::Move& move)
     }
 
 
-    // Update bitboards
-    if (move.promotionPiece == Pieces::Piece::NONE) {
-        // Normal (no promotions)
-        board.bitboards[piece] &= ~fromPos;
-        board.bitboards[piece] |= toPos;
+    // Update positions
+    board.bitboards[piece] &= ~fromPos;
+    board.mailbox[move.fromSquare] = Pieces::Piece::NONE;
 
-        board.mailbox[move.fromSquare] = Pieces::Piece::NONE;
-        board.mailbox[move.toSquare]   = piece;
-    }
-    else {
-        // Handle promotions
-        board.bitboards[piece] &= ~fromPos;
+    const int newPiece = (move.promotionPieceType == Pieces::PieceType::PIECE_TYPE_COUNT) ? piece : (move.promotionPieceType << 1) | (!isWhite);
 
-        board.bitboards[move.promotionPiece] |= toPos;
-
-        board.mailbox[move.fromSquare] = Pieces::Piece::NONE;
-        board.mailbox[move.toSquare]   = move.promotionPiece;
-    }
+    board.bitboards[newPiece] |= toPos;
+    board.mailbox[move.toSquare] = newPiece;
 
 
     // Update occupied squares
@@ -515,10 +497,10 @@ void Engine::makeMove(const Pieces::Move& move)
 
 
     // Set en passant square for next turn
-    if ((board.mailbox[move.toSquare] == Pieces::Piece::W_PAWN) && (move.fromSquare + 16 == move.toSquare)) {
+    if ((board.mailbox[move.toSquare] == Pieces::Piece::W_PAWN) && (move.fromSquare + 16 == move.toSquare)) [[unlikely]] {
         board.enPassantSquare = move.fromSquare + 8;
     }
-    else if ((board.mailbox[move.toSquare] == Pieces::Piece::B_PAWN) && (move.fromSquare - 16 == move.toSquare)) {
+    else if ((board.mailbox[move.toSquare] == Pieces::Piece::B_PAWN) && (move.fromSquare - 16 == move.toSquare)) [[unlikely]] {
         board.enPassantSquare = move.fromSquare - 8;
     }
 }
@@ -533,7 +515,7 @@ void Engine::makeUCIMove(const std::string& UCI_Move)
 
 void Engine::undoMove()
 {
-    const Board::HistoryState state = board.history.history[--board.history.used];
+    const Board::HistoryState& state = board.history.history[--board.history.used];
 
     flipColor();
 

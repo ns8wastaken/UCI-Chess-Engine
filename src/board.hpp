@@ -14,8 +14,8 @@ struct Board
 {
     struct PrecomputedMoves
     {
-        std::array<Bitboard, 64ULL> knightMoves = {};
-        std::array<Bitboard, 64ULL> kingMoves   = {};
+        Bitboard knightMoves[64] = {};
+        Bitboard kingMoves[64]   = {};
     } precomputedMoves;
 
 
@@ -44,8 +44,9 @@ struct Board
 
     struct HistoryList
     {
-        std::array<HistoryState, 1000ULL> history{};
-        int used = 0ULL;
+        HistoryState history[500] = {};
+
+        int used = 0;
     } history;
 
 

@@ -55,8 +55,8 @@ namespace Utils
             static_cast<char>('1' + (move.toSquare / 8))
         };
 
-        if (move.promotionPiece != Pieces::Piece::NONE) {
-            uci += std::tolower(Pieces::getPieceChar(move.promotionPiece));
+        if (move.promotionPieceType != Pieces::PieceType::PIECE_TYPE_COUNT) {
+            uci += Pieces::getPieceTypeChar(move.promotionPieceType);
         }
 
         return uci;
@@ -70,16 +70,16 @@ namespace Utils
 
     [[nodiscard]] Pieces::Move moveFromUCI(const std::string& UCI_Move)
     {
-        uint8_t promotionPiece = Pieces::Piece::NONE;
+        int promotionPieceType = Pieces::PieceType::PIECE_TYPE_COUNT;
 
         if (UCI_Move.length() == 5) {
-            promotionPiece = Pieces::getPieceFromChar(UCI_Move[4]);
+            promotionPieceType = Pieces::getPieceTypeFromChar(UCI_Move[4]);
         }
 
         return Pieces::Move{
             static_cast<uint8_t>((UCI_Move[1] - '1') * 8 + UCI_Move[0] - 'a'),
             static_cast<uint8_t>((UCI_Move[3] - '1') * 8 + UCI_Move[2] - 'a'),
-            promotionPiece
+            promotionPieceType
         };
     }
 

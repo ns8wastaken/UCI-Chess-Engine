@@ -37,7 +37,7 @@ int Engine::negaMax(int depth)
     MoveList moves = generateAllMoves();
 
     for (int i = 0; i < moves.used; ++i) {
-        Pieces::Move move = moves.moves[i];
+        const Pieces::Move& move = moves.moves[i];
 
         if (!isLegalCastle(move)) continue;
 
@@ -74,7 +74,7 @@ int Engine::alphaBeta(int depth, int alpha, int beta)
     MoveList moves = generateAllMoves();
 
     for (int i = 0; i < moves.used; ++i) {
-        Pieces::Move move = moves.moves[i];
+        const Pieces::Move& move = moves.moves[i];
 
         if (!isLegalCastle(move)) continue;
 

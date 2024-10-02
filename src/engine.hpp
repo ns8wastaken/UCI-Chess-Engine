@@ -11,15 +11,13 @@
 #include "pieces.hpp"
 
 
-typedef std::array<Pieces::Move, 256ULL> MoveArray;
-
-
 struct Engine
 {
     struct MoveList
     {
-        MoveArray moves = {};
-        int used        = 0ULL;
+        Pieces::Move moves[256] = {};
+
+        int used = 0ULL;
     };
 
 
@@ -51,7 +49,7 @@ struct Engine
     // Engine functions
     int evaluateBoard() const;
 
-    Bitboard generatePieceMoves(const Square square, const int piece);
+    Bitboard generatePieceMoves(const Square& square, const int& piece);
     MoveList generateAllMoves();
 
     void makeMove(const Pieces::Move& move);

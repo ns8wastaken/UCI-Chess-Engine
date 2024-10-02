@@ -132,7 +132,7 @@ int main()
 
             const auto end = std::chrono::high_resolution_clock::now();
 
-            const double time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+            const double time = s_cast(double, std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()) / 1000.0;
 
             std::cout << "\nTotal nodes: " << nodes << "\n";
             std::cout << "\nTime: " << time << "s\n";

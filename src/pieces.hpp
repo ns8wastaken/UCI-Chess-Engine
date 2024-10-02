@@ -12,7 +12,9 @@ namespace Pieces
         BISHOP,
         ROOK,
         QUEEN,
-        KING
+        KING,
+
+        PIECE_TYPE_COUNT
     };
 
 
@@ -58,11 +60,25 @@ namespace Pieces
 
     struct Move
     {
-        uint8_t fromSquare = 64;
-        uint8_t toSquare   = 64;
-        int promotionPiece = Piece::NONE;
-        bool isCastle      = false;
-        // MoveFlag flags     = Piece::NONE;
+        uint8_t fromSquare      = 64;
+        uint8_t toSquare        = 64;
+        int promotionPieceType  = PieceType::PIECE_TYPE_COUNT;
+        bool isCastle           = false;
+    };
+
+
+    constexpr char getPieceTypeChar(int piece)
+    {
+        switch (piece) {
+            case PieceType::PAWN:   return 'p';
+            case PieceType::KNIGHT: return 'n';
+            case PieceType::BISHOP: return 'b';
+            case PieceType::ROOK:   return 'r';
+            case PieceType::QUEEN:  return 'q';
+            case PieceType::KING:   return 'k';
+        }
+
+        return '\0';
     };
 
 
@@ -87,6 +103,32 @@ namespace Pieces
         }
 
         return '\0';
+    };
+
+
+    constexpr int getPieceTypeFromChar(char c)
+    {
+        switch (c) {
+            case 'p':
+            case 'P': return PieceType::PAWN;
+
+            case 'n':
+            case 'N': return PieceType::KNIGHT;
+
+            case 'b':
+            case 'B': return PieceType::BISHOP;
+
+            case 'r':
+            case 'R': return PieceType::ROOK;
+
+            case 'q':
+            case 'Q': return PieceType::QUEEN;
+
+            case 'k':
+            case 'K': return PieceType::KING;
+        }
+
+        return PieceType::PIECE_TYPE_COUNT;
     };
 
 
