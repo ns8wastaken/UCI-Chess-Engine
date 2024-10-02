@@ -32,7 +32,7 @@ namespace Utils
     }
 
 
-    [[nodiscard]] inline constexpr bool isPieceWhite(int piece)
+    [[nodiscard]] inline bool isPieceWhite(int piece)
     {
         return !(piece & 1); // !(piece % 2)
     }

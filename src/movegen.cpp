@@ -59,6 +59,7 @@ int Engine::negaMax(int depth)
             max = score;
         }
     }
+
     return max;
 }
 

@@ -145,11 +145,13 @@ int Engine::evaluateBoard() const
     int score = 0;
 
     for (int i = 0; i < Pieces::Piece::PIECE_COUNT; ++i) {
-        const bool isPieceWhite = Utils::isPieceWhite(board.mailbox[i]);
-        score += std::popcount(board.bitboards[i]) * (isPieceWhite - !isPieceWhite);
+        const bool isPieceWhite = Utils::isPieceWhite(i);
+        // score += std::popcount(board.bitboards[i]) * (isPieceWhite - !isPieceWhite);
+        score += std::popcount(board.bitboards[i]) * (isPieceWhite ? 1 : -1);
     }
 
-    return score * (isWhiteTurn - !isWhiteTurn);
+    // return score * (isWhiteTurn - !isWhiteTurn);
+    return score * (isWhiteTurn ? 1 : -1);
 }
 
 
@@ -349,24 +351,23 @@ Engine::MoveList Engine::generateAllMoves()
     MoveList botMoves;
 
     for (int square = 0; square < 64; ++square) {
-        int piece = board.mailbox[square];
+        const int& piece = board.mailbox[square];
 
-        if (piece == Pieces::Piece::NONE)
+
+        if ((piece == Pieces::Piece::NONE) || (isWhiteTurn != Utils::isPieceWhite(piece)))
             continue;
-        else if (isWhiteTurn && !Utils::isPieceWhite(piece))
-            continue;
-        else if (!isWhiteTurn && Utils::isPieceWhite(piece))
-            continue;
+
 
         Bitboard movesBitboard = generatePieceMoves(square, piece);
 
+
         // Loop over piece moves (loop over the bits)
         while (movesBitboard) {
-            int offset = std::countr_zero(movesBitboard);
+            const int offset = std::countr_zero(movesBitboard);
             movesBitboard &= ~(1ULL << offset);
 
             if (((piece == Pieces::Piece::W_PAWN) && ((1ULL << square) & Utils::B_PawnStart)) ||
-                ((piece == Pieces::Piece::B_PAWN) && ((1ULL << square) & Utils::W_PawnStart))) {
+                ((piece == Pieces::Piece::B_PAWN) && ((1ULL << square) & Utils::W_PawnStart))) [[unlikely]] {
 
                 botMoves.moves[botMoves.used]     = Pieces::Move{s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::KNIGHT};
                 botMoves.moves[botMoves.used + 1] = Pieces::Move{s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::BISHOP};
@@ -375,7 +376,7 @@ Engine::MoveList Engine::generateAllMoves()
 
                 botMoves.used += 4;
             }
-            else {
+            else [[likely]] {
                 botMoves.moves[botMoves.used++] = Pieces::Move{s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::PIECE_TYPE_COUNT};
             }
         }
@@ -452,15 +453,14 @@ void Engine::makeMove(const Pieces::Move& move)
 
 
     // Handle captures (if any)
-    if (board.mailbox[move.toSquare] != Pieces::Piece::NONE) {
-        int capturedPiece = board.mailbox[move.toSquare];
-        // Remove captured piece from bitboard
+    int capturedPiece = board.mailbox[move.toSquare];
+    if (capturedPiece != Pieces::Piece::NONE) {
+        // Normal capture
         board.bitboards[capturedPiece] &= ~toPos;
-
-        // Remove captured piece from occupied squares
         board.occupiedSquares[Utils::isPieceWhite(capturedPiece)] &= ~toPos;
     }
-    else if ((piece >> 1) == Pieces::PieceType::PAWN && (move.toSquare == board.enPassantSquare)) {
+    else if ((move.toSquare == board.enPassantSquare) && (piece >> 1) == Pieces::PieceType::PAWN) {
+        // En passant capture
         if (isWhite) {
             board.bitboards[enemyPiece.PAWN] &= ~(toPos >> 8);
             board.occupiedSquares[0] &= ~(toPos >> 8);
@@ -698,8 +698,8 @@ std::string Engine::getEngineMove()
 {
     bestMove = {};
 
-    randomMove();
-    // negaMax(Settings::maxPlyDepth);
+    // randomMove();
+    negaMax(Settings::maxPlyDepth);
     // alphaBeta(Settings::maxPlyDepth, -std::numeric_limits<int>::max(), std::numeric_limits<int>::max());
 
     makeMove(bestMove);

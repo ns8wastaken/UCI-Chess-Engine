@@ -50,20 +50,21 @@ namespace Pieces
 
     enum class MoveFlag
     {
-        CASTLING         = 0,
-        PROMOTION_KNIGHT = 2,
-        PROMOTION_BISHOP = 4,
-        PROMOTION_ROOK   = 6,
-        PROMOTION_QUEEN  = 8
+        NONE             = 0,
+        CASTLING         = 2,
+        PROMOTION_KNIGHT = 4,
+        PROMOTION_BISHOP = 6,
+        PROMOTION_ROOK   = 8,
+        PROMOTION_QUEEN  = 10
     };
 
 
     struct Move
     {
-        uint8_t fromSquare      = 64;
-        uint8_t toSquare        = 64;
-        int promotionPieceType  = PieceType::PIECE_TYPE_COUNT;
-        bool isCastle           = false;
+        uint8_t fromSquare     = 64;
+        uint8_t toSquare       = 64;
+        int promotionPieceType = PieceType::PIECE_TYPE_COUNT;
+        bool isCastle          = false;
     };
 
 
