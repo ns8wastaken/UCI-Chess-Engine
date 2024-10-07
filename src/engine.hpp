@@ -48,9 +48,10 @@ struct Engine
 
     // Engine functions
     int evaluateBoard() const;
+    int quiescentSearch(int alpha, const int beta);
 
-    Bitboard generatePieceMoves(const Square& square, const int& piece);
-    MoveList generateAllMoves();
+    Bitboard generatePieceMoves(const Square& square, const int& piece) const;
+    MoveList generateAllMoves() const;
 
     void makeMove(const Pieces::Move& move);
     void makeUCIMove(const std::string& UCI_Move);
@@ -64,7 +65,7 @@ struct Engine
     // Movegen
     void randomMove();
     int negaMax(int depth);
-    int alphaBeta(int depth, int alpha, int beta);
+    int alphaBeta(const int depth, int alpha, const int beta);
 
     std::string getEngineMove();
 

@@ -1,6 +1,45 @@
 #include "engine.hpp"
 
 
+int Engine::quiescentSearch(int alpha, const int beta)
+{
+    int stand_pat = evaluateBoard();
+
+    if (stand_pat >= beta)
+        return beta;
+
+    if (alpha < stand_pat)
+        alpha = stand_pat;
+
+    // alpha = std::max(alpha, stand_pat);
+
+    MoveList moves = generateAllMoves();
+
+    for (int i = 0; i < moves.used; ++i) {
+        Pieces::Move move = moves.moves[i];
+
+        if (board.mailbox[move.toSquare] == Pieces::Piece::NONE) continue;
+
+        makeMove(move);
+
+        int score = -quiescentSearch(-beta, -alpha);
+
+        undoMove();
+
+        if (score >= beta)
+            return beta;
+
+        // alpha = std::max(alpha, score);
+
+        if (score > alpha)
+            alpha = score;
+    }
+
+    return alpha;
+}
+
+
+
 void Engine::randomMove()
 {
     MoveList moves = generateAllMoves();
@@ -64,10 +103,10 @@ int Engine::negaMax(int depth)
 }
 
 
-int Engine::alphaBeta(int depth, int alpha, int beta)
+int Engine::alphaBeta(const int depth, int alpha, const int beta)
 {
     if (depth == 0)
-        // return quiesce(alpha, beta);
+        // return quiescentSearch(alpha, beta);
         return evaluateBoard();
 
     int bestValue = -std::numeric_limits<int>::max();

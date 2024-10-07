@@ -68,6 +68,13 @@ namespace Pieces
     };
 
 
+    struct ScoredMove
+    {
+        Move move = {};
+        int score = 0;
+    };
+
+
     constexpr char getPieceTypeChar(int piece)
     {
         switch (piece) {

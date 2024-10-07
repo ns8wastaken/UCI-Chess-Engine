@@ -155,7 +155,7 @@ int Engine::evaluateBoard() const
 }
 
 
-Bitboard Engine::generatePieceMoves(const Square& square, const int& piece)
+Bitboard Engine::generatePieceMoves(const Square& square, const int& piece) const
 {
     const Bitboard occupiedSquaresAll = (board.occupiedSquares[0] | board.occupiedSquares[1]);
 
@@ -346,20 +346,22 @@ Bitboard Engine::generatePieceMoves(const Square& square, const int& piece)
 }
 
 
-Engine::MoveList Engine::generateAllMoves()
+Engine::MoveList Engine::generateAllMoves() const
 {
     MoveList botMoves;
+
+
+    Pieces::ScoredMove scoredMoves[256] = {};
+    int usedScoredMoves                 = 0;
+
 
     for (int square = 0; square < 64; ++square) {
         const int& piece = board.mailbox[square];
 
-
         if ((piece == Pieces::Piece::NONE) || (isWhiteTurn != Utils::isPieceWhite(piece)))
             continue;
 
-
         Bitboard movesBitboard = generatePieceMoves(square, piece);
-
 
         // Loop over piece moves (loop over the bits)
         while (movesBitboard) {
@@ -369,17 +371,40 @@ Engine::MoveList Engine::generateAllMoves()
             if (((piece == Pieces::Piece::W_PAWN) && ((1ULL << square) & Utils::B_PawnStart)) ||
                 ((piece == Pieces::Piece::B_PAWN) && ((1ULL << square) & Utils::W_PawnStart))) [[unlikely]] {
 
-                botMoves.moves[botMoves.used]     = Pieces::Move{s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::KNIGHT};
-                botMoves.moves[botMoves.used + 1] = Pieces::Move{s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::BISHOP};
-                botMoves.moves[botMoves.used + 2] = Pieces::Move{s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::ROOK};
-                botMoves.moves[botMoves.used + 3] = Pieces::Move{s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::QUEEN};
+                scoredMoves[usedScoredMoves] = Pieces::ScoredMove{
+                    .move  = {s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::KNIGHT},
+                    .score = 8 * piece - board.mailbox[offset]
+                };
+                scoredMoves[usedScoredMoves + 1] = Pieces::ScoredMove{
+                    .move  = {s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::BISHOP},
+                    .score = 8 * piece - board.mailbox[offset]
+                };
+                scoredMoves[usedScoredMoves + 2] = Pieces::ScoredMove{
+                    .move  = {s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::ROOK},
+                    .score = 8 * piece - board.mailbox[offset]
+                };
+                scoredMoves[usedScoredMoves + 3] = Pieces::ScoredMove{
+                    .move  = {s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::QUEEN},
+                    .score = 8 * piece - board.mailbox[offset]
+                };
 
-                botMoves.used += 4;
+                usedScoredMoves += 4;
             }
             else [[likely]] {
-                botMoves.moves[botMoves.used++] = Pieces::Move{s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::PIECE_TYPE_COUNT};
+                scoredMoves[usedScoredMoves++] = Pieces::ScoredMove{
+                    .move  = {s_cast(uint8_t, square), s_cast(uint8_t, offset), Pieces::PieceType::PIECE_TYPE_COUNT},
+                    .score = 8 * piece - board.mailbox[offset]
+                };
             }
         }
+    }
+
+    std::sort(scoredMoves, scoredMoves + usedScoredMoves + 1, [](const Pieces::ScoredMove& a, const Pieces::ScoredMove& b) {
+        return a.score > b.score;
+    });
+
+    for (int i = 0; i < usedScoredMoves; ++i) {
+        botMoves.moves[botMoves.used++] = scoredMoves[i].move;
     }
 
     return botMoves;
@@ -699,8 +724,8 @@ std::string Engine::getEngineMove()
     bestMove = {};
 
     // randomMove();
-    negaMax(Settings::maxPlyDepth);
-    // alphaBeta(Settings::maxPlyDepth, -std::numeric_limits<int>::max(), std::numeric_limits<int>::max());
+    // negaMax(Settings::maxPlyDepth);
+    alphaBeta(Settings::maxPlyDepth, -std::numeric_limits<int>::max(), std::numeric_limits<int>::max());
 
     makeMove(bestMove);
 
