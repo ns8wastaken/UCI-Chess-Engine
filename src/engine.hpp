@@ -47,6 +47,7 @@ struct Engine
     Pieces::Move bestMove = {};
 
     void loadFEN(const std::vector<std::string>& FEN);
+    std::string getFEN() const;
 
 
     // Engine functions

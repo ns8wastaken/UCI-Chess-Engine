@@ -18,8 +18,7 @@ namespace Utils
 
     [[nodiscard]] inline int randomInt(int min, int max)
     {
-        static std::random_device rd;
-        static std::mt19937 gen(rd());
+        static std::mt19937 gen(std::random_device{}());
 
         std::uniform_int_distribution<int> dis(min, max);
         return dis(gen);

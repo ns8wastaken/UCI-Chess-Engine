@@ -94,10 +94,10 @@ void Engine::loadFEN(const std::vector<std::string>& FEN)
     board.occupiedSquares[0] = 0ULL;
     board.occupiedSquares[1] = 0ULL;
 
-
     board.castlingFlags = 0;
 
-    int square = 56; // Start from the top-left corner (a8)
+
+    Square square = 56; // Start from the top-left corner (a8)
 
     for (const char& c : FEN[0]) {
         if (c == '/') {
@@ -134,10 +134,82 @@ void Engine::loadFEN(const std::vector<std::string>& FEN)
         }
     }
 
+
     if (FEN[3] == "-")
         board.enPassantSquare = 64;
     else
         board.enPassantSquare = Utils::squareFromUCI(FEN[3]);
+}
+
+
+std::string Engine::getFEN() const
+{
+    std::string result = "";
+
+    Square square = 56;
+
+    while (square < 64) {
+        int emptyCount = 0;
+
+        for (int i = 0; i < 8; ++i) {
+            int piece = board.mailbox[square];
+
+            if (piece != Pieces::Piece::NONE) {
+                if (emptyCount != 0)
+                    result.push_back('0' + emptyCount);
+
+                result.push_back(Pieces::getPieceChar(piece));
+                emptyCount = 0;
+            }
+            else {
+                ++emptyCount;
+            }
+
+            ++square;
+        }
+
+        if (emptyCount != 0)
+            result.push_back('0' + emptyCount);
+
+        result.push_back('/');
+        square -= 16;
+    }
+
+    result.pop_back();
+
+    result.push_back(' ');
+    result.push_back(isWhiteTurn ? 'w' : 'b');
+    result.push_back(' ');
+
+    if (board.castlingFlags == 0) {
+        result.push_back('-');
+    }
+    else {
+        if (board.castlingFlags & Utils::CastlingRightsFlags::W_KINGSIDE)
+            result.push_back('K');
+        if (board.castlingFlags & Utils::CastlingRightsFlags::W_QUEENSIDE)
+            result.push_back('Q');
+        if (board.castlingFlags & Utils::CastlingRightsFlags::B_KINGSIDE)
+            result.push_back('k');
+        if (board.castlingFlags & Utils::CastlingRightsFlags::B_QUEENSIDE)
+            result.push_back('q');
+    }
+
+    result.push_back(' ');
+
+    if (board.enPassantSquare != 64) {
+        result.push_back('0' + board.enPassantSquare);
+        result.push_back(' ');
+    }
+    else {
+        result += "- ";
+    }
+
+    result.push_back('0' + board.plyCount / 2);
+    result.push_back(' ');
+    result.push_back('0' + board.plyCount);
+
+    return result;
 }
 
 
@@ -359,9 +431,7 @@ Engine::MoveList Engine::getPseudoLegalMoves() const
             const int offset = std::countr_zero(movesBitboard);
             movesBitboard &= ~(1ULL << offset);
 
-            const int score = Pieces::pieceValues[Pieces::PieceType::KING]
-                            + Pieces::pieceValues[Utils::getPieceType(piece)]
-                            - Pieces::pieceValues[Utils::getPieceType(board.mailbox[offset])];
+            const int score = Pieces::pieceValues[Pieces::PieceType::KING] + Pieces::pieceValues[Utils::getPieceType(piece)] - Pieces::pieceValues[Utils::getPieceType(board.mailbox[offset])];
 
             if (((piece == Pieces::Piece::W_PAWN) && ((1ULL << square) & Utils::B_PawnStart)) || ((piece == Pieces::Piece::B_PAWN) && ((1ULL << square) & Utils::W_PawnStart))) [[unlikely]] {
                 scoredMoves[usedScoredMoves++] = Pieces::ScoredMove{
@@ -683,9 +753,7 @@ bool Engine::isLegalCastle(const Pieces::Move& move)
     if ((board.mailbox[move.fromSquare] == ownPiece.KING) && ((move.toSquare == move.fromSquare + 2) || (move.toSquare == move.fromSquare - 2))) {
         Square ownKingSquare = std::countr_zero(board.bitboards[ownPiece.KING]);
 
-        if (isAttacked(ownKingSquare)
-            || ((move.fromSquare + 2 == move.toSquare) && (isAttacked(ownKingSquare + 1) || isAttacked(ownKingSquare + 2)))
-            || ((move.fromSquare - 2 == move.toSquare) && (isAttacked(ownKingSquare - 1) || isAttacked(ownKingSquare - 2)))) {
+        if (isAttacked(ownKingSquare) || ((move.fromSquare + 2 == move.toSquare) && (isAttacked(ownKingSquare + 1) || isAttacked(ownKingSquare + 2))) || ((move.fromSquare - 2 == move.toSquare) && (isAttacked(ownKingSquare - 1) || isAttacked(ownKingSquare - 2)))) {
             return false;
         }
         else {

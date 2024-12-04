@@ -85,6 +85,11 @@ int main()
             std::cout << "readyok\n"; // Engine is ready
         }
 
+        elifcommand("fen")
+        {
+            std::cout << engine.getFEN() << "\n";
+        }
+
         elifsplitcommand(0, "position")
         {
             ifsplitcommand(1, "startpos")

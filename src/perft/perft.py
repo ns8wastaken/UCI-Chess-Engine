@@ -7,7 +7,9 @@ totalNodes = 0
 
 
 enginePath = pathlib.Path(__file__).absolute().parent.parent.parent / "Epsilon.exe"
-maxDepth = 6
+testSuitePath = pathlib.Path(__file__).absolute().parent / "standard.epd"
+resultPath = pathlib.Path(__file__).absolute().parent / "result.txt"
+maxDepth = 4
 
 
 process = subprocess.Popen(
@@ -20,11 +22,11 @@ process = subprocess.Popen(
 
 data: list[str] = []
 
-with open("standard.epd", "r") as f:
+with open(testSuitePath, "r") as f:
     data = f.readlines()
 
 
-outputFile = open("result.txt", "w")
+outputFile = open(resultPath, "w")
 
 for line in data:
     expectedPerfts = line.strip().split(" ;")
@@ -58,13 +60,10 @@ for line in data:
         passed = ("PASS" if int(results[0]) == nodes else "FAIL")
 
         resultsList.append((str(depth), results[0], results[1], results[2], passed))
-
-    # Get the max length of each column for formatting
-    for results in resultsList:
-        maxLen0 = max(maxLen0, len(results[0]))
-        maxLen1 = max(maxLen1, len(results[1]))
-        maxLen2 = max(maxLen2, len(results[2]))
-        maxLen3 = max(maxLen3, len(results[3]))
+        maxLen0 = max(maxLen0, len(resultsList[-1][0]))
+        maxLen1 = max(maxLen1, len(resultsList[-1][1]))
+        maxLen2 = max(maxLen2, len(resultsList[-1][2]))
+        maxLen3 = max(maxLen3, len(resultsList[-1][3]))
 
     # Print the data with formatting and padding
     for results in resultsList:

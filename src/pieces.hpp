@@ -50,12 +50,12 @@ namespace Pieces
 
     enum class MoveFlag
     {
-        NONE             = 1,
-        CASTLING         = 2,
-        PROMOTION_KNIGHT = 4,
-        PROMOTION_BISHOP = 8,
-        PROMOTION_ROOK   = 16,
-        PROMOTION_QUEEN  = 32
+        NONE             = 0,
+        CASTLING         = 1,
+        PROMOTION_KNIGHT = 2,
+        PROMOTION_BISHOP = 4,
+        PROMOTION_ROOK   = 8,
+        PROMOTION_QUEEN  = 16
     };
 
 
