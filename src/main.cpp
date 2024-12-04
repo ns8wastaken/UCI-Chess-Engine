@@ -5,9 +5,9 @@
 #include <chrono>
 
 #include "utils.hpp"
-#include "engine.cpp"
-#include "movegen.cpp"
 #include "enginedebug.cpp"
+#include "movegen.cpp"
+#include "engine.cpp"
 
 
 #define ifcommand(x) if (command == x)
@@ -74,8 +74,8 @@ int main()
         ifcommand("uci")
         {
             // UCI identification info
-            // std::cout << "id name 通常\n";
-            // std::cout << "id author ns8\n";
+            std::cout << "id name Epsilon\n";
+            std::cout << "id author ns8\n";
 
             std::cout << "uciok\n"; // UCI approval
         }
@@ -107,7 +107,7 @@ int main()
                         splitCommand[4],
                         splitCommand[5],
                         splitCommand[6],
-                        splitCommand[7],
+                        splitCommand[7]
                     };
                     engine.loadFEN(fen);
                 }
@@ -134,9 +134,22 @@ int main()
 
             const double time = s_cast(double, std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()) / 1000.0;
 
-            std::cout << "\nTotal nodes: " << nodes << "\n";
-            std::cout << "\nTime: " << time << "s\n";
+            std::cout << "\nTotal nodes: " << nodes;
+            std::cout << "\nTime: " << time << "s";
             std::cout << "\nNodes per second: " << s_cast(uint64_t, s_cast(double, nodes) / time) << "\n\n";
+        }
+
+        elifsplitcommand(0, "perft-auto")
+        {
+            const auto start = std::chrono::high_resolution_clock::now();
+
+            const uint64_t nodes = engine.perft(std::stoi(splitCommand[1]));
+
+            const auto end = std::chrono::high_resolution_clock::now();
+
+            const double time = s_cast(double, std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()) / 1000.0;
+
+            std::cout << nodes << " ;" << time << " ;" << s_cast(uint64_t, s_cast(double, nodes) / time) << "\n";
         }
 
         elifsplitcommand(0, "divide")
@@ -151,8 +164,8 @@ int main()
 
             const double time = s_cast(double, std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()) / 1000.0;
 
-            std::cout << "\nTotal nodes: " << nodes << "\n\n";
-            std::cout << "\nTime: " << time << "s\n";
+            std::cout << "\nTotal nodes: " << nodes;
+            std::cout << "\nTime: " << time << "s";
             std::cout << "\nNodes per second: " << s_cast(uint64_t, s_cast(double, nodes) / time) << "\n\n";
         }
 
@@ -189,6 +202,9 @@ int main()
                 printf("\n\nBlack");
                 printBitboard(engine.board.occupiedSquares[0]);
                 printf("\n\n");
+            }
+
+            else if (splitCommand[1] == "bitboard-style") {
             }
         }
 

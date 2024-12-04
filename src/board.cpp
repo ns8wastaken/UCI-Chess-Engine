@@ -34,12 +34,12 @@ void Board::precomputeMoves()
 
         // King
         precomputedMoves.kingMoves[i] |= (position & Utils::BitMaskB) << 9;
-        precomputedMoves.kingMoves[i] |= (position) << 8;
+        precomputedMoves.kingMoves[i] |= position << 8;
         precomputedMoves.kingMoves[i] |= (position & Utils::BitMaskA) << 7;
         precomputedMoves.kingMoves[i] |= (position & Utils::BitMaskB) << 1;
         precomputedMoves.kingMoves[i] |= (position & Utils::BitMaskA) >> 1;
         precomputedMoves.kingMoves[i] |= (position & Utils::BitMaskB) >> 7;
-        precomputedMoves.kingMoves[i] |= (position) >> 8;
+        precomputedMoves.kingMoves[i] |= position >> 8;
         precomputedMoves.kingMoves[i] |= (position & Utils::BitMaskA) >> 9;
     }
 }

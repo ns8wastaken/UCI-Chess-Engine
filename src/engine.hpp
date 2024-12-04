@@ -3,7 +3,9 @@
 #include <string>
 #include <vector>
 #include <limits>
+#include <algorithm>
 #include <bit>
+#include <fstream>
 
 #include "settings.hpp"
 #include "board.hpp"
@@ -46,12 +48,13 @@ struct Engine
 
     void loadFEN(const std::vector<std::string>& FEN);
 
+
     // Engine functions
     int evaluateBoard() const;
     int quiescentSearch(int alpha, const int beta);
 
     Bitboard generatePieceMoves(const Square& square, const int& piece) const;
-    MoveList generateAllMoves() const;
+    MoveList getPseudoLegalMoves() const;
 
     void makeMove(const Pieces::Move& move);
     void makeUCIMove(const std::string& UCI_Move);
@@ -62,9 +65,10 @@ struct Engine
     bool isLegalCastle(const Pieces::Move& move);
     bool wasIllegalMove();
 
+
     // Movegen
     void randomMove();
-    int negaMax(int depth);
+    int negaMax(const int depth);
     int alphaBeta(const int depth, int alpha, const int beta);
 
     std::string getEngineMove();

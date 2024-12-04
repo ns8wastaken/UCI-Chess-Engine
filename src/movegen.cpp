@@ -13,7 +13,7 @@ int Engine::quiescentSearch(int alpha, const int beta)
 
     // alpha = std::max(alpha, stand_pat);
 
-    MoveList moves = generateAllMoves();
+    MoveList moves = getPseudoLegalMoves();
 
     for (int i = 0; i < moves.used; ++i) {
         Pieces::Move move = moves.moves[i];
@@ -42,7 +42,7 @@ int Engine::quiescentSearch(int alpha, const int beta)
 
 void Engine::randomMove()
 {
-    MoveList moves = generateAllMoves();
+    MoveList moves = getPseudoLegalMoves();
 
     MoveList legalMoves = {};
 
@@ -67,16 +67,16 @@ void Engine::randomMove()
 }
 
 
-int Engine::negaMax(int depth)
+int Engine::negaMax(const int depth)
 {
     if (depth == 0) return evaluateBoard();
 
     int max = -std::numeric_limits<int>::max();
 
-    MoveList moves = generateAllMoves();
+    MoveList moveList = getPseudoLegalMoves();
 
-    for (int i = 0; i < moves.used; ++i) {
-        const Pieces::Move& move = moves.moves[i];
+    for (int i = 0; i < moveList.used; ++i) {
+        const Pieces::Move& move = moveList.moves[i];
 
         if (!isLegalCastle(move)) continue;
 
@@ -92,7 +92,7 @@ int Engine::negaMax(int depth)
         undoMove();
 
         if (score > max) {
-            if (depth == Settings::maxPlyDepth)
+            if (depth == Settings::searchDepth)
                 bestMove = move;
 
             max = score;
@@ -111,7 +111,7 @@ int Engine::alphaBeta(const int depth, int alpha, const int beta)
 
     int bestValue = -std::numeric_limits<int>::max();
 
-    MoveList moves = generateAllMoves();
+    MoveList moves = getPseudoLegalMoves();
 
     for (int i = 0; i < moves.used; ++i) {
         const Pieces::Move& move = moves.moves[i];
@@ -132,7 +132,7 @@ int Engine::alphaBeta(const int depth, int alpha, const int beta)
         if (score > bestValue) {
             bestValue = score;
 
-            if (depth == Settings::maxPlyDepth)
+            if (depth == Settings::searchDepth)
                 bestMove = move;
 
             alpha = std::max(alpha, score);

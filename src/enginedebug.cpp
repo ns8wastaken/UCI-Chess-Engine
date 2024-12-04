@@ -8,10 +8,10 @@ uint64_t Engine::perft(const int depth)
 
     uint64_t nodes = 0;
 
-    MoveList move_list = generateAllMoves();
+    MoveList moveList = getPseudoLegalMoves();
 
-    for (int i = 0; i < move_list.used; ++i) {
-        const Pieces::Move& move = move_list.moves[i];
+    for (int i = 0; i < moveList.used; ++i) {
+        const Pieces::Move& move = moveList.moves[i];
 
         if (!isLegalCastle(move)) continue;
 
@@ -33,12 +33,12 @@ uint64_t Engine::perft(const int depth)
 
 uint64_t Engine::divide(const int depth)
 {
-    MoveList move_list = generateAllMoves();
+    MoveList moveList = getPseudoLegalMoves();
 
     uint64_t totalNodes = 0;
 
-    for (int i = 0; i < move_list.used; ++i) {
-        const Pieces::Move& move = move_list.moves[i];
+    for (int i = 0; i < moveList.used; ++i) {
+        const Pieces::Move& move = moveList.moves[i];
 
         if (!isLegalCastle(move)) continue;
 

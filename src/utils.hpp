@@ -37,6 +37,11 @@ namespace Utils
         return !(piece & 1); // !(piece % 2)
     }
 
+    [[nodiscard]] inline int getPieceType(const int piece)
+    {
+        return piece >> 1;
+    }
+
 
     [[nodiscard]] inline std::string toUCI(const Square& square)
     {

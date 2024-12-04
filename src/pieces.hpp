@@ -50,12 +50,12 @@ namespace Pieces
 
     enum class MoveFlag
     {
-        NONE             = 0,
+        NONE             = 1,
         CASTLING         = 2,
         PROMOTION_KNIGHT = 4,
-        PROMOTION_BISHOP = 6,
-        PROMOTION_ROOK   = 8,
-        PROMOTION_QUEEN  = 10
+        PROMOTION_BISHOP = 8,
+        PROMOTION_ROOK   = 16,
+        PROMOTION_QUEEN  = 32
     };
 
 
@@ -70,8 +70,8 @@ namespace Pieces
 
     struct ScoredMove
     {
-        Move move = {};
-        int score = 0;
+        Move move;
+        int score;
     };
 
 

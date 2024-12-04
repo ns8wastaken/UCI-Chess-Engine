@@ -7,7 +7,7 @@
 
 typedef std::array<Bitboard, Pieces::Piece::PIECE_COUNT> BitboardArray;
 
-typedef std::array<int, 64ULL> Mailbox;
+typedef std::array<int, 64ULL> Mailbox; // Array of pieces (not piece types)
 
 
 struct Board
