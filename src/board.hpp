@@ -50,8 +50,6 @@ struct Board
     } history;
 
 
-    int plyCount = 0;
-
     char castlingFlags     = 0;
     Square enPassantSquare = 64;
 
@@ -65,4 +63,7 @@ struct Board
     Bitboard occupiedSquares[2] = {0ULL, 0ULL};
 
     void precomputeMoves();
+
+    void placePiece(const Pieces::Piece& piece, const Square& square);
+    void removePiece(const Pieces::Piece& piece, const Square& square);
 };

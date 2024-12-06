@@ -1,1020 +1,1274 @@
 Fen: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-Depth: 1 | Nodes:     20 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    400 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:   8902 | Time: 0.002s | Nodes/s: 4451000 | PASS
-Depth: 4 | Nodes: 197281 | Time: 0.048s | Nodes/s: 4110020 | PASS
+Depth: 1 | Nodes:        20 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:       400 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:      8902 | Time:  0.002s | Nodes/s: 4451000 | PASS
+Depth: 4 | Nodes:    197281 | Time:   0.05s | Nodes/s: 3945620 | PASS
+Depth: 5 | Nodes:   4865609 | Time:   1.21s | Nodes/s: 4021164 | PASS
+Depth: 6 | Nodes: 119060324 | Time: 30.801s | Nodes/s: 3865469 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1
-Depth: 1 | Nodes:      48 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    2039 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:   97862 | Time: 0.024s | Nodes/s: 4077583 | PASS
-Depth: 4 | Nodes: 4085603 | Time:  1.14s | Nodes/s: 3583862 | PASS
+Depth: 1 | Nodes:        48 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      2039 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     97862 | Time:  0.025s | Nodes/s: 3914480 | PASS
+Depth: 4 | Nodes:   4085603 | Time:  1.059s | Nodes/s: 3857982 | PASS
+Depth: 5 | Nodes: 193690690 | Time: 49.149s | Nodes/s: 3940887 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 4k3/8/8/8/8/8/8/4K2R w K - 0 1
-Depth: 1 | Nodes:   15 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   66 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes: 1197 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 7059 | Time: 0.005s | Nodes/s: 1411800 | PASS
+Depth: 1 | Nodes:     15 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     66 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   1197 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   7059 | Time: 0.003s | Nodes/s: 2353000 | PASS
+Depth: 5 | Nodes: 133987 | Time:  0.05s | Nodes/s: 2679740 | PASS
+Depth: 6 | Nodes: 764643 | Time: 0.434s | Nodes/s: 1761850 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 4k3/8/8/8/8/8/8/R3K3 w Q - 0 1
-Depth: 1 | Nodes:   16 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   71 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes: 1287 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 7626 | Time: 0.006s | Nodes/s: 1271000 | PASS
+Depth: 1 | Nodes:     16 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     71 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   1287 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   7626 | Time: 0.004s | Nodes/s: 1906500 | PASS
+Depth: 5 | Nodes: 145232 | Time: 0.054s | Nodes/s: 2689481 | PASS
+Depth: 6 | Nodes: 846648 | Time: 0.512s | Nodes/s: 1653609 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 4k2r/8/8/8/8/8/8/4K3 w k - 0 1
-Depth: 1 | Nodes:    5 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   75 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  459 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 8290 | Time: 0.003s | Nodes/s: 2763333 | PASS
+Depth: 1 | Nodes:      5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     75 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    459 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   8290 | Time: 0.003s | Nodes/s: 2763333 | PASS
+Depth: 5 | Nodes:  47635 | Time: 0.026s | Nodes/s: 1832115 | PASS
+Depth: 6 | Nodes: 899442 | Time: 0.334s | Nodes/s: 2692940 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k3/8/8/8/8/8/8/4K3 w q - 0 1
-Depth: 1 | Nodes:    5 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   80 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  493 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 8897 | Time: 0.004s | Nodes/s: 2224250 | PASS
+Depth: 1 | Nodes:       5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      80 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     493 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:    8897 | Time: 0.003s | Nodes/s: 2965666 | PASS
+Depth: 5 | Nodes:   52710 | Time: 0.027s | Nodes/s: 1952222 | PASS
+Depth: 6 | Nodes: 1001523 | Time:  0.38s | Nodes/s: 2635586 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1
-Depth: 1 | Nodes:    26 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   112 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  3189 | Time: 0.001s | Nodes/s: 3189000 | PASS
-Depth: 4 | Nodes: 17945 | Time: 0.012s | Nodes/s: 1495416 | PASS
+Depth: 1 | Nodes:      26 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     112 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    3189 | Time: 0.001s | Nodes/s: 3189000 | PASS
+Depth: 4 | Nodes:   17945 | Time: 0.009s | Nodes/s: 1993888 | PASS
+Depth: 5 | Nodes:  532933 | Time: 0.186s | Nodes/s: 2865231 | PASS
+Depth: 6 | Nodes: 2788982 | Time: 1.777s | Nodes/s: 1569489 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k2r/8/8/8/8/8/8/4K3 w kq - 0 1
-Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   130 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:   782 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 22180 | Time: 0.009s | Nodes/s: 2464444 | PASS
+Depth: 1 | Nodes:       5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     130 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     782 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   22180 | Time: 0.007s | Nodes/s: 3168571 | PASS
+Depth: 5 | Nodes:  118882 | Time: 0.072s | Nodes/s: 1651138 | PASS
+Depth: 6 | Nodes: 3517770 | Time: 1.192s | Nodes/s: 2951149 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/8/8/8/8/6k1/4K2R w K - 0 1
-Depth: 1 | Nodes:   12 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   38 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  564 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 2219 | Time: 0.002s | Nodes/s: 1109500 | PASS
+Depth: 1 | Nodes:     12 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     38 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    564 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   2219 | Time: 0.001s | Nodes/s: 2219000 | PASS
+Depth: 5 | Nodes:  37735 | Time: 0.014s | Nodes/s: 2695357 | PASS
+Depth: 6 | Nodes: 185867 | Time: 0.141s | Nodes/s: 1318205 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/8/8/8/8/1k6/R3K3 w Q - 0 1
-Depth: 1 | Nodes:   15 | Time:     0s | Nodes/s:      0 | PASS
-Depth: 2 | Nodes:   65 | Time:     0s | Nodes/s:      0 | PASS
-Depth: 3 | Nodes: 1018 | Time:     0s | Nodes/s:      0 | PASS
-Depth: 4 | Nodes: 4573 | Time: 0.006s | Nodes/s: 762166 | PASS
+Depth: 1 | Nodes:     15 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     65 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   1018 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   4573 | Time: 0.003s | Nodes/s: 1524333 | PASS
+Depth: 5 | Nodes:  80619 | Time:  0.03s | Nodes/s: 2687300 | PASS
+Depth: 6 | Nodes: 413018 | Time: 0.274s | Nodes/s: 1507364 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 4k2r/6K1/8/8/8/8/8/8 w k - 0 1
-Depth: 1 | Nodes:    3 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   32 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  134 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 2073 | Time: 0.001s | Nodes/s: 2073000 | PASS
+Depth: 1 | Nodes:      3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     32 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    134 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   2073 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  10485 | Time: 0.007s | Nodes/s: 1497857 | PASS
+Depth: 6 | Nodes: 179869 | Time: 0.069s | Nodes/s: 2606797 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k3/1K6/8/8/8/8/8/8 w q - 0 1
-Depth: 1 | Nodes:    4 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   49 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  243 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 3991 | Time: 0.001s | Nodes/s: 3991000 | PASS
+Depth: 1 | Nodes:      4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     49 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    243 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   3991 | Time: 0.001s | Nodes/s: 3991000 | PASS
+Depth: 5 | Nodes:  20780 | Time: 0.014s | Nodes/s: 1484285 | PASS
+Depth: 6 | Nodes: 367724 | Time: 0.141s | Nodes/s: 2607971 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1
-Depth: 1 | Nodes:     26 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    568 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  13744 | Time: 0.006s | Nodes/s: 2290666 | PASS
-Depth: 4 | Nodes: 314346 | Time: 0.129s | Nodes/s: 2436790 | PASS
+Depth: 1 | Nodes:        26 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:       568 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     13744 | Time:  0.005s | Nodes/s: 2748800 | PASS
+Depth: 4 | Nodes:    314346 | Time:  0.121s | Nodes/s: 2597900 | PASS
+Depth: 5 | Nodes:   7594526 | Time:  2.839s | Nodes/s: 2675070 | PASS
+Depth: 6 | Nodes: 179862938 | Time: 67.903s | Nodes/s: 2648821 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k2r/8/8/8/8/8/8/1R2K2R w Kkq - 0 1
-Depth: 1 | Nodes:     25 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    567 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  14095 | Time: 0.005s | Nodes/s: 2819000 | PASS
-Depth: 4 | Nodes: 328965 | Time: 0.123s | Nodes/s: 2674512 | PASS
+Depth: 1 | Nodes:        25 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:       567 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     14095 | Time:  0.004s | Nodes/s: 3523750 | PASS
+Depth: 4 | Nodes:    328965 | Time:  0.128s | Nodes/s: 2570039 | PASS
+Depth: 5 | Nodes:   8153719 | Time:  2.891s | Nodes/s: 2820380 | PASS
+Depth: 6 | Nodes: 195629489 | Time: 72.842s | Nodes/s: 2685668 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k2r/8/8/8/8/8/8/2R1K2R w Kkq - 0 1
-Depth: 1 | Nodes:     25 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    548 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  13502 | Time: 0.005s | Nodes/s: 2700400 | PASS
-Depth: 4 | Nodes: 312835 | Time: 0.125s | Nodes/s: 2502680 | PASS
+Depth: 1 | Nodes:        25 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:       548 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     13502 | Time:  0.005s | Nodes/s: 2700400 | PASS
+Depth: 4 | Nodes:    312835 | Time:  0.116s | Nodes/s: 2696853 | PASS
+Depth: 5 | Nodes:   7736373 | Time:  2.752s | Nodes/s: 2811182 | PASS
+Depth: 6 | Nodes: 184411439 | Time: 69.372s | Nodes/s: 2658297 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k2r/8/8/8/8/8/8/R3K1R1 w Qkq - 0 1
-Depth: 1 | Nodes:     25 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    547 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  13579 | Time: 0.004s | Nodes/s: 3394750 | PASS
-Depth: 4 | Nodes: 316214 | Time: 0.115s | Nodes/s: 2749686 | PASS
+Depth: 1 | Nodes:        25 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:       547 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     13579 | Time:  0.004s | Nodes/s: 3394750 | PASS
+Depth: 4 | Nodes:    316214 | Time:   0.12s | Nodes/s: 2635116 | PASS
+Depth: 5 | Nodes:   7878456 | Time:  2.867s | Nodes/s: 2747979 | PASS
+Depth: 6 | Nodes: 189224276 | Time: 71.719s | Nodes/s: 2638412 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 1r2k2r/8/8/8/8/8/8/R3K2R w KQk - 0 1
-Depth: 1 | Nodes:     26 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    583 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  14252 | Time: 0.005s | Nodes/s: 2850400 | PASS
-Depth: 4 | Nodes: 334705 | Time: 0.132s | Nodes/s: 2535643 | PASS
+Depth: 1 | Nodes:        26 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:       583 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     14252 | Time:  0.005s | Nodes/s: 2850400 | PASS
+Depth: 4 | Nodes:    334705 | Time:   0.12s | Nodes/s: 2789208 | PASS
+Depth: 5 | Nodes:   8198901 | Time:  3.014s | Nodes/s: 2720272 | PASS
+Depth: 6 | Nodes: 198328929 | Time: 72.866s | Nodes/s: 2721830 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 2r1k2r/8/8/8/8/8/8/R3K2R w KQk - 0 1
-Depth: 1 | Nodes:     25 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    560 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  13592 | Time: 0.006s | Nodes/s: 2265333 | PASS
-Depth: 4 | Nodes: 317324 | Time: 0.129s | Nodes/s: 2459875 | PASS
+Depth: 1 | Nodes:        25 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:       560 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     13592 | Time:  0.004s | Nodes/s: 3398000 | PASS
+Depth: 4 | Nodes:    317324 | Time:   0.11s | Nodes/s: 2884763 | PASS
+Depth: 5 | Nodes:   7710115 | Time:  2.789s | Nodes/s: 2764472 | PASS
+Depth: 6 | Nodes: 185959088 | Time: 66.992s | Nodes/s: 2775840 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k1r1/8/8/8/8/8/8/R3K2R w KQq - 0 1
-Depth: 1 | Nodes:     25 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    560 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  13607 | Time: 0.004s | Nodes/s: 3401750 | PASS
-Depth: 4 | Nodes: 320792 | Time: 0.115s | Nodes/s: 2789495 | PASS
+Depth: 1 | Nodes:        25 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:       560 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     13607 | Time:  0.004s | Nodes/s: 3401750 | PASS
+Depth: 4 | Nodes:    320792 | Time:  0.118s | Nodes/s: 2718576 | PASS
+Depth: 5 | Nodes:   7848606 | Time:  2.805s | Nodes/s: 2798077 | PASS
+Depth: 6 | Nodes: 190755813 | Time: 68.454s | Nodes/s: 2786627 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 4k3/8/8/8/8/8/8/4K2R b K - 0 1
-Depth: 1 | Nodes:    5 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   75 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  459 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 8290 | Time: 0.003s | Nodes/s: 2763333 | PASS
+Depth: 1 | Nodes:      5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     75 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    459 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   8290 | Time: 0.002s | Nodes/s: 4145000 | PASS
+Depth: 5 | Nodes:  47635 | Time: 0.025s | Nodes/s: 1905400 | PASS
+Depth: 6 | Nodes: 899442 | Time: 0.305s | Nodes/s: 2948990 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 4k3/8/8/8/8/8/8/R3K3 b Q - 0 1
-Depth: 1 | Nodes:    5 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   80 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  493 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 8897 | Time: 0.003s | Nodes/s: 2965666 | PASS
+Depth: 1 | Nodes:       5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      80 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     493 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:    8897 | Time: 0.002s | Nodes/s: 4448500 | PASS
+Depth: 5 | Nodes:   52710 | Time: 0.029s | Nodes/s: 1817586 | PASS
+Depth: 6 | Nodes: 1001523 | Time: 0.339s | Nodes/s: 2954345 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 4k2r/8/8/8/8/8/8/4K3 b k - 0 1
-Depth: 1 | Nodes:   15 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   66 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes: 1197 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 7059 | Time: 0.003s | Nodes/s: 2353000 | PASS
+Depth: 1 | Nodes:     15 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     66 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   1197 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   7059 | Time: 0.003s | Nodes/s: 2353000 | PASS
+Depth: 5 | Nodes: 133987 | Time: 0.045s | Nodes/s: 2977488 | PASS
+Depth: 6 | Nodes: 764643 | Time: 0.411s | Nodes/s: 1860445 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k3/8/8/8/8/8/8/4K3 b q - 0 1
-Depth: 1 | Nodes:   16 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   71 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes: 1287 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 7626 | Time: 0.003s | Nodes/s: 2542000 | PASS
+Depth: 1 | Nodes:     16 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     71 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   1287 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   7626 | Time: 0.003s | Nodes/s: 2542000 | PASS
+Depth: 5 | Nodes: 145232 | Time: 0.049s | Nodes/s: 2963918 | PASS
+Depth: 6 | Nodes: 846648 | Time: 0.446s | Nodes/s: 1898313 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 4k3/8/8/8/8/8/8/R3K2R b KQ - 0 1
-Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   130 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:   782 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 22180 | Time: 0.007s | Nodes/s: 3168571 | PASS
+Depth: 1 | Nodes:       5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     130 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     782 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   22180 | Time: 0.007s | Nodes/s: 3168571 | PASS
+Depth: 5 | Nodes:  118882 | Time: 0.067s | Nodes/s: 1774358 | PASS
+Depth: 6 | Nodes: 3517770 | Time: 1.128s | Nodes/s: 3118590 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k2r/8/8/8/8/8/8/4K3 b kq - 0 1
-Depth: 1 | Nodes:    26 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   112 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  3189 | Time: 0.001s | Nodes/s: 3189000 | PASS
-Depth: 4 | Nodes: 17945 | Time: 0.009s | Nodes/s: 1993888 | PASS
+Depth: 1 | Nodes:      26 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     112 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    3189 | Time: 0.001s | Nodes/s: 3189000 | PASS
+Depth: 4 | Nodes:   17945 | Time: 0.011s | Nodes/s: 1631363 | PASS
+Depth: 5 | Nodes:  532933 | Time: 0.172s | Nodes/s: 3098447 | PASS
+Depth: 6 | Nodes: 2788982 | Time: 1.647s | Nodes/s: 1693370 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/8/8/8/8/6k1/4K2R b K - 0 1
-Depth: 1 | Nodes:    3 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   32 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  134 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 2073 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:      3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     32 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    134 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   2073 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  10485 | Time: 0.007s | Nodes/s: 1497857 | PASS
+Depth: 6 | Nodes: 179869 | Time: 0.066s | Nodes/s: 2725287 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/8/8/8/8/1k6/R3K3 b Q - 0 1
-Depth: 1 | Nodes:    4 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   49 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  243 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 3991 | Time: 0.001s | Nodes/s: 3991000 | PASS
+Depth: 1 | Nodes:      4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     49 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    243 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   3991 | Time: 0.001s | Nodes/s: 3991000 | PASS
+Depth: 5 | Nodes:  20780 | Time: 0.013s | Nodes/s: 1598461 | PASS
+Depth: 6 | Nodes: 367724 | Time: 0.132s | Nodes/s: 2785787 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 4k2r/6K1/8/8/8/8/8/8 b k - 0 1
-Depth: 1 | Nodes:   12 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   38 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  564 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 2219 | Time: 0.001s | Nodes/s: 2219000 | PASS
+Depth: 1 | Nodes:     12 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     38 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    564 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   2219 | Time: 0.001s | Nodes/s: 2219000 | PASS
+Depth: 5 | Nodes:  37735 | Time: 0.014s | Nodes/s: 2695357 | PASS
+Depth: 6 | Nodes: 185867 | Time: 0.121s | Nodes/s: 1536090 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k3/1K6/8/8/8/8/8/8 b q - 0 1
-Depth: 1 | Nodes:   15 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   65 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes: 1018 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 4573 | Time: 0.003s | Nodes/s: 1524333 | PASS
+Depth: 1 | Nodes:     15 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     65 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   1018 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   4573 | Time: 0.003s | Nodes/s: 1524333 | PASS
+Depth: 5 | Nodes:  80619 | Time: 0.029s | Nodes/s: 2779965 | PASS
+Depth: 6 | Nodes: 413018 | Time: 0.266s | Nodes/s: 1552699 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k2r/8/8/8/8/8/8/R3K2R b KQkq - 0 1
-Depth: 1 | Nodes:     26 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    568 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  13744 | Time: 0.004s | Nodes/s: 3436000 | PASS
-Depth: 4 | Nodes: 314346 | Time: 0.118s | Nodes/s: 2663949 | PASS
+Depth: 1 | Nodes:        26 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:       568 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     13744 | Time:  0.004s | Nodes/s: 3436000 | PASS
+Depth: 4 | Nodes:    314346 | Time:  0.112s | Nodes/s: 2806660 | PASS
+Depth: 5 | Nodes:   7594526 | Time:  2.731s | Nodes/s: 2780859 | PASS
+Depth: 6 | Nodes: 179862938 | Time: 65.243s | Nodes/s: 2756815 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k2r/8/8/8/8/8/8/1R2K2R b Kkq - 0 1
-Depth: 1 | Nodes:     26 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    583 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  14252 | Time: 0.005s | Nodes/s: 2850400 | PASS
-Depth: 4 | Nodes: 334705 | Time: 0.132s | Nodes/s: 2535643 | PASS
+Depth: 1 | Nodes:        26 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:       583 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     14252 | Time: 0.005s | Nodes/s: 2850400 | PASS
+Depth: 4 | Nodes:    334705 | Time: 0.127s | Nodes/s: 2635472 | PASS
+Depth: 5 | Nodes:   8198901 | Time: 3.143s | Nodes/s: 2608622 | PASS
+Depth: 6 | Nodes: 198328929 | Time: 72.78s | Nodes/s: 2725047 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k2r/8/8/8/8/8/8/2R1K2R b Kkq - 0 1
-Depth: 1 | Nodes:     25 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    560 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  13592 | Time: 0.005s | Nodes/s: 2718400 | PASS
-Depth: 4 | Nodes: 317324 | Time: 0.119s | Nodes/s: 2666588 | PASS
+Depth: 1 | Nodes:        25 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:       560 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     13592 | Time:  0.004s | Nodes/s: 3398000 | PASS
+Depth: 4 | Nodes:    317324 | Time:  0.111s | Nodes/s: 2858774 | PASS
+Depth: 5 | Nodes:   7710115 | Time:  2.863s | Nodes/s: 2693019 | PASS
+Depth: 6 | Nodes: 185959088 | Time: 68.659s | Nodes/s: 2708444 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k2r/8/8/8/8/8/8/R3K1R1 b Qkq - 0 1
-Depth: 1 | Nodes:     25 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    560 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  13607 | Time: 0.004s | Nodes/s: 3401750 | PASS
-Depth: 4 | Nodes: 320792 | Time: 0.136s | Nodes/s: 2358764 | PASS
+Depth: 1 | Nodes:        25 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:       560 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     13607 | Time:  0.004s | Nodes/s: 3401750 | PASS
+Depth: 4 | Nodes:    320792 | Time:  0.116s | Nodes/s: 2765448 | PASS
+Depth: 5 | Nodes:   7848606 | Time:  2.944s | Nodes/s: 2665966 | PASS
+Depth: 6 | Nodes: 190755813 | Time: 71.868s | Nodes/s: 2654252 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 1r2k2r/8/8/8/8/8/8/R3K2R b KQk - 0 1
-Depth: 1 | Nodes:     25 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    567 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  14095 | Time: 0.004s | Nodes/s: 3523750 | PASS
-Depth: 4 | Nodes: 328965 | Time: 0.121s | Nodes/s: 2718719 | PASS
+Depth: 1 | Nodes:        25 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:       567 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     14095 | Time: 0.005s | Nodes/s: 2819000 | PASS
+Depth: 4 | Nodes:    328965 | Time: 0.126s | Nodes/s: 2610833 | PASS
+Depth: 5 | Nodes:   8153719 | Time: 3.072s | Nodes/s: 2654205 | PASS
+Depth: 6 | Nodes: 195629489 | Time: 75.39s | Nodes/s: 2594899 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 2r1k2r/8/8/8/8/8/8/R3K2R b KQk - 0 1
-Depth: 1 | Nodes:     25 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    548 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  13502 | Time: 0.004s | Nodes/s: 3375500 | PASS
-Depth: 4 | Nodes: 312835 | Time: 0.127s | Nodes/s: 2463267 | PASS
+Depth: 1 | Nodes:        25 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:       548 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     13502 | Time:  0.004s | Nodes/s: 3375500 | PASS
+Depth: 4 | Nodes:    312835 | Time:  0.122s | Nodes/s: 2564221 | PASS
+Depth: 5 | Nodes:   7736373 | Time:  2.933s | Nodes/s: 2637699 | PASS
+Depth: 6 | Nodes: 184411439 | Time: 71.375s | Nodes/s: 2583697 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: r3k1r1/8/8/8/8/8/8/R3K2R b KQq - 0 1
-Depth: 1 | Nodes:     25 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    547 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  13579 | Time: 0.004s | Nodes/s: 3394750 | PASS
-Depth: 4 | Nodes: 316214 | Time: 0.121s | Nodes/s: 2613338 | PASS
+Depth: 1 | Nodes:        25 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:       547 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     13579 | Time: 0.004s | Nodes/s: 3394750 | PASS
+Depth: 4 | Nodes:    316214 | Time: 0.131s | Nodes/s: 2413847 | PASS
+Depth: 5 | Nodes:   7878456 | Time: 2.946s | Nodes/s: 2674289 | PASS
+Depth: 6 | Nodes: 189224276 | Time: 72.33s | Nodes/s: 2616124 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/1n4N1/2k5/8/8/5K2/1N4n1/8 w - - 0 1
-Depth: 1 | Nodes:    14 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   195 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  2760 | Time: 0.001s | Nodes/s: 2760000 | PASS
-Depth: 4 | Nodes: 38675 | Time: 0.015s | Nodes/s: 2578333 | PASS
+Depth: 1 | Nodes:      14 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     195 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    2760 | Time: 0.001s | Nodes/s: 2760000 | PASS
+Depth: 4 | Nodes:   38675 | Time: 0.016s | Nodes/s: 2417187 | PASS
+Depth: 5 | Nodes:  570726 | Time: 0.249s | Nodes/s: 2292072 | PASS
+Depth: 6 | Nodes: 8107539 | Time: 3.572s | Nodes/s: 2269747 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/1k6/8/5N2/8/4n3/8/2K5 w - - 0 1
-Depth: 1 | Nodes:    11 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   156 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  1636 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 20534 | Time: 0.008s | Nodes/s: 2566750 | PASS
+Depth: 1 | Nodes:      11 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     156 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    1636 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   20534 | Time: 0.008s | Nodes/s: 2566750 | PASS
+Depth: 5 | Nodes:  223507 | Time: 0.095s | Nodes/s: 2352705 | PASS
+Depth: 6 | Nodes: 2594412 | Time: 1.119s | Nodes/s: 2318509 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/4k3/3Nn3/3nN3/4K3/8/8 w - - 0 1
-Depth: 1 | Nodes:    19 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   289 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  4442 | Time: 0.002s | Nodes/s: 2221000 | PASS
-Depth: 4 | Nodes: 73584 | Time: 0.032s | Nodes/s: 2299500 | PASS
+Depth: 1 | Nodes:       19 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      289 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     4442 | Time: 0.002s | Nodes/s: 2221000 | PASS
+Depth: 4 | Nodes:    73584 | Time: 0.033s | Nodes/s: 2229818 | PASS
+Depth: 5 | Nodes:  1198299 | Time: 0.528s | Nodes/s: 2269505 | PASS
+Depth: 6 | Nodes: 19870403 | Time: 8.689s | Nodes/s: 2286845 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: K7/8/2n5/1n6/8/8/8/k6N w - - 0 1
-Depth: 1 | Nodes:    3 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   51 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  345 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 5301 | Time: 0.001s | Nodes/s: 5301000 | PASS
+Depth: 1 | Nodes:      3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     51 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    345 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   5301 | Time: 0.002s | Nodes/s: 2650500 | PASS
+Depth: 5 | Nodes:  38348 | Time:  0.02s | Nodes/s: 1917400 | PASS
+Depth: 6 | Nodes: 588695 | Time: 0.217s | Nodes/s: 2712880 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/2N5/1N6/8/8/8/K6n w - - 0 1
-Depth: 1 | Nodes:   17 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   54 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  835 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 5910 | Time: 0.002s | Nodes/s: 2955000 | PASS
+Depth: 1 | Nodes:     17 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     54 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    835 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   5910 | Time: 0.003s | Nodes/s: 1970000 | PASS
+Depth: 5 | Nodes:  92250 | Time: 0.033s | Nodes/s: 2795454 | PASS
+Depth: 6 | Nodes: 688780 | Time: 0.367s | Nodes/s: 1876784 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/1n4N1/2k5/8/8/5K2/1N4n1/8 b - - 0 1
-Depth: 1 | Nodes:    15 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   193 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  2816 | Time: 0.001s | Nodes/s: 2816000 | PASS
-Depth: 4 | Nodes: 40039 | Time: 0.017s | Nodes/s: 2355235 | PASS
+Depth: 1 | Nodes:      15 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     193 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    2816 | Time: 0.001s | Nodes/s: 2816000 | PASS
+Depth: 4 | Nodes:   40039 | Time: 0.017s | Nodes/s: 2355235 | PASS
+Depth: 5 | Nodes:  582642 | Time: 0.254s | Nodes/s: 2293866 | PASS
+Depth: 6 | Nodes: 8503277 | Time:   3.8s | Nodes/s: 2237704 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/1k6/8/5N2/8/4n3/8/2K5 b - - 0 1
-Depth: 1 | Nodes:    16 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   180 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  2290 | Time: 0.001s | Nodes/s: 2290000 | PASS
-Depth: 4 | Nodes: 24640 | Time: 0.011s | Nodes/s: 2240000 | PASS
+Depth: 1 | Nodes:      16 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     180 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    2290 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   24640 | Time: 0.012s | Nodes/s: 2053333 | PASS
+Depth: 5 | Nodes:  288141 | Time: 0.126s | Nodes/s: 2286833 | PASS
+Depth: 6 | Nodes: 3147566 | Time: 1.355s | Nodes/s: 2322926 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/3K4/3Nn3/3nN3/4k3/8/8 b - - 0 1
-Depth: 1 | Nodes:     4 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    68 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  1118 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 16199 | Time: 0.007s | Nodes/s: 2314142 | PASS
+Depth: 1 | Nodes:       4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      68 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    1118 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   16199 | Time: 0.007s | Nodes/s: 2314142 | PASS
+Depth: 5 | Nodes:  281190 | Time: 0.117s | Nodes/s: 2403333 | PASS
+Depth: 6 | Nodes: 4405103 | Time: 2.028s | Nodes/s: 2172141 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: K7/8/2n5/1n6/8/8/8/k6N b - - 0 1
-Depth: 1 | Nodes:   17 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   54 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  835 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 5910 | Time: 0.003s | Nodes/s: 1970000 | PASS
+Depth: 1 | Nodes:     17 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     54 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    835 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   5910 | Time: 0.003s | Nodes/s: 1970000 | PASS
+Depth: 5 | Nodes:  92250 | Time: 0.033s | Nodes/s: 2795454 | PASS
+Depth: 6 | Nodes: 688780 | Time: 0.367s | Nodes/s: 1876784 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/2N5/1N6/8/8/8/K6n b - - 0 1
-Depth: 1 | Nodes:    3 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   51 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  345 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 5301 | Time: 0.002s | Nodes/s: 2650500 | PASS
+Depth: 1 | Nodes:      3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     51 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    345 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   5301 | Time: 0.001s | Nodes/s: 5301000 | PASS
+Depth: 5 | Nodes:  38348 | Time:  0.02s | Nodes/s: 1917400 | PASS
+Depth: 6 | Nodes: 588695 | Time: 0.229s | Nodes/s: 2570720 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: B6b/8/8/8/2K5/4k3/8/b6B w - - 0 1
-Depth: 1 | Nodes:    17 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   278 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  4607 | Time: 0.001s | Nodes/s: 4607000 | PASS
-Depth: 4 | Nodes: 76778 | Time: 0.032s | Nodes/s: 2399312 | PASS
+Depth: 1 | Nodes:       17 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      278 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     4607 | Time: 0.001s | Nodes/s: 4607000 | PASS
+Depth: 4 | Nodes:    76778 | Time: 0.032s | Nodes/s: 2399312 | PASS
+Depth: 5 | Nodes:  1320507 | Time: 0.578s | Nodes/s: 2284614 | PASS
+Depth: 6 | Nodes: 22823890 | Time: 9.932s | Nodes/s: 2298015 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/1B6/7b/7k/8/2B1b3/7K w - - 0 1
-Depth: 1 | Nodes:    21 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   316 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  5744 | Time: 0.001s | Nodes/s: 5744000 | PASS
-Depth: 4 | Nodes: 93338 | Time: 0.035s | Nodes/s: 2666799 | PASS
+Depth: 1 | Nodes:       21 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      316 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     5744 | Time:  0.001s | Nodes/s: 5744000 | PASS
+Depth: 4 | Nodes:    93338 | Time:  0.036s | Nodes/s: 2592722 | PASS
+Depth: 5 | Nodes:  1713368 | Time:  0.616s | Nodes/s: 2781441 | PASS
+Depth: 6 | Nodes: 28861171 | Time: 11.845s | Nodes/s: 2436569 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/B7/1B6/1B6/8/8/8/K6b w - - 0 1
-Depth: 1 | Nodes:    21 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   144 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  3242 | Time: 0.001s | Nodes/s: 3242000 | PASS
-Depth: 4 | Nodes: 32955 | Time: 0.013s | Nodes/s: 2535000 | PASS
+Depth: 1 | Nodes:      21 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     144 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    3242 | Time: 0.001s | Nodes/s: 3242000 | PASS
+Depth: 4 | Nodes:   32955 | Time: 0.014s | Nodes/s: 2353928 | PASS
+Depth: 5 | Nodes:  787524 | Time: 0.264s | Nodes/s: 2983045 | PASS
+Depth: 6 | Nodes: 7881673 | Time: 3.603s | Nodes/s: 2187530 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: K7/b7/1b6/1b6/8/8/8/k6B w - - 0 1
-Depth: 1 | Nodes:     7 | Time:    0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   143 | Time:    0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  1416 | Time:    0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 31787 | Time: 0.01s | Nodes/s: 3178700 | PASS
+Depth: 1 | Nodes:       7 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     143 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    1416 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   31787 | Time:  0.01s | Nodes/s: 3178700 | PASS
+Depth: 5 | Nodes:  310862 | Time: 0.141s | Nodes/s: 2204695 | PASS
+Depth: 6 | Nodes: 7382896 | Time:  2.52s | Nodes/s: 2929720 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: B6b/8/8/8/2K5/5k2/8/b6B b - - 0 1
-Depth: 1 | Nodes:     6 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   106 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  1829 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 31151 | Time: 0.012s | Nodes/s: 2595916 | PASS
+Depth: 1 | Nodes:       6 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     106 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    1829 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   31151 | Time: 0.012s | Nodes/s: 2595916 | PASS
+Depth: 5 | Nodes:  530585 | Time: 0.215s | Nodes/s: 2467837 | PASS
+Depth: 6 | Nodes: 9250746 | Time: 3.845s | Nodes/s: 2405915 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/1B6/7b/7k/8/2B1b3/7K b - - 0 1
-Depth: 1 | Nodes:    17 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   309 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  5133 | Time: 0.002s | Nodes/s: 2566500 | PASS
-Depth: 4 | Nodes: 93603 | Time: 0.032s | Nodes/s: 2925093 | PASS
+Depth: 1 | Nodes:       17 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      309 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     5133 | Time:  0.001s | Nodes/s: 5133000 | PASS
+Depth: 4 | Nodes:    93603 | Time:  0.032s | Nodes/s: 2925093 | PASS
+Depth: 5 | Nodes:  1591064 | Time:  0.647s | Nodes/s: 2459140 | PASS
+Depth: 6 | Nodes: 29027891 | Time: 10.612s | Nodes/s: 2735383 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/B7/1B6/1B6/8/8/8/K6b b - - 0 1
-Depth: 1 | Nodes:     7 | Time:    0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   143 | Time:    0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  1416 | Time:    0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 31787 | Time: 0.01s | Nodes/s: 3178700 | PASS
+Depth: 1 | Nodes:       7 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     143 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    1416 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   31787 | Time:  0.01s | Nodes/s: 3178700 | PASS
+Depth: 5 | Nodes:  310862 | Time: 0.137s | Nodes/s: 2269065 | PASS
+Depth: 6 | Nodes: 7382896 | Time:  2.51s | Nodes/s: 2941392 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: K7/b7/1b6/1b6/8/8/8/k6B b - - 0 1
-Depth: 1 | Nodes:    21 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   144 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  3242 | Time: 0.001s | Nodes/s: 3242000 | PASS
-Depth: 4 | Nodes: 32955 | Time: 0.013s | Nodes/s: 2535000 | PASS
+Depth: 1 | Nodes:      21 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     144 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    3242 | Time: 0.001s | Nodes/s: 3242000 | PASS
+Depth: 4 | Nodes:   32955 | Time: 0.013s | Nodes/s: 2535000 | PASS
+Depth: 5 | Nodes:  787524 | Time: 0.261s | Nodes/s: 3017333 | PASS
+Depth: 6 | Nodes: 7881673 | Time: 3.582s | Nodes/s: 2200355 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7k/RR6/8/8/8/8/rr6/7K w - - 0 1
-Depth: 1 | Nodes:     19 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    275 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:   5300 | Time: 0.002s | Nodes/s: 2650000 | PASS
-Depth: 4 | Nodes: 104342 | Time: 0.039s | Nodes/s: 2675435 | PASS
+Depth: 1 | Nodes:       19 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      275 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     5300 | Time:  0.002s | Nodes/s: 2650000 | PASS
+Depth: 4 | Nodes:   104342 | Time:  0.042s | Nodes/s: 2484333 | PASS
+Depth: 5 | Nodes:  2161211 | Time:  0.871s | Nodes/s: 2481298 | PASS
+Depth: 6 | Nodes: 44956585 | Time: 18.041s | Nodes/s: 2491912 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: R6r/8/8/2K5/5k2/8/8/r6R w - - 0 1
-Depth: 1 | Nodes:     36 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   1027 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  29215 | Time: 0.011s | Nodes/s: 2655909 | PASS
-Depth: 4 | Nodes: 771461 | Time: 0.309s | Nodes/s: 2496637 | PASS
+Depth: 1 | Nodes:        36 | Time:       0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      1027 | Time:       0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     29215 | Time:   0.011s | Nodes/s: 2655909 | PASS
+Depth: 4 | Nodes:    771461 | Time:   0.298s | Nodes/s: 2588795 | PASS
+Depth: 5 | Nodes:  20506480 | Time:   8.225s | Nodes/s: 2493189 | PASS
+Depth: 6 | Nodes: 525169084 | Time: 214.834s | Nodes/s: 2444534 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7k/RR6/8/8/8/8/rr6/7K b - - 0 1
-Depth: 1 | Nodes:     19 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    275 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:   5300 | Time: 0.002s | Nodes/s: 2650000 | PASS
-Depth: 4 | Nodes: 104342 | Time:  0.04s | Nodes/s: 2608550 | PASS
+Depth: 1 | Nodes:       19 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      275 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     5300 | Time:  0.002s | Nodes/s: 2650000 | PASS
+Depth: 4 | Nodes:   104342 | Time:  0.043s | Nodes/s: 2426558 | PASS
+Depth: 5 | Nodes:  2161211 | Time:  0.879s | Nodes/s: 2458715 | PASS
+Depth: 6 | Nodes: 44956585 | Time: 18.618s | Nodes/s: 2414683 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: R6r/8/8/2K5/5k2/8/8/r6R b - - 0 1
-Depth: 1 | Nodes:     36 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   1027 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  29227 | Time:  0.01s | Nodes/s: 2922700 | PASS
-Depth: 4 | Nodes: 771368 | Time: 0.328s | Nodes/s: 2351731 | PASS
+Depth: 1 | Nodes:        36 | Time:       0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      1027 | Time:       0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     29227 | Time:   0.011s | Nodes/s: 2657000 | PASS
+Depth: 4 | Nodes:    771368 | Time:   0.317s | Nodes/s: 2433337 | PASS
+Depth: 5 | Nodes:  20521342 | Time:   8.288s | Nodes/s: 2476030 | PASS
+Depth: 6 | Nodes: 524966748 | Time: 220.464s | Nodes/s: 2381190 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 6kq/8/8/8/8/8/8/7K w - - 0 1
-Depth: 1 | Nodes:    2 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   36 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  143 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 3637 | Time: 0.001s | Nodes/s: 3637000 | PASS
+Depth: 1 | Nodes:      2 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     36 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    143 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   3637 | Time: 0.001s | Nodes/s: 3637000 | PASS
+Depth: 5 | Nodes:  14893 | Time: 0.011s | Nodes/s: 1353909 | PASS
+Depth: 6 | Nodes: 391507 | Time: 0.136s | Nodes/s: 2878727 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 6KQ/8/8/8/8/8/8/7k b - - 0 1
-Depth: 1 | Nodes:    2 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   36 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  143 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 3637 | Time: 0.001s | Nodes/s: 3637000 | PASS
+Depth: 1 | Nodes:      2 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     36 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    143 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   3637 | Time: 0.001s | Nodes/s: 3637000 | PASS
+Depth: 5 | Nodes:  14893 | Time: 0.014s | Nodes/s: 1063785 | PASS
+Depth: 6 | Nodes: 391507 | Time: 0.141s | Nodes/s: 2776645 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: K7/8/8/3Q4/4q3/8/8/7k w - - 0 1
-Depth: 1 | Nodes:    6 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   35 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  495 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 8349 | Time: 0.003s | Nodes/s: 2783000 | PASS
+Depth: 1 | Nodes:       6 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      35 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     495 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:    8349 | Time: 0.003s | Nodes/s: 2783000 | PASS
+Depth: 5 | Nodes:  166741 | Time: 0.072s | Nodes/s: 2315847 | PASS
+Depth: 6 | Nodes: 3370175 | Time:   1.5s | Nodes/s: 2246783 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 6qk/8/8/8/8/8/8/7K b - - 0 1
-Depth: 1 | Nodes:   22 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   43 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes: 1015 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 4167 | Time: 0.002s | Nodes/s: 2083500 | PASS
+Depth: 1 | Nodes:     22 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     43 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   1015 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   4167 | Time: 0.002s | Nodes/s: 2083500 | PASS
+Depth: 5 | Nodes: 105749 | Time: 0.036s | Nodes/s: 2937472 | PASS
+Depth: 6 | Nodes: 419369 | Time: 0.318s | Nodes/s: 1318770 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 6KQ/8/8/8/8/8/8/7k b - - 0 1
-Depth: 1 | Nodes:    2 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   36 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  143 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 3637 | Time: 0.001s | Nodes/s: 3637000 | PASS
+Depth: 1 | Nodes:      2 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     36 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    143 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   3637 | Time: 0.001s | Nodes/s: 3637000 | PASS
+Depth: 5 | Nodes:  14893 | Time: 0.012s | Nodes/s: 1241083 | PASS
+Depth: 6 | Nodes: 391507 | Time: 0.134s | Nodes/s: 2921694 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: K7/8/8/3Q4/4q3/8/8/7k b - - 0 1
-Depth: 1 | Nodes:    6 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   35 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  495 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 8349 | Time: 0.004s | Nodes/s: 2087250 | PASS
+Depth: 1 | Nodes:       6 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      35 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     495 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:    8349 | Time: 0.003s | Nodes/s: 2783000 | PASS
+Depth: 5 | Nodes:  166741 | Time: 0.073s | Nodes/s: 2284123 | PASS
+Depth: 6 | Nodes: 3370175 | Time:  1.51s | Nodes/s: 2231903 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/8/8/8/K7/P7/k7 w - - 0 1
-Depth: 1 | Nodes:   3 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   7 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  43 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 199 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:    3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    7 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   43 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:  199 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes: 1347 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 6 | Nodes: 6249 | Time: 0.003s | Nodes/s: 2083000 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/8/8/8/7K/7P/7k w - - 0 1
-Depth: 1 | Nodes:   3 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   7 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  43 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 199 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:    3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    7 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   43 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:  199 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes: 1347 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 6 | Nodes: 6249 | Time: 0.003s | Nodes/s: 2083000 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: K7/p7/k7/8/8/8/8/8 w - - 0 1
-Depth: 1 | Nodes:  1 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  3 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 12 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 80 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:    1 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   12 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   80 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  342 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 6 | Nodes: 2343 | Time: 0.001s | Nodes/s: 2343000 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7K/7p/7k/8/8/8/8/8 w - - 0 1
-Depth: 1 | Nodes:  1 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  3 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 12 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 80 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:    1 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   12 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   80 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  342 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 6 | Nodes: 2343 | Time: 0.001s | Nodes/s: 2343000 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/2k1p3/3pP3/3P2K1/8/8/8/8 w - - 0 1
-Depth: 1 | Nodes:    7 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   35 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  210 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 1091 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     7 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    35 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   210 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:  1091 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  7028 | Time: 0.003s | Nodes/s: 2342666 | PASS
+Depth: 6 | Nodes: 34834 | Time: 0.026s | Nodes/s: 1339769 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/8/8/8/K7/P7/k7 b - - 0 1
-Depth: 1 | Nodes:  1 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  3 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 12 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 80 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:    1 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   12 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   80 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  342 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 6 | Nodes: 2343 | Time: 0.001s | Nodes/s: 2343000 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/8/8/8/7K/7P/7k b - - 0 1
-Depth: 1 | Nodes:  1 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  3 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 12 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 80 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:    1 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   12 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   80 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  342 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 6 | Nodes: 2343 | Time: 0.001s | Nodes/s: 2343000 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: K7/p7/k7/8/8/8/8/8 b - - 0 1
-Depth: 1 | Nodes:   3 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   7 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  43 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 199 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:    3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    7 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   43 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:  199 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes: 1347 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 6 | Nodes: 6249 | Time: 0.003s | Nodes/s: 2083000 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7K/7p/7k/8/8/8/8/8 b - - 0 1
-Depth: 1 | Nodes:   3 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   7 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  43 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 199 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:    3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    7 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   43 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:  199 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes: 1347 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 6 | Nodes: 6249 | Time: 0.003s | Nodes/s: 2083000 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/2k1p3/3pP3/3P2K1/8/8/8/8 b - - 0 1
-Depth: 1 | Nodes:    5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   35 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  182 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 1091 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    35 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   182 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:  1091 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  5408 | Time: 0.003s | Nodes/s: 1802666 | PASS
+Depth: 6 | Nodes: 34822 | Time:  0.02s | Nodes/s: 1741100 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/8/8/8/4k3/4P3/4K3 w - - 0 1
-Depth: 1 | Nodes:   2 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   8 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  44 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 282 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     2 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     8 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    44 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   282 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  1814 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 6 | Nodes: 11848 | Time: 0.006s | Nodes/s: 1974666 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 4k3/4p3/4K3/8/8/8/8/8 b - - 0 1
-Depth: 1 | Nodes:   2 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   8 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  44 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 282 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     2 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     8 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    44 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   282 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  1814 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 6 | Nodes: 11848 | Time: 0.006s | Nodes/s: 1974666 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/7k/7p/7P/7K/8/8 w - - 0 1
-Depth: 1 | Nodes:   3 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   9 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  57 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 360 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     9 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    57 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   360 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  1969 | Time: 0.001s | Nodes/s: 1969000 | PASS
+Depth: 6 | Nodes: 10724 | Time: 0.006s | Nodes/s: 1787333 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/k7/p7/P7/K7/8/8 w - - 0 1
-Depth: 1 | Nodes:   3 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   9 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  57 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 360 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     9 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    57 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   360 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  1969 | Time: 0.001s | Nodes/s: 1969000 | PASS
+Depth: 6 | Nodes: 10724 | Time: 0.007s | Nodes/s: 1532000 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/3k4/3p4/3P4/3K4/8/8 w - - 0 1
-Depth: 1 | Nodes:    5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   25 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  180 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 1294 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    25 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   180 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:  1294 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  8296 | Time: 0.004s | Nodes/s: 2074000 | PASS
+Depth: 6 | Nodes: 53138 | Time: 0.028s | Nodes/s: 1897785 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/3k4/3p4/8/3P4/3K4/8/8 w - - 0 1
-Depth: 1 | Nodes:    8 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   61 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  483 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 3213 | Time: 0.001s | Nodes/s: 3213000 | PASS
+Depth: 1 | Nodes:      8 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     61 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    483 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   3213 | Time: 0.002s | Nodes/s: 1606500 | PASS
+Depth: 5 | Nodes:  23599 | Time: 0.011s | Nodes/s: 2145363 | PASS
+Depth: 6 | Nodes: 157093 | Time: 0.079s | Nodes/s: 1988518 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/3k4/3p4/8/3P4/3K4/8 w - - 0 1
-Depth: 1 | Nodes:    8 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   61 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  411 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 3213 | Time: 0.001s | Nodes/s: 3213000 | PASS
+Depth: 1 | Nodes:      8 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     61 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    411 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   3213 | Time: 0.001s | Nodes/s: 3213000 | PASS
+Depth: 5 | Nodes:  21637 | Time: 0.012s | Nodes/s: 1803083 | PASS
+Depth: 6 | Nodes: 158065 | Time: 0.078s | Nodes/s: 2026474 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/3p4/8/3P4/8/8/7K w - - 0 1
-Depth: 1 | Nodes:   4 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  15 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  90 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 534 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    15 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    90 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   534 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  3450 | Time: 0.001s | Nodes/s: 3450000 | PASS
+Depth: 6 | Nodes: 20960 | Time:  0.01s | Nodes/s: 2096000 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/7k/7p/7P/7K/8/8 b - - 0 1
-Depth: 1 | Nodes:   3 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   9 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  57 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 360 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     9 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    57 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   360 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  1969 | Time: 0.001s | Nodes/s: 1969000 | PASS
+Depth: 6 | Nodes: 10724 | Time: 0.006s | Nodes/s: 1787333 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/k7/p7/P7/K7/8/8 b - - 0 1
-Depth: 1 | Nodes:   3 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   9 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  57 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 360 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     9 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    57 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   360 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  1969 | Time: 0.001s | Nodes/s: 1969000 | PASS
+Depth: 6 | Nodes: 10724 | Time: 0.006s | Nodes/s: 1787333 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/3k4/3p4/3P4/3K4/8/8 b - - 0 1
-Depth: 1 | Nodes:    5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   25 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  180 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 1294 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    25 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   180 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:  1294 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  8296 | Time: 0.004s | Nodes/s: 2074000 | PASS
+Depth: 6 | Nodes: 53138 | Time: 0.026s | Nodes/s: 2043769 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/3k4/3p4/8/3P4/3K4/8/8 b - - 0 1
-Depth: 1 | Nodes:    8 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   61 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  411 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 3213 | Time: 0.001s | Nodes/s: 3213000 | PASS
+Depth: 1 | Nodes:      8 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     61 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    411 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   3213 | Time: 0.001s | Nodes/s: 3213000 | PASS
+Depth: 5 | Nodes:  21637 | Time:  0.01s | Nodes/s: 2163700 | PASS
+Depth: 6 | Nodes: 158065 | Time: 0.079s | Nodes/s: 2000822 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/8/3k4/3p4/8/3P4/3K4/8 b - - 0 1
-Depth: 1 | Nodes:    8 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   61 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  483 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 3213 | Time: 0.001s | Nodes/s: 3213000 | PASS
+Depth: 1 | Nodes:      8 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     61 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    483 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   3213 | Time: 0.001s | Nodes/s: 3213000 | PASS
+Depth: 5 | Nodes:  23599 | Time: 0.011s | Nodes/s: 2145363 | PASS
+Depth: 6 | Nodes: 157093 | Time: 0.081s | Nodes/s: 1939419 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/3p4/8/3P4/8/8/7K b - - 0 1
-Depth: 1 | Nodes:   4 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  15 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  89 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 537 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    15 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    89 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   537 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  3309 | Time: 0.001s | Nodes/s: 3309000 | PASS
+Depth: 6 | Nodes: 21104 | Time:  0.01s | Nodes/s: 2110400 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7k/3p4/8/8/3P4/8/8/K7 w - - 0 1
-Depth: 1 | Nodes:   4 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  19 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 117 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 720 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    19 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   117 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   720 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  4661 | Time: 0.002s | Nodes/s: 2330500 | PASS
+Depth: 6 | Nodes: 32191 | Time: 0.015s | Nodes/s: 2146066 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7k/8/8/3p4/8/8/3P4/K7 w - - 0 1
-Depth: 1 | Nodes:   5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  19 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 116 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 716 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    19 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   116 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   716 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  4786 | Time: 0.002s | Nodes/s: 2393000 | PASS
+Depth: 6 | Nodes: 30980 | Time: 0.016s | Nodes/s: 1936250 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/8/7p/6P1/8/8/K7 w - - 0 1
-Depth: 1 | Nodes:   5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  22 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 139 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 877 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    22 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   139 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   877 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  6112 | Time: 0.002s | Nodes/s: 3056000 | PASS
+Depth: 6 | Nodes: 41874 | Time:  0.02s | Nodes/s: 2093700 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/7p/8/8/6P1/8/K7 w - - 0 1
-Depth: 1 | Nodes:   4 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  16 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 101 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 637 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    16 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   101 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   637 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  4354 | Time: 0.002s | Nodes/s: 2177000 | PASS
+Depth: 6 | Nodes: 29679 | Time: 0.014s | Nodes/s: 2119928 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/8/6p1/7P/8/8/K7 w - - 0 1
-Depth: 1 | Nodes:   5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  22 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 139 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 877 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    22 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   139 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   877 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  6112 | Time: 0.003s | Nodes/s: 2037333 | PASS
+Depth: 6 | Nodes: 41874 | Time:  0.02s | Nodes/s: 2093700 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/6p1/8/8/7P/8/K7 w - - 0 1
-Depth: 1 | Nodes:   4 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  16 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 101 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 637 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    16 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   101 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   637 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  4354 | Time: 0.002s | Nodes/s: 2177000 | PASS
+Depth: 6 | Nodes: 29679 | Time: 0.015s | Nodes/s: 1978600 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/8/3p4/4p3/8/8/7K w - - 0 1
-Depth: 1 | Nodes:   3 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  15 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  84 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 573 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     3 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    15 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    84 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   573 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  3013 | Time: 0.001s | Nodes/s: 3013000 | PASS
+Depth: 6 | Nodes: 22886 | Time:  0.01s | Nodes/s: 2288600 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/3p4/8/8/4P3/8/7K w - - 0 1
-Depth: 1 | Nodes:   4 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  16 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 101 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 637 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    16 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   101 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   637 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  4271 | Time: 0.002s | Nodes/s: 2135500 | PASS
+Depth: 6 | Nodes: 28662 | Time: 0.013s | Nodes/s: 2204769 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7k/3p4/8/8/3P4/8/8/K7 b - - 0 1
-Depth: 1 | Nodes:   5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  19 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 117 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 720 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    19 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   117 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   720 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  5014 | Time: 0.002s | Nodes/s: 2507000 | PASS
+Depth: 6 | Nodes: 32167 | Time: 0.017s | Nodes/s: 1892176 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7k/8/8/3p4/8/8/3P4/K7 b - - 0 1
-Depth: 1 | Nodes:   4 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  19 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 117 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 712 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    19 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   117 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   712 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  4658 | Time: 0.002s | Nodes/s: 2329000 | PASS
+Depth: 6 | Nodes: 30749 | Time: 0.015s | Nodes/s: 2049933 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/8/7p/6P1/8/8/K7 b - - 0 1
-Depth: 1 | Nodes:   5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  22 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 139 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 877 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    22 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   139 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   877 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  6112 | Time: 0.002s | Nodes/s: 3056000 | PASS
+Depth: 6 | Nodes: 41874 | Time: 0.019s | Nodes/s: 2203894 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/7p/8/8/6P1/8/K7 b - - 0 1
-Depth: 1 | Nodes:   4 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  16 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 101 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 637 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    16 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   101 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   637 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  4354 | Time: 0.002s | Nodes/s: 2177000 | PASS
+Depth: 6 | Nodes: 29679 | Time: 0.014s | Nodes/s: 2119928 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/8/6p1/7P/8/8/K7 b - - 0 1
-Depth: 1 | Nodes:   5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  22 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 139 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 877 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    22 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   139 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   877 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  6112 | Time: 0.002s | Nodes/s: 3056000 | PASS
+Depth: 6 | Nodes: 41874 | Time:  0.02s | Nodes/s: 2093700 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/6p1/8/8/7P/8/K7 b - - 0 1
-Depth: 1 | Nodes:   4 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  16 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 101 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 637 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    16 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   101 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   637 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  4354 | Time: 0.002s | Nodes/s: 2177000 | PASS
+Depth: 6 | Nodes: 29679 | Time: 0.014s | Nodes/s: 2119928 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/8/3p4/4p3/8/8/7K b - - 0 1
-Depth: 1 | Nodes:   5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  15 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 102 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 569 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    15 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   102 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   569 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  4337 | Time: 0.002s | Nodes/s: 2168500 | PASS
+Depth: 6 | Nodes: 22579 | Time: 0.012s | Nodes/s: 1881583 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/8/3p4/8/8/4P3/8/7K b - - 0 1
-Depth: 1 | Nodes:   4 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  16 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 101 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 637 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    16 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   101 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   637 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  4271 | Time: 0.002s | Nodes/s: 2135500 | PASS
+Depth: 6 | Nodes: 28662 | Time: 0.015s | Nodes/s: 1910800 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7k/8/8/p7/1P6/8/8/7K w - - 0 1
-Depth: 1 | Nodes:   5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  22 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 139 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 877 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    22 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   139 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   877 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  6112 | Time: 0.002s | Nodes/s: 3056000 | PASS
+Depth: 6 | Nodes: 41874 | Time:  0.02s | Nodes/s: 2093700 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7k/8/p7/8/8/1P6/8/7K w - - 0 1
-Depth: 1 | Nodes:   4 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  16 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 101 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 637 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    16 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   101 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   637 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  4354 | Time: 0.002s | Nodes/s: 2177000 | PASS
+Depth: 6 | Nodes: 29679 | Time: 0.014s | Nodes/s: 2119928 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7k/8/8/1p6/P7/8/8/7K w - - 0 1
-Depth: 1 | Nodes:   5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  22 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 139 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 877 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    22 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   139 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   877 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  6112 | Time: 0.002s | Nodes/s: 3056000 | PASS
+Depth: 6 | Nodes: 41874 | Time: 0.021s | Nodes/s: 1993999 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7k/8/1p6/8/8/P7/8/7K w - - 0 1
-Depth: 1 | Nodes:   4 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  16 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 101 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 637 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    16 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   101 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   637 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  4354 | Time: 0.002s | Nodes/s: 2177000 | PASS
+Depth: 6 | Nodes: 29679 | Time: 0.014s | Nodes/s: 2119928 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/7p/8/8/8/8/6P1/K7 w - - 0 1
-Depth: 1 | Nodes:    5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   25 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  161 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 1035 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    25 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   161 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:  1035 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  7574 | Time: 0.003s | Nodes/s: 2524666 | PASS
+Depth: 6 | Nodes: 55338 | Time: 0.026s | Nodes/s: 2128384 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/6p1/8/8/8/8/7P/K7 w - - 0 1
-Depth: 1 | Nodes:    5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   25 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  161 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 1035 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    25 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   161 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:  1035 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  7574 | Time: 0.004s | Nodes/s: 1893500 | PASS
+Depth: 6 | Nodes: 55338 | Time: 0.026s | Nodes/s: 2128384 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 3k4/3pp3/8/8/8/8/3PP3/3K4 w - - 0 1
-Depth: 1 | Nodes:    7 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   49 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  378 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 2902 | Time: 0.001s | Nodes/s: 2902000 | PASS
+Depth: 1 | Nodes:      7 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     49 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    378 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   2902 | Time: 0.001s | Nodes/s: 2902000 | PASS
+Depth: 5 | Nodes:  24122 | Time:  0.01s | Nodes/s: 2412200 | PASS
+Depth: 6 | Nodes: 199002 | Time: 0.085s | Nodes/s: 2341200 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7k/8/8/p7/1P6/8/8/7K b - - 0 1
-Depth: 1 | Nodes:   5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  22 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 139 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 877 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    22 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   139 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   877 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  6112 | Time: 0.002s | Nodes/s: 3056000 | PASS
+Depth: 6 | Nodes: 41874 | Time: 0.022s | Nodes/s: 1903363 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7k/8/p7/8/8/1P6/8/7K b - - 0 1
-Depth: 1 | Nodes:   4 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  16 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 101 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 637 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    16 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   101 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   637 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  4354 | Time: 0.002s | Nodes/s: 2177000 | PASS
+Depth: 6 | Nodes: 29679 | Time: 0.015s | Nodes/s: 1978600 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7k/8/8/1p6/P7/8/8/7K b - - 0 1
-Depth: 1 | Nodes:   5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  22 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 139 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 877 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    22 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   139 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   877 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  6112 | Time: 0.003s | Nodes/s: 2037333 | PASS
+Depth: 6 | Nodes: 41874 | Time: 0.021s | Nodes/s: 1993999 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 7k/8/1p6/8/8/P7/8/7K b - - 0 1
-Depth: 1 | Nodes:   4 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:  16 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes: 101 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 637 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     4 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    16 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   101 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   637 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  4354 | Time: 0.002s | Nodes/s: 2177000 | PASS
+Depth: 6 | Nodes: 29679 | Time: 0.014s | Nodes/s: 2119928 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/7p/8/8/8/8/6P1/K7 b - - 0 1
-Depth: 1 | Nodes:    5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   25 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  161 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 1035 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    25 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   161 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:  1035 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  7574 | Time: 0.003s | Nodes/s: 2524666 | PASS
+Depth: 6 | Nodes: 55338 | Time: 0.029s | Nodes/s: 1908206 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: k7/6p1/8/8/8/8/7P/K7 b - - 0 1
-Depth: 1 | Nodes:    5 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 2 | Nodes:   25 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 3 | Nodes:  161 | Time: 0s | Nodes/s: 0 | PASS
-Depth: 4 | Nodes: 1035 | Time: 0s | Nodes/s: 0 | PASS
+Depth: 1 | Nodes:     5 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:    25 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:   161 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:  1035 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 5 | Nodes:  7574 | Time: 0.003s | Nodes/s: 2524666 | PASS
+Depth: 6 | Nodes: 55338 | Time: 0.026s | Nodes/s: 2128384 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 3k4/3pp3/8/8/8/8/3PP3/3K4 b - - 0 1
-Depth: 1 | Nodes:    7 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   49 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  378 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 2902 | Time: 0.001s | Nodes/s: 2902000 | PASS
+Depth: 1 | Nodes:      7 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:     49 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:    378 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:   2902 | Time: 0.001s | Nodes/s: 2902000 | PASS
+Depth: 5 | Nodes:  24122 | Time: 0.011s | Nodes/s: 2192909 | PASS
+Depth: 6 | Nodes: 199002 | Time: 0.085s | Nodes/s: 2341200 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/Pk6/8/8/8/8/6Kp/8 w - - 0 1
-Depth: 1 | Nodes:   11 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   97 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  887 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 8048 | Time: 0.004s | Nodes/s: 2012000 | PASS
+Depth: 1 | Nodes:      11 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      97 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     887 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:    8048 | Time: 0.004s | Nodes/s: 2012000 | PASS
+Depth: 5 | Nodes:   90606 | Time: 0.045s | Nodes/s: 2013466 | PASS
+Depth: 6 | Nodes: 1030499 | Time: 0.523s | Nodes/s: 1970361 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: n1n5/1Pk5/8/8/8/8/5Kp1/5N1N w - - 0 1
-Depth: 1 | Nodes:     24 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    421 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:   7421 | Time: 0.003s | Nodes/s: 2473666 | PASS
-Depth: 4 | Nodes: 124608 | Time: 0.054s | Nodes/s: 2307555 | PASS
+Depth: 1 | Nodes:       24 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      421 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     7421 | Time:  0.003s | Nodes/s: 2473666 | PASS
+Depth: 4 | Nodes:   124608 | Time:  0.056s | Nodes/s: 2225142 | PASS
+Depth: 5 | Nodes:  2193768 | Time:  0.957s | Nodes/s: 2292338 | PASS
+Depth: 6 | Nodes: 37665329 | Time: 17.029s | Nodes/s: 2211834 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/PPPk4/8/8/8/8/4Kppp/8 w - - 0 1
-Depth: 1 | Nodes:    18 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   270 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  4699 | Time: 0.002s | Nodes/s: 2349500 | PASS
-Depth: 4 | Nodes: 79355 | Time: 0.033s | Nodes/s: 2404696 | PASS
+Depth: 1 | Nodes:       18 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      270 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     4699 | Time:  0.001s | Nodes/s: 4699000 | PASS
+Depth: 4 | Nodes:    79355 | Time:  0.041s | Nodes/s: 1935487 | PASS
+Depth: 5 | Nodes:  1533145 | Time:  0.681s | Nodes/s: 2251314 | PASS
+Depth: 6 | Nodes: 28859283 | Time: 13.536s | Nodes/s: 2132039 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: n1n5/PPPk4/8/8/8/8/4Kppp/5N1N w - - 0 1
-Depth: 1 | Nodes:     24 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    496 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:   9483 | Time: 0.004s | Nodes/s: 2370750 | PASS
-Depth: 4 | Nodes: 182838 | Time: 0.072s | Nodes/s: 2539416 | PASS
+Depth: 1 | Nodes:       24 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      496 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     9483 | Time: 0.003s | Nodes/s: 3161000 | PASS
+Depth: 4 | Nodes:   182838 | Time: 0.081s | Nodes/s: 2257259 | PASS
+Depth: 5 | Nodes:  3605103 | Time: 1.498s | Nodes/s: 2406610 | PASS
+Depth: 6 | Nodes: 71179139 | Time: 30.55s | Nodes/s: 2329922 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/Pk6/8/8/8/8/6Kp/8 b - - 0 1
-Depth: 1 | Nodes:   11 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   97 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  887 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 4 | Nodes: 8048 | Time: 0.003s | Nodes/s: 2682666 | PASS
+Depth: 1 | Nodes:      11 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      97 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     887 | Time:     0s | Nodes/s:       0 | PASS
+Depth: 4 | Nodes:    8048 | Time: 0.004s | Nodes/s: 2012000 | PASS
+Depth: 5 | Nodes:   90606 | Time: 0.049s | Nodes/s: 1849102 | PASS
+Depth: 6 | Nodes: 1030499 | Time: 0.508s | Nodes/s: 2028541 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: n1n5/1Pk5/8/8/8/8/5Kp1/5N1N b - - 0 1
-Depth: 1 | Nodes:     24 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    421 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:   7421 | Time: 0.002s | Nodes/s: 3710500 | PASS
-Depth: 4 | Nodes: 124608 | Time: 0.053s | Nodes/s: 2351094 | PASS
+Depth: 1 | Nodes:       24 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      421 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     7421 | Time:  0.003s | Nodes/s: 2473666 | PASS
+Depth: 4 | Nodes:   124608 | Time:  0.053s | Nodes/s: 2351094 | PASS
+Depth: 5 | Nodes:  2193768 | Time:  0.961s | Nodes/s: 2282797 | PASS
+Depth: 6 | Nodes: 37665329 | Time: 17.248s | Nodes/s: 2183750 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/PPPk4/8/8/8/8/4Kppp/8 b - - 0 1
-Depth: 1 | Nodes:    18 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:   270 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:  4699 | Time: 0.001s | Nodes/s: 4699000 | PASS
-Depth: 4 | Nodes: 79355 | Time: 0.033s | Nodes/s: 2404696 | PASS
+Depth: 1 | Nodes:       18 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      270 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     4699 | Time:  0.002s | Nodes/s: 2349500 | PASS
+Depth: 4 | Nodes:    79355 | Time:  0.034s | Nodes/s: 2333970 | PASS
+Depth: 5 | Nodes:  1533145 | Time:  0.727s | Nodes/s: 2108865 | PASS
+Depth: 6 | Nodes: 28859283 | Time: 13.492s | Nodes/s: 2138992 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: n1n5/PPPk4/8/8/8/8/4Kppp/5N1N b - - 0 1
-Depth: 1 | Nodes:     24 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 2 | Nodes:    496 | Time:     0s | Nodes/s:       0 | PASS
-Depth: 3 | Nodes:   9483 | Time: 0.003s | Nodes/s: 3161000 | PASS
-Depth: 4 | Nodes: 182838 | Time: 0.071s | Nodes/s: 2575183 | PASS
+Depth: 1 | Nodes:       24 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 2 | Nodes:      496 | Time:      0s | Nodes/s:       0 | PASS
+Depth: 3 | Nodes:     9483 | Time:  0.004s | Nodes/s: 2370750 | PASS
+Depth: 4 | Nodes:   182838 | Time:  0.077s | Nodes/s: 2374519 | PASS
+Depth: 5 | Nodes:  3605103 | Time:   1.55s | Nodes/s: 2325872 | PASS
+Depth: 6 | Nodes: 71179139 | Time: 30.875s | Nodes/s: 2305397 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: 8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1
-Depth: 4 | Nodes: 43238 | Time: 0.016s | Nodes/s: 2702375 | PASS
+Depth: 4 | Nodes:    43238 | Time: 0.017s | Nodes/s: 2543411 | PASS
+Depth: 5 | Nodes:   674624 | Time: 0.256s | Nodes/s: 2635250 | PASS
+Depth: 6 | Nodes: 11030083 | Time:   4.6s | Nodes/s: 2397844 | PASS
 
 --------------------------------------------------------------------------------
 
 Fen: rnbqkb1r/ppppp1pp/7n/4Pp2/8/8/PPPP1PPP/RNBQKBNR w KQkq f6 0 3
+Depth: 5 | Nodes: 11139762 | Time: 3.065s | Nodes/s: 3634506 | PASS
 
 --------------------------------------------------------------------------------
 
-Total Time: 4.484s
-Total Nodes: 12777494
-Average Nodes/s: 2849574.9330954505
+Total Time: 1833.0849999999953s
+Total Nodes: 4805793839
+Average Nodes/s: 2621697.2148045576

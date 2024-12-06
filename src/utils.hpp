@@ -16,16 +16,15 @@ typedef uint8_t Square;
 namespace Utils
 {
 
-    [[nodiscard]] inline int randomInt(int min, int max)
+    [[nodiscard]] inline int randomInt(const int& min, const int& max)
     {
         static std::mt19937 gen(std::random_device{}());
-
         std::uniform_int_distribution<int> dis(min, max);
         return dis(gen);
     }
 
 
-    [[nodiscard]] inline uint64_t BitShift(uint64_t x, int shift)
+    [[nodiscard]] inline uint64_t BitShift(uint64_t x, const int& shift)
     {
         return ((shift > 0) ? (x << shift) : (x >> -shift));
     }

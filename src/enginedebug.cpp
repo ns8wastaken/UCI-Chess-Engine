@@ -6,9 +6,9 @@ uint64_t Engine::perft(const int depth)
     if (depth == 0)
         return 1ULL;
 
-    uint64_t nodes = 0;
-
     MoveList moveList = getPseudoLegalMoves();
+
+    uint64_t totalNodes = 0;
 
     for (int i = 0; i < moveList.used; ++i) {
         const Pieces::Move& move = moveList.moves[i];
@@ -22,12 +22,12 @@ uint64_t Engine::perft(const int depth)
             continue;
         }
 
-        nodes += perft(depth - 1);
+        totalNodes += perft(depth - 1);
 
         undoMove();
     }
 
-    return nodes;
+    return totalNodes;
 }
 
 

@@ -38,6 +38,8 @@ struct Engine
 
 
     // Board stuff
+    int plyCount = 0;
+
     void setColor(bool color);
     void flipColor();
     Board board;
@@ -69,11 +71,13 @@ struct Engine
 
     // Movegen
     void randomMove();
-    int negaMax(const int depth);
-    int alphaBeta(const int depth, int alpha, const int beta);
+    int16_t negaMax(const int& depth);
+    int16_t alphaBeta(const int& depth, int16_t alpha, const int16_t& beta);
 
     std::string getEngineMove();
 
     uint64_t perft(const int depth);
     uint64_t divide(const int depth);
+
+    static constexpr int16_t INF_VALUE = 30000;
 };

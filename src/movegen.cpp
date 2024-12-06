@@ -39,7 +39,6 @@ int Engine::quiescentSearch(int alpha, const int beta)
 }
 
 
-
 void Engine::randomMove()
 {
     MoveList moves = getPseudoLegalMoves();
@@ -67,13 +66,15 @@ void Engine::randomMove()
 }
 
 
-int Engine::negaMax(const int depth)
+int16_t Engine::negaMax(const int& depth)
 {
     if (depth == 0) return evaluateBoard();
 
-    int max = -std::numeric_limits<int>::max();
+    int16_t max = -INF_VALUE;
 
     MoveList moveList = getPseudoLegalMoves();
+
+    int legalMovesMade = 0;
 
     for (int i = 0; i < moveList.used; ++i) {
         const Pieces::Move& move = moveList.moves[i];
@@ -87,7 +88,8 @@ int Engine::negaMax(const int depth)
             continue;
         }
 
-        int score = -negaMax(depth - 1);
+        ++legalMovesMade;
+        int16_t score = -negaMax(depth - 1);
 
         undoMove();
 
@@ -99,17 +101,27 @@ int Engine::negaMax(const int depth)
         }
     }
 
+    // No legal moves
+    // if (legalMovesMade == 0) {
+    //     // Checkmate
+    //     if (isAttacked(static_cast<Square>(std::countr_zero(board.bitboards[ownPiece.KING]))))
+    //         return -INF_VALUE + plyCount;
+
+    //     // Stalemate
+    //     return 0;
+    // }
+
     return max;
 }
 
 
-int Engine::alphaBeta(const int depth, int alpha, const int beta)
+int16_t Engine::alphaBeta(const int& depth, int16_t alpha, const int16_t& beta)
 {
     if (depth == 0)
         // return quiescentSearch(alpha, beta);
         return evaluateBoard();
 
-    int bestValue = -std::numeric_limits<int>::max();
+    int16_t bestValue = -INF_VALUE;
 
     MoveList moves = getPseudoLegalMoves();
 
@@ -125,7 +137,7 @@ int Engine::alphaBeta(const int depth, int alpha, const int beta)
             continue;
         }
 
-        int score = -alphaBeta(depth - 1, -beta, -alpha);
+        int16_t score = -alphaBeta(depth - 1, -beta, -alpha);
 
         undoMove();
 

@@ -43,3 +43,17 @@ void Board::precomputeMoves()
         precomputedMoves.kingMoves[i] |= (position & Utils::BitMaskA) >> 9;
     }
 }
+
+
+void Board::placePiece(const Pieces::Piece& piece, const Square& square)
+{
+    bitboards[piece] |= (1ULL << square);
+    bitboards[square] = piece;
+}
+
+
+void Board::removePiece(const Pieces::Piece& piece, const Square& square)
+{
+    bitboards[piece] &= ~(1ULL << square);
+    bitboards[square] = Pieces::Piece::NONE;
+}

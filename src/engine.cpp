@@ -205,9 +205,9 @@ std::string Engine::getFEN() const
         result += "- ";
     }
 
-    result.push_back('0' + board.plyCount / 2);
+    result += std::to_string(plyCount / 2);
     result.push_back(' ');
-    result.push_back('0' + board.plyCount);
+    result += std::to_string(plyCount);
 
     return result;
 }
@@ -217,7 +217,7 @@ int Engine::evaluateBoard() const
 {
     int score = 0;
 
-    for (int i = 0; i < Pieces::Piece::PIECE_COUNT; ++i) {
+    for (int i = 0; i < Pieces::Piece::PIECE_COUNT - 2; ++i) {
         const bool isPieceWhite = Utils::isPieceWhite(i);
         // score += std::popcount(board.bitboards[i]) * Pieces::pieceValues[Utils::getPieceType(i)] * (isPieceWhite - !isPieceWhite);
         score += std::popcount(board.bitboards[i]) * Pieces::pieceValues[Utils::getPieceType(i)] * (isPieceWhite ? 1 : -1);
@@ -477,13 +477,13 @@ void Engine::makeMove(const Pieces::Move& move)
     // Store history
     board.history.history[board.history.used++] = Board::HistoryState(board);
 
-    ++board.plyCount;
+    ++plyCount;
 
     const int piece    = board.mailbox[move.fromSquare];
     const bool isWhite = Utils::isPieceWhite(piece);
 
-    const Bitboard fromPos = 1ULL << move.fromSquare;
-    const Bitboard toPos   = 1ULL << move.toSquare;
+    const Bitboard fromPos = (1ULL << move.fromSquare);
+    const Bitboard toPos   = (1ULL << move.toSquare);
 
 
     // Handle castling rights
@@ -515,27 +515,30 @@ void Engine::makeMove(const Pieces::Move& move)
 
 
     // Handle castling
-    if ((piece >> 1 == Pieces::PieceType::KING) && (move.fromSquare + 2 == move.toSquare)) {
+    if ((piece >> 1) == Pieces::PieceType::KING) {
         // Kingside castle
-        board.bitboards[ownPiece.ROOK] &= ~(toPos << 1);
-        board.bitboards[ownPiece.ROOK] |= (toPos >> 1);
+        if ((move.fromSquare + 2) == move.toSquare) {
+            board.bitboards[ownPiece.ROOK] &= ~(toPos << 1);
+            board.bitboards[ownPiece.ROOK] |= (toPos >> 1);
 
-        board.mailbox[move.toSquare + 1] = Pieces::Piece::NONE;
-        board.mailbox[move.toSquare - 1] = ownPiece.ROOK;
+            board.mailbox[move.toSquare + 1] = Pieces::Piece::NONE;
+            board.mailbox[move.toSquare - 1] = ownPiece.ROOK;
 
-        board.occupiedSquares[isWhite] &= ~(toPos << 1);
-        board.occupiedSquares[isWhite] |= (toPos >> 1);
-    }
-    else if ((piece >> 1 == Pieces::PieceType::KING) && (move.fromSquare - 2 == move.toSquare)) {
+            board.occupiedSquares[isWhite] &= ~(toPos << 1);
+            board.occupiedSquares[isWhite] |= (toPos >> 1);
+        }
+
         // Queenside castle
-        board.bitboards[ownPiece.ROOK] &= ~(toPos >> 2);
-        board.bitboards[ownPiece.ROOK] |= (toPos << 1);
+        else if ((move.fromSquare - 2) == move.toSquare) {
+            board.bitboards[ownPiece.ROOK] &= ~(toPos >> 2);
+            board.bitboards[ownPiece.ROOK] |= (toPos << 1);
 
-        board.mailbox[move.toSquare - 2] = Pieces::Piece::NONE;
-        board.mailbox[move.toSquare + 1] = ownPiece.ROOK;
+            board.mailbox[move.toSquare - 2] = Pieces::Piece::NONE;
+            board.mailbox[move.toSquare + 1] = ownPiece.ROOK;
 
-        board.occupiedSquares[isWhite] &= ~(toPos >> 2);
-        board.occupiedSquares[isWhite] |= (toPos << 1);
+            board.occupiedSquares[isWhite] &= ~(toPos >> 2ULL);
+            board.occupiedSquares[isWhite] |= (toPos << 1);
+        }
     }
 
 
@@ -614,7 +617,7 @@ void Engine::undoMove()
     board.occupiedSquares[0] = state.occupiedSquares[0];
     board.occupiedSquares[1] = state.occupiedSquares[1];
 
-    --board.plyCount;
+    --plyCount;
 }
 
 
@@ -770,7 +773,7 @@ bool Engine::wasIllegalMove()
 {
     flipColor();
 
-    bool isIllegalMove = isAttacked(std::countr_zero(board.bitboards[ownPiece.KING]));
+    bool isIllegalMove = isAttacked(static_cast<Square>(std::countr_zero(board.bitboards[ownPiece.KING])));
 
     flipColor();
 
@@ -784,7 +787,7 @@ std::string Engine::getEngineMove()
 
     // randomMove();
     negaMax(Settings::searchDepth);
-    // alphaBeta(Settings::searchDepth, -std::numeric_limits<int>::max(), std::numeric_limits<int>::max());
+    // alphaBeta(Settings::searchDepth, -INF_VALUE, INF_VALUE);
 
     makeMove(bestMove);
 

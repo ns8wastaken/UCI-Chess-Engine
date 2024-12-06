@@ -9,7 +9,7 @@ totalNodes = 0
 enginePath = pathlib.Path(__file__).absolute().parent.parent.parent / "Epsilon.exe"
 testSuitePath = pathlib.Path(__file__).absolute().parent / "standard.epd"
 resultPath = pathlib.Path(__file__).absolute().parent / "result.txt"
-maxDepth = 4
+maxDepth = 6
 
 
 process = subprocess.Popen(
@@ -24,7 +24,6 @@ data: list[str] = []
 
 with open(testSuitePath, "r") as f:
     data = f.readlines()
-
 
 outputFile = open(resultPath, "w")
 
