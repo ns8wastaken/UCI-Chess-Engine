@@ -25,12 +25,12 @@ struct Engine
 
     struct Piece
     {
-        int PAWN;
-        int KNIGHT;
-        int BISHOP;
-        int ROOK;
-        int QUEEN;
-        int KING;
+        Pieces::Piece PAWN;
+        Pieces::Piece KNIGHT;
+        Pieces::Piece BISHOP;
+        Pieces::Piece ROOK;
+        Pieces::Piece QUEEN;
+        Pieces::Piece KING;
     } ownPiece, enemyPiece;
 
 
@@ -56,7 +56,7 @@ struct Engine
     int evaluateBoard() const;
     int quiescentSearch(int alpha, const int beta);
 
-    Bitboard generatePieceMoves(const Square& square, const int& piece) const;
+    Bitboard generatePieceMoves(const Square& square, const Pieces::Piece& piece) const;
     MoveList getPseudoLegalMoves() const;
 
     void makeMove(const Pieces::Move& move);

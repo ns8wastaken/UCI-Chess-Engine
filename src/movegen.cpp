@@ -104,7 +104,7 @@ int16_t Engine::negaMax(const int& depth)
     // No legal moves
     if (legalMovesMade == 0) {
         // Checkmate
-        if (isAttacked(static_cast<Square>(std::countr_zero(board.bitboards[ownPiece.KING]))))
+        if (isAttacked(static_cast<Square>(std::countr_zero(board.bitboards[static_cast<int>(ownPiece.KING)]))))
             return -INF_VALUE + plyCount;
 
         // Stalemate

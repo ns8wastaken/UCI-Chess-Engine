@@ -181,7 +181,7 @@ int main()
                 for (int i = 63; i >= 0; --i) {
                     int row   = i / 8;
                     int col   = i % 8;
-                    int piece = engine.board.mailbox[row * 8 + (7 - col)];
+                    const Pieces::Piece& piece = engine.board.mailbox[row * 8 + (7 - col)];
 
                     if (i % 8 == 7 && i < 63)
                         std::cout << "|" << (row + 2) << "\n";
@@ -193,8 +193,8 @@ int main()
 
             else if (splitCommand[1] == "bitboards") {
                 // Print bitboards
-                for (int i = 0; i < Pieces::Piece::PIECE_COUNT; ++i) {
-                    printf("Piece: %c\n", Pieces::getPieceChar(i));
+                for (int i = 0; i < static_cast<int>(Pieces::Piece::PIECE_COUNT); ++i) {
+                    printf("Piece: %c\n", Pieces::getPieceChar(static_cast<Pieces::Piece>(i)));
                     printBitboard(engine.board.bitboards[i]);
                     printf("\n\n");
                 }
@@ -221,7 +221,7 @@ int main()
             for (int i = 63; i >= 0; --i) {
                 int row   = i / 8;
                 int col   = i % 8;
-                int piece = engine.board.mailbox[row * 8 + (7 - col)];
+                const Pieces::Piece& piece = engine.board.mailbox[row * 8 + (7 - col)];
 
                 if (i % 8 == 7 && i < 63)
                     std::cout << "|" << (row + 2) << "\n";
@@ -243,7 +243,7 @@ int main()
                 for (int i = 63; i >= 0; --i) {
                     int row   = i / 8;
                     int col   = i % 8;
-                    int piece = engine.board.mailbox[row * 8 + (7 - col)];
+                    const Pieces::Piece& piece = engine.board.mailbox[row * 8 + (7 - col)];
 
                     if (i % 8 == 7 && i < 63)
                         std::cout << "|" << (row + 2) << "\n";

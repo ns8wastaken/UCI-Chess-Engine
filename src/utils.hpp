@@ -15,7 +15,6 @@ typedef uint8_t Square;
 
 namespace Utils
 {
-
     [[nodiscard]] inline int randomInt(const int& min, const int& max)
     {
         static std::mt19937 gen(std::random_device{}());
@@ -24,18 +23,28 @@ namespace Utils
     }
 
 
-    [[nodiscard]] inline uint64_t BitShift(uint64_t x, const int& shift)
+    [[nodiscard]] inline uint64_t BitShift(const uint64_t& x, const int& shift)
     {
         return ((shift > 0) ? (x << shift) : (x >> -shift));
     }
 
 
-    [[nodiscard]] inline bool isPieceWhite(int piece)
+    [[nodiscard]] inline bool isPieceWhite(const Pieces::Piece& piece)
     {
-        return !(piece & 1); // !(piece % 2)
+        return !(static_cast<int>(piece) & 1); // !(piece % 2)
     }
 
-    [[nodiscard]] inline int getPieceType(const int piece)
+    [[nodiscard]] inline bool isPieceWhite(const int& piece)
+    {
+        return !(static_cast<int>(piece) & 1); // !(piece % 2)
+    }
+
+    [[nodiscard]] inline int getPieceType(const Pieces::Piece& piece)
+    {
+        return static_cast<int>(piece) >> 1;
+    }
+
+    [[nodiscard]] inline int getPieceType(const int& piece)
     {
         return piece >> 1;
     }
@@ -73,16 +82,16 @@ namespace Utils
 
     [[nodiscard]] Pieces::Move moveFromUCI(const std::string& UCI_Move)
     {
-        int promotionPieceType = Pieces::PieceType::PIECE_TYPE_COUNT;
+        Pieces::PieceType promotionPieceType = Pieces::PieceType::PIECE_TYPE_COUNT;
 
         if (UCI_Move.length() == 5) {
             promotionPieceType = Pieces::getPieceTypeFromChar(UCI_Move[4]);
         }
 
         return Pieces::Move{
-            static_cast<uint8_t>((UCI_Move[1] - '1') * 8 + UCI_Move[0] - 'a'),
-            static_cast<uint8_t>((UCI_Move[3] - '1') * 8 + UCI_Move[2] - 'a'),
-            promotionPieceType
+            .fromSquare         = static_cast<uint8_t>((UCI_Move[1] - '1') * 8 + UCI_Move[0] - 'a'),
+            .toSquare           = static_cast<uint8_t>((UCI_Move[3] - '1') * 8 + UCI_Move[2] - 'a'),
+            .promotionPieceType = promotionPieceType
         };
     }
 
@@ -140,5 +149,4 @@ namespace Utils
 
     constexpr uint64_t B_PawnStart = 0xff000000000000;
     constexpr uint64_t W_PawnStart = 0xff00;
-
 }

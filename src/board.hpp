@@ -5,9 +5,9 @@
 #include "pieces.hpp"
 
 
-typedef std::array<Bitboard, Pieces::Piece::PIECE_COUNT> BitboardArray;
+typedef std::array<Bitboard, static_cast<std::size_t>(Pieces::Piece::PIECE_COUNT)> BitboardArray;
 
-typedef std::array<int, 64ULL> Mailbox; // Array of pieces (not piece types)
+typedef std::array<Pieces::Piece, 64ULL> Mailbox; // Array of pieces (not piece types)
 
 
 struct Board
@@ -64,6 +64,6 @@ struct Board
 
     void precomputeMoves();
 
-    void placePiece(const int& piece, const bool& isPieceWhite, const Square& square);
-    void removePiece(const int& piece, const bool& isPieceWhite, const Square& square);
+    void placePiece(const Pieces::Piece& piece, const bool& isPieceWhite, const Square& square);
+    void removePiece(const Pieces::Piece& piece, const bool& isPieceWhite, const Square& square);
 };

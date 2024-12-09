@@ -4,8 +4,7 @@
 
 namespace Pieces
 {
-
-    enum PieceType
+    enum class PieceType
     {
         PAWN,
         KNIGHT,
@@ -18,7 +17,7 @@ namespace Pieces
     };
 
 
-    enum Piece
+    enum class Piece
     {
         W_PAWN = 0,
         B_PAWN,
@@ -61,10 +60,10 @@ namespace Pieces
 
     struct Move
     {
-        uint8_t fromSquare     = 64;
-        uint8_t toSquare       = 64;
-        int promotionPieceType = PieceType::PIECE_TYPE_COUNT;
-        bool isCastle          = false;
+        uint8_t fromSquare           = 64;
+        uint8_t toSquare             = 64;
+        PieceType promotionPieceType = PieceType::PIECE_TYPE_COUNT;
+        bool isCastle                = false;
     };
 
 
@@ -75,7 +74,7 @@ namespace Pieces
     };
 
 
-    constexpr char getPieceTypeChar(int piece)
+    constexpr char getPieceTypeChar(const PieceType& piece)
     {
         switch (piece) {
             case PieceType::PAWN:   return 'p';
@@ -90,7 +89,7 @@ namespace Pieces
     };
 
 
-    constexpr char getPieceChar(int piece)
+    constexpr char getPieceChar(const Piece& piece)
     {
         switch (piece) {
             // White
@@ -114,7 +113,7 @@ namespace Pieces
     };
 
 
-    constexpr int getPieceTypeFromChar(char c)
+    constexpr PieceType getPieceTypeFromChar(const char& c)
     {
         switch (c) {
             case 'p':
@@ -140,7 +139,7 @@ namespace Pieces
     };
 
 
-    constexpr int getPieceFromChar(char c)
+    constexpr Piece getPieceFromChar(const char& c)
     {
         switch (c) {
             // White
@@ -162,5 +161,4 @@ namespace Pieces
 
         return Piece::NONE;
     };
-
 }

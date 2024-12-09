@@ -70,19 +70,19 @@ void Engine::flipColor()
 {
     isWhiteTurn = !isWhiteTurn;
 
-    ownPiece.PAWN ^= 1;
-    ownPiece.KNIGHT ^= 1;
-    ownPiece.BISHOP ^= 1;
-    ownPiece.ROOK ^= 1;
-    ownPiece.QUEEN ^= 1;
-    ownPiece.KING ^= 1;
+    ownPiece.PAWN   = static_cast<Pieces::Piece>(static_cast<int>(ownPiece.PAWN) ^ 1);
+    ownPiece.KNIGHT = static_cast<Pieces::Piece>(static_cast<int>(ownPiece.KNIGHT) ^ 1);
+    ownPiece.BISHOP = static_cast<Pieces::Piece>(static_cast<int>(ownPiece.BISHOP) ^ 1);
+    ownPiece.ROOK   = static_cast<Pieces::Piece>(static_cast<int>(ownPiece.ROOK) ^ 1);
+    ownPiece.QUEEN  = static_cast<Pieces::Piece>(static_cast<int>(ownPiece.QUEEN) ^ 1);
+    ownPiece.KING   = static_cast<Pieces::Piece>(static_cast<int>(ownPiece.KING) ^ 1);
 
-    enemyPiece.PAWN ^= 1;
-    enemyPiece.KNIGHT ^= 1;
-    enemyPiece.BISHOP ^= 1;
-    enemyPiece.ROOK ^= 1;
-    enemyPiece.QUEEN ^= 1;
-    enemyPiece.KING ^= 1;
+    enemyPiece.PAWN   = static_cast<Pieces::Piece>(static_cast<int>(ownPiece.PAWN) ^ 1);
+    enemyPiece.KNIGHT = static_cast<Pieces::Piece>(static_cast<int>(ownPiece.KNIGHT) ^ 1);
+    enemyPiece.BISHOP = static_cast<Pieces::Piece>(static_cast<int>(ownPiece.BISHOP) ^ 1);
+    enemyPiece.ROOK   = static_cast<Pieces::Piece>(static_cast<int>(ownPiece.ROOK) ^ 1);
+    enemyPiece.QUEEN  = static_cast<Pieces::Piece>(static_cast<int>(ownPiece.QUEEN) ^ 1);
+    enemyPiece.KING   = static_cast<Pieces::Piece>(static_cast<int>(ownPiece.KING) ^ 1);
 }
 
 
@@ -107,9 +107,9 @@ void Engine::loadFEN(const std::vector<std::string>& FEN)
             square += (c - '0');
         }
         else {
-            int piece = Pieces::getPieceFromChar(c);
+            Pieces::Piece piece = Pieces::getPieceFromChar(c);
 
-            board.bitboards[piece] |= (1ULL << square);
+            board.bitboards[static_cast<int>(piece)] |= (1ULL << square);
             board.mailbox[square] = piece;
 
             board.occupiedSquares[Utils::isPieceWhite(piece)] |= (1ULL << square);
@@ -152,7 +152,7 @@ std::string Engine::getFEN() const
         int emptyCount = 0;
 
         for (int i = 0; i < 8; ++i) {
-            int piece = board.mailbox[square];
+            Pieces::Piece piece = board.mailbox[square];
 
             if (piece != Pieces::Piece::NONE) {
                 if (emptyCount != 0)
@@ -217,7 +217,7 @@ int Engine::evaluateBoard() const
 {
     int score = 0;
 
-    for (int i = 0; i < Pieces::Piece::PIECE_COUNT - 2; ++i) {
+    for (int i = 0; i < static_cast<int>(Pieces::Piece::PIECE_COUNT) - 2; ++i) {
         const bool isPieceWhite = Utils::isPieceWhite(i);
         // score += std::popcount(board.bitboards[i]) * Pieces::pieceValues[Utils::getPieceType(i)] * (isPieceWhite - !isPieceWhite);
         score += std::popcount(board.bitboards[i]) * Pieces::pieceValues[Utils::getPieceType(i)] * (isPieceWhite ? 1 : -1);
@@ -228,7 +228,7 @@ int Engine::evaluateBoard() const
 }
 
 
-Bitboard Engine::generatePieceMoves(const Square& square, const int& piece) const
+Bitboard Engine::generatePieceMoves(const Square& square, const Pieces::Piece& piece) const
 {
     const Bitboard occupiedSquaresAll = (board.occupiedSquares[0] | board.occupiedSquares[1]);
 
@@ -419,7 +419,7 @@ Engine::MoveList Engine::getPseudoLegalMoves() const
 
 
     for (int square = 0; square < 64; ++square) {
-        const int& piece = board.mailbox[square];
+        const Pieces::Piece& piece = board.mailbox[square];
 
         if ((piece == Pieces::Piece::NONE) || (isWhiteTurn != Utils::isPieceWhite(piece)))
             continue;
@@ -431,7 +431,7 @@ Engine::MoveList Engine::getPseudoLegalMoves() const
             const int offset = std::countr_zero(movesBitboard);
             movesBitboard &= ~(1ULL << offset);
 
-            const int score = Pieces::pieceValues[Pieces::PieceType::KING] + Pieces::pieceValues[Utils::getPieceType(piece)] - Pieces::pieceValues[Utils::getPieceType(board.mailbox[offset])];
+            const int score = Pieces::pieceValues[static_cast<int>(Pieces::PieceType::KING)] + Pieces::pieceValues[Utils::getPieceType(piece)] - Pieces::pieceValues[Utils::getPieceType(board.mailbox[offset])];
 
             if (((piece == Pieces::Piece::W_PAWN) && ((1ULL << square) & Utils::B_PawnStart)) || ((piece == Pieces::Piece::B_PAWN) && ((1ULL << square) & Utils::W_PawnStart))) [[unlikely]] {
                 scoredMoves[usedScoredMoves++] = Pieces::ScoredMove{
@@ -479,11 +479,11 @@ void Engine::makeMove(const Pieces::Move& move)
 
     ++plyCount;
 
-    const int piece    = board.mailbox[move.fromSquare];
-    const bool isWhite = Utils::isPieceWhite(piece);
+    const Pieces::Piece piece = board.mailbox[move.fromSquare];
+    const bool isWhite        = Utils::isPieceWhite(piece);
 
     // const Bitboard fromPos = (1ULL << move.fromSquare);
-    const Bitboard toPos   = (1ULL << move.toSquare);
+    const Bitboard toPos = (1ULL << move.toSquare);
 
 
     // Handle castling rights
@@ -515,11 +515,11 @@ void Engine::makeMove(const Pieces::Move& move)
 
 
     // Handle castling
-    if ((piece >> 1) == Pieces::PieceType::KING) {
+    if (static_cast<Pieces::PieceType>(static_cast<int>(piece) >> 1) == Pieces::PieceType::KING) {
         // Kingside castle
         if ((move.fromSquare + 2) == move.toSquare) {
-            board.bitboards[ownPiece.ROOK] &= ~(toPos << 1);
-            board.bitboards[ownPiece.ROOK] |= (toPos >> 1);
+            board.bitboards[static_cast<int>(ownPiece.ROOK)] &= ~(toPos << 1);
+            board.bitboards[static_cast<int>(ownPiece.ROOK)] |= (toPos >> 1);
 
             board.mailbox[move.toSquare + 1] = Pieces::Piece::NONE;
             board.mailbox[move.toSquare - 1] = ownPiece.ROOK;
@@ -530,8 +530,8 @@ void Engine::makeMove(const Pieces::Move& move)
 
         // Queenside castle
         else if ((move.fromSquare - 2) == move.toSquare) {
-            board.bitboards[ownPiece.ROOK] &= ~(toPos >> 2);
-            board.bitboards[ownPiece.ROOK] |= (toPos << 1);
+            board.bitboards[static_cast<int>(ownPiece.ROOK)] &= ~(toPos >> 2);
+            board.bitboards[static_cast<int>(ownPiece.ROOK)] |= (toPos << 1);
 
             board.mailbox[move.toSquare - 2] = Pieces::Piece::NONE;
             board.mailbox[move.toSquare + 1] = ownPiece.ROOK;
@@ -543,22 +543,22 @@ void Engine::makeMove(const Pieces::Move& move)
 
 
     // Handle captures (if any)
-    int capturedPiece = board.mailbox[move.toSquare];
+    Pieces::Piece capturedPiece = board.mailbox[move.toSquare];
     if (capturedPiece != Pieces::Piece::NONE) {
         // Normal capture
-        // 
-        board.bitboards[capturedPiece] &= ~toPos;
+        //
+        board.bitboards[static_cast<int>(capturedPiece)] &= ~toPos;
         board.occupiedSquares[Utils::isPieceWhite(capturedPiece)] &= ~toPos;
     }
-    else if ((move.toSquare == board.enPassantSquare) && (piece >> 1) == Pieces::PieceType::PAWN) {
+    else if ((move.toSquare == board.enPassantSquare) && static_cast<Pieces::PieceType>(static_cast<int>(piece) >> 1) == Pieces::PieceType::PAWN) {
         // En passant capture
         if (isWhite) {
-            board.bitboards[enemyPiece.PAWN] &= ~(toPos >> 8);
+            board.bitboards[static_cast<int>(enemyPiece.PAWN)] &= ~(toPos >> 8);
             board.occupiedSquares[0] &= ~(toPos >> 8);
             board.mailbox[move.toSquare - 8] = Pieces::Piece::NONE;
         }
         else {
-            board.bitboards[enemyPiece.PAWN] &= ~(toPos << 8);
+            board.bitboards[static_cast<int>(enemyPiece.PAWN)] &= ~(toPos << 8);
             board.occupiedSquares[1] &= ~(toPos << 8);
             board.mailbox[move.toSquare + 8] = Pieces::Piece::NONE;
         }
@@ -566,7 +566,10 @@ void Engine::makeMove(const Pieces::Move& move)
 
 
     // Update positions
-    const int newPiece = (move.promotionPieceType == Pieces::PieceType::PIECE_TYPE_COUNT) ? piece : (move.promotionPieceType << 1) | (!isWhite);
+    const Pieces::Piece newPiece =
+        (move.promotionPieceType == Pieces::PieceType::PIECE_TYPE_COUNT)
+            ? piece
+            : static_cast<Pieces::Piece>((static_cast<int>(move.promotionPieceType) << 1) | (!isWhite));
 
     board.removePiece(piece, isWhite, move.fromSquare);
     board.placePiece(newPiece, isWhite, move.toSquare);
@@ -731,12 +734,12 @@ bool Engine::isAttacked(const Square square)
 
 
     // clang-format off
-    if      (queenMoves  & board.bitboards[enemyPiece.QUEEN])  return true;
-    else if (rookMoves   & board.bitboards[enemyPiece.ROOK])   return true;
-    else if (bishopMoves & board.bitboards[enemyPiece.BISHOP]) return true;
-    else if (knightMoves & board.bitboards[enemyPiece.KNIGHT]) return true;
-    else if (pawnMoves   & board.bitboards[enemyPiece.PAWN])   return true;
-    else if (kingMoves   & board.bitboards[enemyPiece.KING])   return true;
+    if      (queenMoves  & board.bitboards[static_cast<int>(enemyPiece.QUEEN)])  return true;
+    else if (rookMoves   & board.bitboards[static_cast<int>(enemyPiece.ROOK)])   return true;
+    else if (bishopMoves & board.bitboards[static_cast<int>(enemyPiece.BISHOP)]) return true;
+    else if (knightMoves & board.bitboards[static_cast<int>(enemyPiece.KNIGHT)]) return true;
+    else if (pawnMoves   & board.bitboards[static_cast<int>(enemyPiece.PAWN)])   return true;
+    else if (kingMoves   & board.bitboards[static_cast<int>(enemyPiece.KING)])   return true;
 
     return false;
     // clang-format on
@@ -747,7 +750,7 @@ bool Engine::isLegalCastle(const Pieces::Move& move)
 {
     // Castling legality
     if ((board.mailbox[move.fromSquare] == ownPiece.KING) && ((move.toSquare == move.fromSquare + 2) || (move.toSquare == move.fromSquare - 2))) {
-        Square ownKingSquare = std::countr_zero(board.bitboards[ownPiece.KING]);
+        Square ownKingSquare = std::countr_zero(board.bitboards[static_cast<int>(ownPiece.KING)]);
 
         if (isAttacked(ownKingSquare) || ((move.fromSquare + 2 == move.toSquare) && (isAttacked(ownKingSquare + 1) || isAttacked(ownKingSquare + 2))) || ((move.fromSquare - 2 == move.toSquare) && (isAttacked(ownKingSquare - 1) || isAttacked(ownKingSquare - 2)))) {
             return false;
@@ -766,7 +769,7 @@ bool Engine::wasIllegalMove()
 {
     flipColor();
 
-    bool isIllegalMove = isAttacked(static_cast<Square>(std::countr_zero(board.bitboards[ownPiece.KING])));
+    bool isIllegalMove = isAttacked(static_cast<Square>(std::countr_zero(board.bitboards[static_cast<int>(ownPiece.KING)])));
 
     flipColor();
 
