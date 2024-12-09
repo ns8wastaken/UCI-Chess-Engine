@@ -64,6 +64,6 @@ struct Board
 
     void precomputeMoves();
 
-    void placePiece(const Pieces::Piece& piece, const Square& square);
-    void removePiece(const Pieces::Piece& piece, const Square& square);
+    void placePiece(const int& piece, const bool& isPieceWhite, const Square& square);
+    void removePiece(const int& piece, const bool& isPieceWhite, const Square& square);
 };

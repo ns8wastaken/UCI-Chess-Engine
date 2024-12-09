@@ -482,7 +482,7 @@ void Engine::makeMove(const Pieces::Move& move)
     const int piece    = board.mailbox[move.fromSquare];
     const bool isWhite = Utils::isPieceWhite(piece);
 
-    const Bitboard fromPos = (1ULL << move.fromSquare);
+    // const Bitboard fromPos = (1ULL << move.fromSquare);
     const Bitboard toPos   = (1ULL << move.toSquare);
 
 
@@ -546,6 +546,7 @@ void Engine::makeMove(const Pieces::Move& move)
     int capturedPiece = board.mailbox[move.toSquare];
     if (capturedPiece != Pieces::Piece::NONE) {
         // Normal capture
+        // 
         board.bitboards[capturedPiece] &= ~toPos;
         board.occupiedSquares[Utils::isPieceWhite(capturedPiece)] &= ~toPos;
     }
@@ -565,24 +566,16 @@ void Engine::makeMove(const Pieces::Move& move)
 
 
     // Update positions
-    board.bitboards[piece] &= ~fromPos;
-    board.mailbox[move.fromSquare] = Pieces::Piece::NONE;
-
     const int newPiece = (move.promotionPieceType == Pieces::PieceType::PIECE_TYPE_COUNT) ? piece : (move.promotionPieceType << 1) | (!isWhite);
 
-    board.bitboards[newPiece] |= toPos;
-    board.mailbox[move.toSquare] = newPiece;
-
-
-    // Update occupied squares
-    board.occupiedSquares[isWhite] &= ~fromPos;
-    board.occupiedSquares[isWhite] |= toPos;
+    board.removePiece(piece, isWhite, move.fromSquare);
+    board.placePiece(newPiece, isWhite, move.toSquare);
 
 
     flipColor();
 
 
-    // Remove en passant square
+    // Clear en passant square
     board.enPassantSquare = 64;
 
 

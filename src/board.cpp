@@ -45,15 +45,17 @@ void Board::precomputeMoves()
 }
 
 
-void Board::placePiece(const Pieces::Piece& piece, const Square& square)
+void Board::placePiece(const int& piece, const bool& isPieceWhite, const Square& square)
 {
     bitboards[piece] |= (1ULL << square);
-    bitboards[square] = piece;
+    mailbox[square] = piece;
+    occupiedSquares[isPieceWhite] |= (1ULL << square);
 }
 
 
-void Board::removePiece(const Pieces::Piece& piece, const Square& square)
+void Board::removePiece(const int& piece, const bool& isPieceWhite, const Square& square)
 {
     bitboards[piece] &= ~(1ULL << square);
-    bitboards[square] = Pieces::Piece::NONE;
+    mailbox[square] = Pieces::Piece::NONE;
+    occupiedSquares[isPieceWhite] &= ~(1ULL << square);
 }

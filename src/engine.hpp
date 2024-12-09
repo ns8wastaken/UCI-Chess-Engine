@@ -79,5 +79,5 @@ struct Engine
     uint64_t perft(const int depth);
     uint64_t divide(const int depth);
 
-    static constexpr int16_t INF_VALUE = 30000;
+    static constexpr inline int16_t INF_VALUE = 30000;
 };
