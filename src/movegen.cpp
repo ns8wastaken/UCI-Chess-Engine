@@ -101,7 +101,7 @@ int16_t Engine::negaMax(const int& depth)
         }
     }
 
-    // No legal moves
+    // No legal moves made
     if (legalMovesMade == 0) {
         // Checkmate
         if (isAttacked(static_cast<Square>(std::countr_zero(board.bitboards[static_cast<int>(ownPiece.KING)]))))
@@ -125,6 +125,8 @@ int16_t Engine::alphaBeta(const int& depth, int16_t alpha, const int16_t& beta)
 
     MoveList moves = getPseudoLegalMoves();
 
+    int legalMovesMade = 0;
+
     for (int i = 0; i < moves.used; ++i) {
         const Pieces::Move& move = moves.moves[i];
 
@@ -137,6 +139,7 @@ int16_t Engine::alphaBeta(const int& depth, int16_t alpha, const int16_t& beta)
             continue;
         }
 
+        ++legalMovesMade;
         int16_t score = -alphaBeta(depth - 1, -beta, -alpha);
 
         undoMove();
@@ -152,6 +155,16 @@ int16_t Engine::alphaBeta(const int& depth, int16_t alpha, const int16_t& beta)
 
         if (score >= beta)
             return bestValue;
+    }
+
+    // No legal moves made
+    if (legalMovesMade == 0) {
+        // Checkmate
+        if (isAttacked(static_cast<Square>(std::countr_zero(board.bitboards[static_cast<int>(ownPiece.KING)]))))
+            return -INF_VALUE + plyCount;
+
+        // Stalemate
+        return 0;
     }
 
     return bestValue;

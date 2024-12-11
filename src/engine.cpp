@@ -782,8 +782,8 @@ std::string Engine::getEngineMove()
     bestMove = {};
 
     // randomMove();
-    negaMax(Settings::searchDepth);
-    // alphaBeta(Settings::searchDepth, -INF_VALUE, INF_VALUE);
+    // negaMax(Settings::searchDepth);
+    alphaBeta(Settings::searchDepth, -INF_VALUE, INF_VALUE);
 
     makeMove(bestMove);
 
