@@ -6,7 +6,7 @@
 
 #include "utils.hpp"
 #include "enginedebug.cpp"
-#include "movegen.cpp"
+#include "search.cpp"
 #include "engine.cpp"
 
 

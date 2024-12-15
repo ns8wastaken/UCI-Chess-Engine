@@ -68,7 +68,7 @@ void Engine::randomMove()
 
 int16_t Engine::negaMax(const int& depth)
 {
-    if (depth == 0) return evaluateBoard();
+    if (depth == Settings::searchDepth) return evaluateBoard();
 
     int16_t max = -INF_VALUE;
 
@@ -89,12 +89,12 @@ int16_t Engine::negaMax(const int& depth)
         }
 
         ++legalMovesMade;
-        int16_t score = -negaMax(depth - 1);
+        int16_t score = -negaMax(depth + 1);
 
         undoMove();
 
         if (score > max) {
-            if (depth == Settings::searchDepth)
+            if (depth == 0)
                 bestMove = move;
 
             max = score;
@@ -117,7 +117,7 @@ int16_t Engine::negaMax(const int& depth)
 
 int16_t Engine::alphaBeta(const int& depth, int16_t alpha, const int16_t& beta)
 {
-    if (depth == 0)
+    if (depth == Settings::searchDepth)
         // return quiescentSearch(alpha, beta);
         return evaluateBoard();
 
@@ -140,14 +140,14 @@ int16_t Engine::alphaBeta(const int& depth, int16_t alpha, const int16_t& beta)
         }
 
         ++legalMovesMade;
-        int16_t score = -alphaBeta(depth - 1, -beta, -alpha);
+        int16_t score = -alphaBeta(depth + 1, -beta, -alpha);
 
         undoMove();
 
         if (score > bestValue) {
             bestValue = score;
 
-            if (depth == Settings::searchDepth)
+            if (depth == 0)
                 bestMove = move;
 
             alpha = std::max(alpha, score);

@@ -249,6 +249,11 @@ Bitboard Engine::generatePieceMoves(const Square& square, const Pieces::Piece& p
 
 
     switch (piece) {
+        // Extra
+        case Pieces::Piece::PIECE_COUNT: std::__throw_runtime_error("Pieces::Piece::PIECE_COUNT was passed in the function generatePieceMoves()");
+        case Pieces::Piece::NONE:        std::__throw_runtime_error("Pieces::Piece::NONE was passed in the function generatePieceMoves()");
+
+        // Pieces
         case Pieces::Piece::W_PAWN: {
             Bitboard moves = 0ULL;
 
@@ -782,8 +787,8 @@ std::string Engine::getEngineMove()
     bestMove = {};
 
     // randomMove();
-    // negaMax(Settings::searchDepth);
-    alphaBeta(Settings::searchDepth, -INF_VALUE, INF_VALUE);
+    // negaMax(0);
+    alphaBeta(0, -INF_VALUE, INF_VALUE);
 
     makeMove(bestMove);
 

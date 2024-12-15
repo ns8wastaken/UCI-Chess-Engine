@@ -77,6 +77,10 @@ namespace Pieces
     constexpr char getPieceTypeChar(const PieceType& piece)
     {
         switch (piece) {
+            // Extra
+            case PieceType::PIECE_TYPE_COUNT: return '\0';
+
+            // Pieces
             case PieceType::PAWN:   return 'p';
             case PieceType::KNIGHT: return 'n';
             case PieceType::BISHOP: return 'b';
@@ -92,6 +96,10 @@ namespace Pieces
     constexpr char getPieceChar(const Piece& piece)
     {
         switch (piece) {
+            // Extra
+            case Piece::PIECE_COUNT: return '\0';
+            case Piece::NONE:        return '\0';
+
             // White
             case Piece::W_PAWN:   return 'P';
             case Piece::W_KNIGHT: return 'N';
